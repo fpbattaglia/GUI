@@ -59,7 +59,7 @@ ProcessorList::ProcessorList()
 	//sources->addSubItem(new ProcessorListItem("Network Events"));
     sources->addSubItem(new ProcessorListItem("Serial Port"));
     //sources->addSubItem(new ProcessorListItem("Event Generator"));
-
+    sources->addSubItem(new ProcessorListItem("Python Source"));
     ProcessorListItem* filters = new ProcessorListItem("Filters");
     filters->addSubItem(new ProcessorListItem("Bandpass Filter"));
     filters->addSubItem(new ProcessorListItem("Spike Detector"));
@@ -68,6 +68,7 @@ ProcessorList::ProcessorList()
     //filters->addSubItem(new ProcessorListItem("Digital Ref"));
     filters->addSubItem(new ProcessorListItem("Channel Map"));
 	//filters->addSubItem(new ProcessorListItem("Eye Tracking"));
+    filters->addSubItem(new ProcessorListItem("Python Filter"));
 
 
     ProcessorListItem* sinks = new ProcessorListItem("Sinks");
@@ -80,7 +81,8 @@ ProcessorList::ProcessorList()
     //sinks->addSubItem(new ProcessorListItem("Arduino Output"));
     // sinks->addSubItem(new ProcessorListItem("FPGA Output"));
     sinks->addSubItem(new ProcessorListItem("Pulse Pal"));
-
+    // sinks->addSubItem(new ProcessorListItem("Python Example Processor"));
+    sinks->addSubItem(new ProcessorListItem("Python Sink"));
     ProcessorListItem* utilities = new ProcessorListItem("Utilities");
     utilities->addSubItem(new ProcessorListItem("Splitter"));
     utilities->addSubItem(new ProcessorListItem("Merger"));

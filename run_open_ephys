@@ -1,0 +1,6 @@
+#!/bin/bash
+
+export LD_LIBRARY_PATH=/home/fpbatta/Canopy/appdata/canopy-1.4.0.1938.rh5-x86_64/lib:$LD_LIBRARY_PATH
+
+export PYTHONPATH=/home/fpbatta/Canopy/appdata/canopy-1.4.0.1938.rh5-x86_64/lib/python2.7
+Builds/Linux/build/open-ephys

@@ -47,6 +47,10 @@
 #include "FPGAOutput.h"
 #include "PulsePalOutput.h"
 #include "SerialInput.h"
+#include "PythonSource.h"
+#include "PythonSink.h"
+#include "PythonFilter.h"
+// #include "PythonExampleProcessor.h"
 #include "Utilities/RecordControl.h"
 #include "Utilities/Splitter.h"
 #include "Utilities/Merger.h"
@@ -517,7 +521,11 @@ GenericProcessor* ProcessorGraph::createProcessorFromDescription(String& descrip
             processor = new SerialInput();
             std::cout << "Creating a new serial port input." << std::endl;
         }
-
+        else if (subProcessorType.equalsIgnoreCase("Python Source"))
+        {
+        	processor = new PythonSource();
+        	std::cout << "Creating a new python source plugin." << std::endl;
+        }
 
 
         sendActionMessage("New source node created.");
@@ -551,10 +559,14 @@ GenericProcessor* ProcessorGraph::createProcessorFromDescription(String& descrip
         }
         else if (subProcessorType.equalsIgnoreCase("Channel Map"))
         {
-            std::cout << "Creating a new channel mapping node." << std::endl;
-            processor = new ChannelMappingNode();
+        	std::cout << "Creating a new channel mapping node." << std::endl;
+        	processor = new ChannelMappingNode();
         } 
-
+        else if (subProcessorType.equalsIgnoreCase("Python Filter"))
+        {
+        	processor = new PythonFilter();
+        	std::cout << "Creating a new python filter plugin." << std::endl;
+        }
         sendActionMessage("New filter node created.");
 
     }
@@ -625,7 +637,16 @@ GenericProcessor* ProcessorGraph::createProcessorFromDescription(String& descrip
             std::cout << "Creating a Pulse Pal output node." << std::endl;
             processor = new PulsePalOutput();
         }
-
+//        else if (subProcessorType.equalsIgnoreCase("Python Example Processor"))
+//        {
+//        	processor = new PythonExampleProcessor();
+//        	std::cout << "Creating a new python example processor." << std::endl;
+//        }
+        else if (subProcessorType.equalsIgnoreCase("Python Sink"))
+                {
+                	processor = new PythonSink();
+                	std::cout << "Creating a new python sink plugin." << std::endl;
+                }
         sendActionMessage("New sink created.");
     }
 

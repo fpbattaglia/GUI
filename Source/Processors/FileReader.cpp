@@ -46,6 +46,7 @@ FileReader::~FileReader()
 
 AudioProcessorEditor* FileReader::createEditor()
 {
+	std::cout << "in FileReader::createEditor()" << std::endl;
     editor = new FileReaderEditor(this, true);
 
     return editor;
