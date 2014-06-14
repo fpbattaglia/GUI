@@ -28,10 +28,12 @@ Builds/Linux/build/windowState.xml
 Builds/Linux/build/Data
 Builds/Linux/build/*.xml
 Builds/Linux/build/*.out
+Builds/Linux/Makefile
 Builds/MacOSX/build
 Builds/Linux/log
 Builds/Linux/gmon.out
-
+Builds/VisualStudio2012
+Introjucer/Builds/MacOSX/build/
 # 4. Windows related
 Builds/VisualStudio2012/Debug
 Builds/VisualStudio2012/Release
@@ -77,3 +79,4 @@ Builds/MacOSX/open-ephys.xcodeproj/*.mode1v3
 Builds/MacOSX/open-ephys.xcodeproj/*.pbxuser
 Builds/MacOSX/open-ephys.xcodeproj/xcuserdata
 Builds/MacOSX/open-ephys.xcodeproj/project.xcworkspace
+Introjucer/Builds/MacOSX
