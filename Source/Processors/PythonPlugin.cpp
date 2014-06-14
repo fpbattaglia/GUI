@@ -48,9 +48,14 @@ AudioProcessorEditor* PythonPlugin::createEditor()
 
 bool PythonPlugin::isReady()
 {
-    if (plugin == 0)
+    if (plugin == 0 )
     {
         sendActionMessage("No plugin selected in Python Plugin.");
+        return false;
+    }
+    else if ((*pluginIsReady)())
+    {
+        sendActionMessage("Plugin is not ready");
         return false;
     }
     else
@@ -96,6 +101,7 @@ void PythonPlugin::process(AudioSampleBuffer& buffer,
     //
     // }
 
+    (*pluginFunction)(buffer);
 
 }
 
@@ -103,8 +109,6 @@ void PythonPlugin::process(AudioSampleBuffer& buffer,
 
 void PythonPlugin::setFile(String fullpath)
 {
-
-	DL_IMPORT(void) (*cf)(void);
     filePath = fullpath;
 
     const char* path = filePath.getCharPointer();
@@ -130,6 +134,28 @@ void PythonPlugin::setFile(String fullpath)
     initfunc_t initF = (initfunc_t) initializer;
 
     void *cfunc = dlsym(plugin,"pluginFunction");
+    if (!cfunc)
+    {
+    	std::cout << "Can't find init function in plugin "
+        << '"' << path << "\""
+        << std::endl;
+    	plugin = 0;
+    	return;
+    }
+    pluginFunction = (cythonfunc_t)cfunc;
+    
+
+    cfunc = dlsym(plugin,"pluginIsReady");
+    if (!cfunc)
+    {
+    	std::cout << "Can't find init function in plugin "
+        << '"' << path << "\""
+        << std::endl;
+    	plugin = 0;
+    	return;
+    }
+    pluginIsReady = (cythonfunc_t)cfunc;
+
     (*initF)();
 }
 
