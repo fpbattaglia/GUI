@@ -24,7 +24,8 @@
 
 extern "C" typedef  void (*initfunc_t)(void);
 
-typedef DL_IMPORT(void) (*cythonfunc_t)(void);
+typedef DL_IMPORT(void) (*pluginfunc_t)(float *, int, int);
+typedef DL_IMPORT(int) (*isreadyfunc_t)(void);
 
 #ifdef _WIN32
 #include <Windows.h>
@@ -102,8 +103,8 @@ private:
     // bool state;
 
 
-    cythonfunc_t pluginFunction;
-    cythonfunc_t pluginIsReady;
+    pluginfunc_t pluginFunction;
+    isreadyfunc_t pluginIsReady;
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(PythonPlugin);
 
 };

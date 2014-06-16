@@ -53,7 +53,7 @@ bool PythonPlugin::isReady()
         sendActionMessage("No plugin selected in Python Plugin.");
         return false;
     }
-    else if ((*pluginIsReady)())
+    else if (pluginIsReady && !(*pluginIsReady)())
     {
         sendActionMessage("Plugin is not ready");
         return false;
@@ -101,7 +101,7 @@ void PythonPlugin::process(AudioSampleBuffer& buffer,
     //
     // }
 
-    (*pluginFunction)(buffer);
+    (*pluginFunction)(*(buffer.getArrayOfChannels()), buffer.getNumChannels(), buffer.getNumSamples());
 
 }
 
@@ -112,7 +112,7 @@ void PythonPlugin::setFile(String fullpath)
     filePath = fullpath;
 
     const char* path = filePath.getCharPointer();
-    plugin = dlopen("/Users/fpbatta/src/cpython_plugin1/cpython_plugin1.so", RTLD_LAZY);
+    plugin = dlopen(path, RTLD_LAZY);
     if (!plugin)
       {
           std::cout << "Can't open plugin "
@@ -121,40 +121,51 @@ void PythonPlugin::setFile(String fullpath)
           return;
       }
 
-    void *initializer = dlsym(plugin,"initPlugin");
+    void *initializer = dlsym(plugin,"initplugin");
+    std::cout << "initializer: " << initializer << std::endl;
+
     if (!initializer)
     {
     	std::cout << "Can't find init function in plugin "
-    			<< '"' << path << "\""
-    			<< std::endl;
+        << '"' << path << "\"" << std::endl
+        << dlerror()
+        << std::endl;
     	plugin = 0;
     	return;
     }
-
+    
     initfunc_t initF = (initfunc_t) initializer;
 
-    void *cfunc = dlsym(plugin,"pluginFunction");
+    
+    void *cfunc = dlsym(plugin,"pluginisready");
     if (!cfunc)
     {
-    	std::cout << "Can't find init function in plugin "
-        << '"' << path << "\""
+    	std::cout << "Can't find ready function in plugin "
+        << '"' << path << "\"" << std::endl
+        << dlerror()
+        << std::endl;
+//    	plugin = 0;
+//    	return;
+    }
+    pluginIsReady = (isreadyfunc_t)cfunc;
+
+    
+    cfunc = dlsym(plugin,"pluginFunction");
+    std::cout << "plugin:   " << cfunc << std::endl;
+
+    
+    if (!cfunc)
+    {
+    	std::cout << "Can't find plugin function in plugin "
+        << '"' << path << "\"" << std::endl
+        << dlerror()
         << std::endl;
     	plugin = 0;
     	return;
     }
-    pluginFunction = (cythonfunc_t)cfunc;
+    pluginFunction = (pluginfunc_t)cfunc;
     
 
-    cfunc = dlsym(plugin,"pluginIsReady");
-    if (!cfunc)
-    {
-    	std::cout << "Can't find init function in plugin "
-        << '"' << path << "\""
-        << std::endl;
-    	plugin = 0;
-    	return;
-    }
-    pluginIsReady = (cythonfunc_t)cfunc;
 
     (*initF)();
 }
