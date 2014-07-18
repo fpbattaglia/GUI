@@ -1,6 +1,7 @@
 # Files and folders to ignore
 
 # 1. intermediate files
+**/*.so
 *.o
 *.d
 
@@ -80,3 +81,5 @@ Builds/MacOSX/open-ephys.xcodeproj/*.pbxuser
 Builds/MacOSX/open-ephys.xcodeproj/xcuserdata
 Builds/MacOSX/open-ephys.xcodeproj/project.xcworkspace
 Introjucer/Builds/MacOSX
+.idea
+Tests
