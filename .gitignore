@@ -1,6 +1,7 @@
 # Files and folders to ignore
 
 # 1. intermediate files
+**/*.so
 *.o
 *.d
 
