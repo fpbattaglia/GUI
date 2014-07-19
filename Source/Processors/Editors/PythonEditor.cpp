@@ -53,7 +53,8 @@ void PythonEditor::setFile(String file)
     fileNameLabel->setText(fileToRead.getFileName(), dontSendNotification);
 
     setEnabledState(true);
-
+    removeChildComponent(fileButton);
+    removeChildComponent(fileNameLabel);
     repaint();
 }
 
