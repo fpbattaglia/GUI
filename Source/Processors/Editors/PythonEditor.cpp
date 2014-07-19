@@ -55,6 +55,13 @@ void PythonEditor::setFile(String file)
     setEnabledState(true);
     removeChildComponent(fileButton);
     removeChildComponent(fileNameLabel);
+    // TODO adjust to something meaningful or remove
+    UtilityButton *triggerButton = new UtilityButton("trigger", Font("Small Text", 10, Font::plain));
+    triggerButton->addListener(this);
+    triggerButton->setRadius(3.0f);
+    triggerButton->setBounds(5,50,55,20);
+    addAndMakeVisible(triggerButton);
+    
     repaint();
 }
 
