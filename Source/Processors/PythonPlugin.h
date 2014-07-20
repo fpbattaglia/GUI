@@ -22,10 +22,18 @@
 #endif
 
 
-extern "C" typedef  void (*initfunc_t)(void);
+#include "PythonParamConfig.h"
 
+
+//extern "C" typedef  void (*initfunc_t)(void);
+typedef  void (*initfunc_t)(void);
+typedef DL_IMPORT(void) (*startupfunc_t)(void);
 typedef DL_IMPORT(void) (*pluginfunc_t)(float *, int, int);
+
 typedef DL_IMPORT(int) (*isreadyfunc_t)(void);
+typedef DL_IMPORT(int) (*getparamnumfunc_t)(void);
+typedef DL_IMPORT(void) (*getparamconfigfunc_t)(struct ParamConfig*);
+
 
 #ifdef _WIN32
 #include <Windows.h>
@@ -102,10 +110,14 @@ private:
     //
     // float threshold;
     // bool state;
+    int numPythonParams;
 
-
+    // function pointers to the python plugin
     pluginfunc_t pluginFunction;
     isreadyfunc_t pluginIsReady;
+    startupfunc_t pluginStartupFunction;
+    getparamnumfunc_t getParamNumFunction;
+    getparamconfigfunc_t getParamConfigFunction;
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(PythonPlugin);
 
 };

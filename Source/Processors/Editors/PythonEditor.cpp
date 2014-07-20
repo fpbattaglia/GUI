@@ -61,9 +61,9 @@ void PythonEditor::setFile(String file)
     //ToggleButton *tb = new ToggleButton("cucu");
     
     
-    addToggleButton(String("cucu1"), true);
-    addToggleButton(String("cucu2"), true);
-    addToggleButton(String("cucu3"), true);
+//    addToggleButton(String("cucu1"), true);
+//    addToggleButton(String("cucu2"), true);
+//    addToggleButton(String("cucu3"), true);
     
     
     repaint();
