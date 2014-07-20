@@ -15,6 +15,7 @@
 #include "GenericEditor.h"
 
 class PythonPlugin;
+class PythonParameterButtonInterface;
 
 class PythonEditor : public GenericEditor
 
@@ -31,17 +32,42 @@ public:
 
     void loadEditorParameters(XmlElement*);
 
+    void addToggleButton(String, bool);
+    
 private:
+    
 
     ScopedPointer<UtilityButton> fileButton;
     ScopedPointer<Label> fileNameLabel;
 
+    OwnedArray<Component> parameterInterfaces;
     PythonPlugin* pythonPlugin;
 
     File lastFilePath;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(PythonEditor);
 
+};
+
+
+class PythonParameterButtonInterface : public Component,  public Button::Listener
+{
+public:
+    PythonParameterButtonInterface(String paramName_, int defaultVal, PythonPlugin *plugin_);
+    virtual ~PythonParameterButtonInterface();
+    
+    void paint(Graphics& g);
+    void buttonClicked(Button* button);
+    
+    
+private:
+    String paramName;
+    bool isEnabled;
+    PythonPlugin *plugin;
+    
+    ScopedPointer<ToggleButton> theButton;
+    
+    
 };
 
 

@@ -180,3 +180,10 @@ void PythonPlugin::updateSettings()
 {
 
 }
+
+void PythonPlugin::setIntPythonParameter(String name, int value)
+{
+    // TODO pass it to python
+    std::cout << name << ": changed to" << value << std::endl;
+}
+

@@ -91,6 +91,7 @@ public:
     void setFile(String fullpath);
     String getFile();
     bool isReady();
+    void setIntPythonParameter(String name, int value);
 private:
 
     String filePath;
@@ -108,6 +109,7 @@ private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(PythonPlugin);
 
 };
+
 
 
 
