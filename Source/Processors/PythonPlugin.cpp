@@ -208,7 +208,33 @@ void PythonPlugin::setFile(String fullpath)
     }
     pluginFunction = (pluginfunc_t)cfunc;
     
+
+    cfunc = dlsym(plugin,"setIntParam");
+    // std::cout << "plugin:   " << cfunc << std::endl;
+    if (!cfunc)
+    {
+    	std::cout << "Can't find setIntParam function in plugin "
+        << '"' << path << "\"" << std::endl
+        << dlerror()
+        << std::endl;
+    	plugin = 0;
+    	return;
+    }
+    setIntParamFunction = (setintparamfunc_t)cfunc;
     
+    cfunc = dlsym(plugin,"setFloatParam");
+    // std::cout << "plugin:   " << cfunc << std::endl;
+    if (!cfunc)
+    {
+    	std::cout << "Can't find setFloatParam function in plugin "
+        << '"' << path << "\"" << std::endl
+        << dlerror()
+        << std::endl;
+    	plugin = 0;
+    	return;
+    }
+    setFloatParamFunction = (setfloatparamfunc_t)cfunc;
+
     
 // now the API should be fully loaded
 
@@ -251,6 +277,7 @@ void PythonPlugin::updateSettings()
 void PythonPlugin::setIntPythonParameter(String name, int value)
 {
     // TODO pass it to python
-    std::cout << name << ": changed to" << value << std::endl;
+    //std::cout << name << ": changed to" << value << std::endl;
+    (*setIntParamFunction)(name.getCharPointer().getAddress(), value);
 }
 

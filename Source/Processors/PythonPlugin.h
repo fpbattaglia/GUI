@@ -33,6 +33,8 @@ typedef DL_IMPORT(void) (*pluginfunc_t)(float *, int, int);
 typedef DL_IMPORT(int) (*isreadyfunc_t)(void);
 typedef DL_IMPORT(int) (*getparamnumfunc_t)(void);
 typedef DL_IMPORT(void) (*getparamconfigfunc_t)(struct ParamConfig*);
+typedef DL_IMPORT(void) (*setintparamfunc_t)(char*, int);
+typedef DL_IMPORT(void) (*setfloatparamfunc_t)(char*, float);
 
 
 #ifdef _WIN32
@@ -118,6 +120,8 @@ private:
     startupfunc_t pluginStartupFunction;
     getparamnumfunc_t getParamNumFunction;
     getparamconfigfunc_t getParamConfigFunction;
+    setintparamfunc_t setIntParamFunction;
+    setfloatparamfunc_t setFloatParamFunction;
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(PythonPlugin);
 
 };

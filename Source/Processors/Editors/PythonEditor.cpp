@@ -137,13 +137,12 @@ PythonParameterButtonInterface::PythonParameterButtonInterface(String paramName_
 {
     std::cout << "creating a button with name " << paramName << std::endl;
     theButton = new ToggleButton(paramName);
+    theButton->setToggleState(isEnabled, false);
     theButton->addListener(this);
     //    triggerButton->setRadius(3.0f);
     theButton->setBounds(1,1,55,20);
     addAndMakeVisible(theButton);
-    
-    
-    
+   
     
 }
 
