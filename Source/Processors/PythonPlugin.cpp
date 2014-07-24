@@ -254,9 +254,11 @@ void PythonPlugin::setFile(String fullpath)
         std::cout << "it is named: " << params[i].name << std::endl << std::endl;
         switch (params[i].type) {
             case TOGGLE:
-                dynamic_cast<PythonEditor *>( getEditor())->addToggleButton(String(params[i].name), params[i].isEnabled);
+                dynamic_cast<PythonEditor *>(getEditor())->addToggleButton(String(params[i].name), params[i].isEnabled);
                 break;
-                
+            case INT_SET:
+                dynamic_cast<PythonEditor *>(getEditor())->addComboBox(String(params[i].name), params[i].nEntries, params[i].entries);
+                break;
             default:
                 break;
         }

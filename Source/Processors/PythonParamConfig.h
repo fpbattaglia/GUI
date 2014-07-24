@@ -24,6 +24,8 @@ struct ParamConfig {
     enum paramType type;
     char *name;
     int isEnabled;
+    int nEntries;
+    int *entries;
 };
 
 
