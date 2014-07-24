@@ -256,8 +256,13 @@ PythonParameterSliderInterface::PythonParameterSliderInterface(String paramName_
 {
     std::cout << "creating a slider with name " << paramName << std::endl;
     
+    
+    //fileNameLabel = new Label("FileNameLabel", "No file selected.");
+    Label *titleLabel = new Label("Title label", paramName);
+    titleLabel->setBounds(1, 1, 40, 20);
+    addAndMakeVisible(titleLabel);
     theSlider = new Slider(paramName);
-    theSlider->setBounds(1, 1, 150, 20);
+    theSlider->setBounds(41, 1, 110, 20);
     theSlider->setTextBoxStyle(Slider::TextBoxLeft, false, 40, 20);
     theSlider->setRange(rangeMin, rangeMax);
     theSlider->addListener(this);
