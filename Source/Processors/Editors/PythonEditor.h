@@ -34,6 +34,8 @@ public:
 
     void addToggleButton(String, bool);
     
+    void addComboBox(String, int, int*);
+    
 private:
     
 
@@ -69,6 +71,29 @@ private:
     
     
 };
+
+class PythonParameterComboBoxInterface : public Component,  public ComboBox::Listener
+{
+public:
+    PythonParameterComboBoxInterface(String paramName_, int nEntries_, int *entries_, PythonPlugin *plugin_);
+    virtual ~PythonParameterComboBoxInterface();
+    
+    void paint(Graphics& g);
+    void comboBoxChanged(ComboBox* comboBox);
+    
+    
+private:
+    String paramName;
+    int nEntries;
+    int *entries;
+    bool lastState;
+    bool isEnabled;
+    PythonPlugin *plugin;
+    ScopedPointer<ComboBox> theComboBox;
+    
+    
+};
+
 
 
 #endif  // __PYTHONEDITOR_H_5E135C2C__

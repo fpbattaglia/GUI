@@ -59,7 +59,13 @@ void PythonEditor::setFile(String file)
     // TODO for the moment here, then in a new method
     
     //ToggleButton *tb = new ToggleButton("cucu");
+    int *gg = new int[5];
+    for(int i = 0;i < 5; i++)
+    {
+        gg[i] = i+1;
+    }
     
+    addComboBox(String("baubau"), 5, gg);
     
 //    addToggleButton(String("cucu1"), true);
 //    addToggleButton(String("cucu2"), true);
@@ -79,6 +85,18 @@ void PythonEditor::addToggleButton(String paramName, bool isEnabled)
     std::cout << "Created button " << i << std::endl;
 
 }
+
+void PythonEditor::addComboBox(String paramName, int nEntries, int *entries)
+{
+    PythonParameterComboBoxInterface *ppcbi = new PythonParameterComboBoxInterface(paramName, nEntries, entries, (PythonPlugin *)getProcessor());
+    parameterInterfaces.add(ppcbi);
+    int i = parameterInterfaces.size();
+    ppcbi->setBounds(10, 22 * i, 100 ,21);
+    addAndMakeVisible(ppcbi);
+    std::cout << "Created combobox " << i << std::endl;
+    
+}
+
 void PythonEditor::buttonEvent(Button* button)
 {
 
@@ -96,12 +114,6 @@ void PythonEditor::buttonEvent(Button* button)
             {
                 // Use the selected file
                 setFile(choosePythonFile.getResult().getFullPathName());
-
-                // lastFilePath = fileToRead.getParentDirectory();
-
-                // thread->setFile(fileToRead.getFullPathName());
-
-                // fileNameLabel->setText(fileToRead.getFileName(),false);
             }
         }
 
@@ -171,9 +183,66 @@ void PythonParameterButtonInterface::buttonClicked(Button* button)
 {
     // delegate to processor
     plugin->setIntPythonParameter(paramName, theButton->getToggleState());
-//    // TODO  decide later on action to be taken
 //    std::cout << paramName << ": changed to" << String(theButton->getToggleState()) << std::endl;
 }
+
+
+PythonParameterComboBoxInterface::PythonParameterComboBoxInterface(String paramName_, int nEntries_, int *entries_, PythonPlugin *plugin_)
+:  paramName(paramName_), nEntries(nEntries_), entries(entries_),  plugin(plugin_)
+{
+    std::cout << "creating a combobox with name " << paramName << std::endl;
+    
+    theComboBox = new ComboBox();
+    theComboBox->setBounds(1, 1, 80, 20);
+    theComboBox->addListener(this);
+    theComboBox->addItem(paramName, 1);
+ 
+    for(int i = 0; i < nEntries; i++)
+    {
+        theComboBox->addItem(String(entries[i]), i+2);
+    }
+    
+    theComboBox->setSelectedId(1,false);
+    addAndMakeVisible(theComboBox);
+    
+    
+}
+
+PythonParameterComboBoxInterface::~PythonParameterComboBoxInterface()
+{
+    
+}
+
+void PythonParameterComboBoxInterface::paint(Graphics& g)
+{
+    g.setColour(Colours::lightgrey);
+    
+    g.fillRoundedRectangle(0,0,getWidth(),getHeight(),4.0f);
+    
+    if (isEnabled)
+        g.setColour(Colours::black);
+    else
+        g.setColour(Colours::grey);
+    
+    g.setFont(Font("Small Text", 10, Font::plain));
+    
+    //g.drawText(name, 5, 80, 200, 10, Justification::left, false);
+}
+
+void PythonParameterComboBoxInterface::comboBoxChanged(ComboBox* comboBox)
+{
+    int resp;
+    
+    resp = comboBox->getSelectedId();
+    if (resp > 1) {
+        // delegate to processor
+        plugin->setIntPythonParameter(paramName, entries[resp-2]);
+        std::cout << paramName << ": changed to" << String(entries[resp-2]) << std::endl;
+    }
+}
+
+
+
 
 
 
