@@ -26,6 +26,9 @@ struct ParamConfig {
     int isEnabled;
     int nEntries;
     int *entries;
+    float rangeMin;
+    float rangeMax;
+    float startValue;
 };
 
 

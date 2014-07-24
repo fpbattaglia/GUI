@@ -65,11 +65,8 @@ void PythonEditor::setFile(String file)
         gg[i] = i+1;
     }
     
-    addComboBox(String("baubau"), 5, gg);
-    
-//    addToggleButton(String("cucu1"), true);
-//    addToggleButton(String("cucu2"), true);
-//    addToggleButton(String("cucu3"), true);
+    // addComboBox(String("baubau"), 5, gg);
+    // addSlider(String("cane"), 0., 10., 5.);
     
     
     repaint();
@@ -94,6 +91,17 @@ void PythonEditor::addComboBox(String paramName, int nEntries, int *entries)
     ppcbi->setBounds(10, 22 * i, 100 ,21);
     addAndMakeVisible(ppcbi);
     std::cout << "Created combobox " << i << std::endl;
+    
+}
+
+void PythonEditor::addSlider(String paramName, float rangeMin, float rangeMax, float startValue)
+{
+    PythonParameterSliderInterface *ppsi = new PythonParameterSliderInterface(paramName, (double)rangeMin, (double)rangeMax, (double)startValue, (PythonPlugin *)getProcessor());
+    parameterInterfaces.add(ppsi);
+    int i = parameterInterfaces.size();
+    ppsi->setBounds(10, 22 * i, 150 ,21);
+    addAndMakeVisible(ppsi);
+    std::cout << "Created slider " << i << std::endl;
     
 }
 
@@ -237,10 +245,58 @@ void PythonParameterComboBoxInterface::comboBoxChanged(ComboBox* comboBox)
     if (resp > 1) {
         // delegate to processor
         plugin->setIntPythonParameter(paramName, entries[resp-2]);
-        std::cout << paramName << ": changed to" << String(entries[resp-2]) << std::endl;
+        std::cout << paramName << ": changed to " << String(entries[resp-2]) << std::endl;
     }
 }
 
+
+
+PythonParameterSliderInterface::PythonParameterSliderInterface(String paramName_, double rangeMin, double rangeMax, double startValue, PythonPlugin *plugin_)
+:  paramName(paramName_),  plugin(plugin_)
+{
+    std::cout << "creating a slider with name " << paramName << std::endl;
+    
+    theSlider = new Slider(paramName);
+    theSlider->setBounds(1, 1, 150, 20);
+    theSlider->setTextBoxStyle(Slider::TextBoxLeft, false, 40, 20);
+    theSlider->setRange(rangeMin, rangeMax);
+    theSlider->addListener(this);
+    theSlider->setValue(startValue);
+    addAndMakeVisible(theSlider);
+    
+    
+}
+
+PythonParameterSliderInterface::~PythonParameterSliderInterface()
+{
+    
+}
+
+void PythonParameterSliderInterface::paint(Graphics& g)
+{
+    g.setColour(Colours::lightgrey);
+    
+    g.fillRoundedRectangle(0,0,getWidth(),getHeight(),4.0f);
+    
+    if (isEnabled)
+        g.setColour(Colours::black);
+    else
+        g.setColour(Colours::grey);
+    
+    g.setFont(Font("Small Text", 10, Font::plain));
+    
+    //g.drawText(name, 5, 80, 200, 10, Justification::left, false);
+}
+
+void PythonParameterSliderInterface::sliderValueChanged(Slider *slider)
+{
+    double resp;
+    
+    resp = slider->getValue();
+    // delegate to processor
+    plugin->setFloatPythonParameter(paramName, (float)resp);
+    std::cout << paramName << ": changed to " << resp << std::endl;
+}
 
 
 

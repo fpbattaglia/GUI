@@ -36,6 +36,8 @@ public:
     
     void addComboBox(String, int, int*);
     
+    void addSlider(String, float, float, float);
+    
 private:
     
 
@@ -57,7 +59,6 @@ class PythonParameterButtonInterface : public Component,  public Button::Listene
 public:
     PythonParameterButtonInterface(String paramName_, int defaultVal, PythonPlugin *plugin_);
     virtual ~PythonParameterButtonInterface();
-    
     void paint(Graphics& g);
     void buttonClicked(Button* button);
     
@@ -77,7 +78,6 @@ class PythonParameterComboBoxInterface : public Component,  public ComboBox::Lis
 public:
     PythonParameterComboBoxInterface(String paramName_, int nEntries_, int *entries_, PythonPlugin *plugin_);
     virtual ~PythonParameterComboBoxInterface();
-    
     void paint(Graphics& g);
     void comboBoxChanged(ComboBox* comboBox);
     
@@ -90,6 +90,24 @@ private:
     bool isEnabled;
     PythonPlugin *plugin;
     ScopedPointer<ComboBox> theComboBox;
+    
+    
+};
+
+class PythonParameterSliderInterface : public Component,  public Slider::Listener
+{
+public:
+    PythonParameterSliderInterface(String paramName_, double rangeMin, double rangeMax, double startValue, PythonPlugin *plugin_);
+    virtual ~PythonParameterSliderInterface();
+    void paint(Graphics& g);
+    void sliderValueChanged(Slider* slider);
+    
+    
+private:
+    String paramName;
+    bool isEnabled;
+    PythonPlugin *plugin;
+    ScopedPointer<Slider> theSlider;
     
     
 };

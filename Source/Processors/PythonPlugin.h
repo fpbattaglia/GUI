@@ -102,6 +102,7 @@ public:
     String getFile();
     bool isReady();
     void setIntPythonParameter(String name, int value);
+    void setFloatPythonParameter(String name, float value);
 private:
 
     String filePath;

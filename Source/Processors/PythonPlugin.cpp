@@ -259,6 +259,9 @@ void PythonPlugin::setFile(String fullpath)
             case INT_SET:
                 dynamic_cast<PythonEditor *>(getEditor())->addComboBox(String(params[i].name), params[i].nEntries, params[i].entries);
                 break;
+            case FLOAT_RANGE:
+                dynamic_cast<PythonEditor *>(getEditor())->addSlider(String(params[i].name), params[i].rangeMin, params[i].rangeMax, params[i].startValue);
+                break;
             default:
                 break;
         }
@@ -281,5 +284,12 @@ void PythonPlugin::setIntPythonParameter(String name, int value)
     // TODO pass it to python
     //std::cout << name << ": changed to" << value << std::endl;
     (*setIntParamFunction)(name.getCharPointer().getAddress(), value);
+}
+
+void PythonPlugin::setFloatPythonParameter(String name, float value)
+{
+    // TODO pass it to python
+    //std::cout << name << ": changed to" << value << std::endl;
+    (*setFloatParamFunction)(name.getCharPointer().getAddress(), value);
 }
 
