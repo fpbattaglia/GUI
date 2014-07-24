@@ -106,7 +106,15 @@ void PythonPlugin::process(AudioSampleBuffer& buffer,
 }
 
 
-
+/* The complete API that the Cython plugin has to expose is
+ void pluginStartup(void): a function to initialize the plugin data structures prior to start ACQ
+ int isReady(void): a boolean function telling the processor whether the plugin is ready  to receive data
+ int getParamNum(void) get the number of parameters that the plugin takes TODO
+ ParamConfig *getParamConfig(void) this will allow generating the editor GUI TODO
+ void setIntParameter(char *name, int value) set integer parameter TODO
+ void set FloatParameter(char *name, float value) set float parameter TODO
+ 
+ */
 void PythonPlugin::setFile(String fullpath)
 {
     filePath = fullpath;
@@ -144,16 +152,51 @@ void PythonPlugin::setFile(String fullpath)
         << '"' << path << "\"" << std::endl
         << dlerror()
         << std::endl;
-//    	plugin = 0;
-//    	return;
+    	plugin = 0;
+    	return;
     }
     pluginIsReady = (isreadyfunc_t)cfunc;
 
+    cfunc = dlsym(plugin,"pluginStartup");
+    if (!cfunc)
+    {
+    	std::cout << "Can't find startup function in plugin "
+        << '"' << path << "\"" << std::endl
+        << dlerror()
+        << std::endl;
+        plugin = 0;
+        return;
+    }
+    pluginStartupFunction = (startupfunc_t)cfunc;
     
-    cfunc = dlsym(plugin,"pluginFunction");
-    std::cout << "plugin:   " << cfunc << std::endl;
+    cfunc = dlsym(plugin,"getParamNum");
+    if (!cfunc)
+    {
+    	std::cout << "Can't find getParamNum function in plugin "
+        << '"' << path << "\"" << std::endl
+        << dlerror()
+        << std::endl;
+        plugin = 0;
+        return;
+    }
+    getParamNumFunction = (getparamnumfunc_t)cfunc;
+    
+
+    cfunc = dlsym(plugin,"getParamConfig");
+    if (!cfunc)
+    {
+    	std::cout << "Can't find getParamNum function in plugin "
+        << '"' << path << "\"" << std::endl
+        << dlerror()
+        << std::endl;
+        //    	plugin = 0;
+        //    	return;
+    }
+    getParamConfigFunction = (getparamconfigfunc_t)cfunc;
 
     
+    cfunc = dlsym(plugin,"pluginFunction");
+    // std::cout << "plugin:   " << cfunc << std::endl;
     if (!cfunc)
     {
     	std::cout << "Can't find plugin function in plugin "
@@ -166,8 +209,63 @@ void PythonPlugin::setFile(String fullpath)
     pluginFunction = (pluginfunc_t)cfunc;
     
 
+    cfunc = dlsym(plugin,"setIntParam");
+    // std::cout << "plugin:   " << cfunc << std::endl;
+    if (!cfunc)
+    {
+    	std::cout << "Can't find setIntParam function in plugin "
+        << '"' << path << "\"" << std::endl
+        << dlerror()
+        << std::endl;
+    	plugin = 0;
+    	return;
+    }
+    setIntParamFunction = (setintparamfunc_t)cfunc;
+    
+    cfunc = dlsym(plugin,"setFloatParam");
+    // std::cout << "plugin:   " << cfunc << std::endl;
+    if (!cfunc)
+    {
+    	std::cout << "Can't find setFloatParam function in plugin "
+        << '"' << path << "\"" << std::endl
+        << dlerror()
+        << std::endl;
+    	plugin = 0;
+    	return;
+    }
+    setFloatParamFunction = (setfloatparamfunc_t)cfunc;
 
+    
+// now the API should be fully loaded
+
+    // initialize the plugin
     (*initF)();
+    (*pluginStartupFunction)();
+    
+    // load the parameter configuration
+    numPythonParams = (*getParamNumFunction)();
+    std::cout << "the plugin wants " << numPythonParams
+        << " parameters" << std::endl;
+    ParamConfig *params = (ParamConfig *)calloc(numPythonParams, sizeof(ParamConfig));
+    (*getParamConfigFunction)(params);
+    for(int i = 0; i < numPythonParams; i++)
+    {
+        std::cout << "param " << i << " is a " << params[i].type << std::endl;
+        std::cout << "it is named: " << params[i].name << std::endl << std::endl;
+        switch (params[i].type) {
+            case TOGGLE:
+                dynamic_cast<PythonEditor *>(getEditor())->addToggleButton(String(params[i].name), params[i].isEnabled);
+                break;
+            case INT_SET:
+                dynamic_cast<PythonEditor *>(getEditor())->addComboBox(String(params[i].name), params[i].nEntries, params[i].entries);
+                break;
+            case FLOAT_RANGE:
+                dynamic_cast<PythonEditor *>(getEditor())->addSlider(String(params[i].name), params[i].rangeMin, params[i].rangeMax, params[i].startValue);
+                break;
+            default:
+                break;
+        }
+    }
 }
 
 
@@ -180,3 +278,18 @@ void PythonPlugin::updateSettings()
 {
 
 }
+
+void PythonPlugin::setIntPythonParameter(String name, int value)
+{
+    // TODO pass it to python
+    //std::cout << name << ": changed to" << value << std::endl;
+    (*setIntParamFunction)(name.getCharPointer().getAddress(), value);
+}
+
+void PythonPlugin::setFloatPythonParameter(String name, float value)
+{
+    // TODO pass it to python
+    //std::cout << name << ": changed to" << value << std::endl;
+    (*setFloatParamFunction)(name.getCharPointer().getAddress(), value);
+}
+
