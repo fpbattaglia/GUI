@@ -101,7 +101,8 @@ void PythonPlugin::process(AudioSampleBuffer& buffer,
     //
     // }
 
-    (*pluginFunction)(*(buffer.getArrayOfChannels()), buffer.getNumChannels(), buffer.getNumSamples());
+    PythonEvent *pyEvents = (PythonEvent *)malloc(sizeof(PythonEvent));
+    (*pluginFunction)(*(buffer.getArrayOfChannels()), buffer.getNumChannels(), buffer.getNumSamples(), pyEvents);
 
 }
 
