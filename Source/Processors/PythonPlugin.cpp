@@ -101,8 +101,24 @@ void PythonPlugin::process(AudioSampleBuffer& buffer,
     //
     // }
 
-    PythonEvent *pyEvents = (PythonEvent *)malloc(sizeof(PythonEvent));
+    PythonEvent *pyEvents = (PythonEvent *)calloc(1, sizeof(PythonEvent));
+    pyEvents->type = 0; // this marks an empty event
     (*pluginFunction)(*(buffer.getArrayOfChannels()), buffer.getNumChannels(), buffer.getNumSamples(), pyEvents);
+    if(pyEvents->type != 0)
+    {
+        addEvent(events, pyEvents->type, pyEvents->sampleNum, pyEvents->eventId,
+                 pyEvents->eventChannel, pyEvents->numBytes, pyEvents->eventData);
+        PythonEvent *lastEvent = pyEvents;
+        PythonEvent *nextEvent = lastEvent->nextEvent;
+        while (nextEvent) {
+            free((void *)lastEvent);
+            addEvent(events, nextEvent->type, nextEvent->sampleNum, nextEvent->eventId, nextEvent->eventChannel, nextEvent->numBytes, nextEvent->eventData);
+            nextEvent = lastEvent->nextEvent;
+            
+        }
+    }
+    
+    
 
 }
 
