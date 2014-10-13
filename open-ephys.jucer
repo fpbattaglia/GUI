@@ -26,7 +26,7 @@
                 extraLinkerFlags="-pg -ldl -lXext -lGLU -lpython2.7" extraCompilerFlags="-export-dynamic -g -pg -std=c++0x">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" isDebug="1" optimisation="3" targetName="open-ephys"
-                       libraryPath="/usr/X11R6/lib/&#10;/usr/local/include&#10;/usr/lib/x86_64-linux-gnu/mesa&#10;/home/fpbatta/Canopy/appdata/canopy-1.4.0.1938.rh5-x86_64/lib&#10;-lpython2.7"
+                       libraryPath="/usr/X11R6/lib/&#10;/usr/local/include&#10;/usr/lib/x86_64-linux-gnu/mesa&#10;/usr/lib/x86_64-linux-gnu&#10;/home/fpbatta/Enthought/Canopy_64bit/User/lib&#10;-lpython2.7"
                        headerPath="/home/fpbatta/Canopy/appdata/canopy-1.4.0.1938.rh5-x86_64/include/python2.7&#10;"/>
         <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="open-ephys-release"
                        libraryPath="/usr/X11R6/lib/"/>

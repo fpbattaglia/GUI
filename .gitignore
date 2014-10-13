@@ -83,3 +83,7 @@ Builds/MacOSX/open-ephys.xcodeproj/project.xcworkspace
 Introjucer/Builds/MacOSX
 .idea
 Tests
+
+# 9. automatically generated files
+Makefile
+gmon.out
