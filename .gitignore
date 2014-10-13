@@ -85,5 +85,4 @@ Introjucer/Builds/MacOSX
 Tests
 
 # 9. automatically generated files
-Makefile
 gmon.out
