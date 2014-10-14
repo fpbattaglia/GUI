@@ -1,9 +1,0 @@
-#!/bin/bash
-
-CANOPY_PREFIX=/home/fpbatta
-
-export LD_LIBRARY_PATH=/lib/x86_64-linux-gnu:${CANOPY_PREFIX}/Enthought/Canopy_64bit/User/lib:/usr/lib/x86_64-linux-gnu/
-export PYTHONPATH=${CANOPY_PREFIX}/Canopy/appdata/canopy-1.4.0.1938.rh5-x86_64/lib/python2.7
-export PYTHONHOME=${CANOPY_PREFIX}/Canopy/appdata/canopy-1.4.0.1938.rh5-x86_64/
-Builds/Linux/build/open-ephys
-
