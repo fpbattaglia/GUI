@@ -29,7 +29,6 @@ Builds/Linux/build/windowState.xml
 Builds/Linux/build/Data
 Builds/Linux/build/*.xml
 Builds/Linux/build/*.out
-Builds/Linux/Makefile
 Builds/MacOSX/build
 Builds/Linux/log
 Builds/Linux/gmon.out
