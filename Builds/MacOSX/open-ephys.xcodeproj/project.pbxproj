@@ -3690,6 +3690,11 @@
 				);
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/fpbatta/src/GUI/Plugins/rescale,
+					/Users/fpbatta/src/GUI/Plugins/SPWfinder,
+				);
 				MACOSX_DEPLOYMENT_TARGET_ppc = 10.4;
 				OTHER_LDFLAGS = (
 					"-ldl",
@@ -3726,7 +3731,9 @@
 				INSTALL_PATH = "$(HOME)/Applications";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"/Applications/Canopy.app/appdata/canopy-1.4.0.1938.macosx-x86_64/Canopy.app/Contents/lib/python2.7/config\"",
+					"/Applications/Canopy.app/appdata/canopy-1.4.0.1938.macosx-x86_64/Canopy.app/Contents/lib/python2.7/config",
+					/Users/fpbatta/src/GUI/Plugins/rescale,
+					/Users/fpbatta/src/GUI/Plugins/SPWfinder,
 				);
 				MACOSX_DEPLOYMENT_TARGET_ppc = 10.4;
 				ONLY_ACTIVE_ARCH = YES;
