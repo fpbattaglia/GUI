@@ -27,7 +27,7 @@
 
 //extern "C" typedef  void (*initfunc_t)(void);
 typedef  void (*initfunc_t)(void);
-typedef DL_IMPORT(void) (*startupfunc_t)(void);
+typedef DL_IMPORT(void) (*startupfunc_t)(float); // passes the sampling rate 
 typedef DL_IMPORT(void) (*pluginfunc_t)(float *, int, int, PythonEvent *);
 
 typedef DL_IMPORT(int) (*isreadyfunc_t)(void);

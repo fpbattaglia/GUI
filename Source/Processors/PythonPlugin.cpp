@@ -106,6 +106,7 @@ void PythonPlugin::process(AudioSampleBuffer& buffer,
     (*pluginFunction)(*(buffer.getArrayOfChannels()), buffer.getNumChannels(), buffer.getNumSamples(), pyEvents);
     if(pyEvents->type != 0)
     {
+        std::cout << (int)pyEvents->type << std::endl;
         addEvent(events, pyEvents->type, pyEvents->sampleNum, pyEvents->eventId,
                  pyEvents->eventChannel, pyEvents->numBytes, pyEvents->eventData);
         PythonEvent *lastEvent = pyEvents;
@@ -257,7 +258,7 @@ void PythonPlugin::setFile(String fullpath)
 
     // initialize the plugin
     (*initF)();
-    (*pluginStartupFunction)();
+    (*pluginStartupFunction)(getSampleRate());
     
     // load the parameter configuration
     numPythonParams = (*getParamNumFunction)();
