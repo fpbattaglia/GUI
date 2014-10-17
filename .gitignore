@@ -86,3 +86,4 @@ Tests
 # 9. automatically generated files
 gmon.out
 python_libs
+run_open_ephys
