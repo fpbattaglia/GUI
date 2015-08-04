@@ -12,15 +12,19 @@
               includeBinaryInAppConfig="1">
   <EXPORTFORMATS>
     <XCODE_MAC targetFolder="Builds/MacOSX" vstFolder="~/SDKs/vstsdk2.4" rtasFolder="~/SDKs/PT_80_SDK"
-               extraLinkerFlags="-lhdf5 -lhdf5_cpp -lzmq" objCExtraSuffix="fea2mT"
+               extraLinkerFlags="-lhdf5 -lhdf5_cpp -lzmq -lpython2.7" objCExtraSuffix="fea2mT"
                extraDefs="ZEROMQ">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" isDebug="1" optimisation="3" targetName="open-ephys"
                        osxSDK="default" osxCompatibility="default" osxArchitecture="default"
-                       headerPath="/opt/local/include&#10;/usr/local/include" libraryPath="/opt/local/lib&#10;/usr/local/lib"/>
+                       headerPath="/opt/local/include&#10;/usr/local/include&#10;/anaconda/include/python2.7"
+                       libraryPath="/opt/local/lib&#10;/usr/local/lib&#10;/anaconda/lib"
+                       defines="HAVE_PYTHON=yes" linkTimeOptimisation="0"/>
         <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="open-ephys"
                        osxSDK="default" osxCompatibility="default" osxArchitecture="default"
-                       headerPath="/opt/local/include&#10;/usr/local/include" libraryPath="/opt/local/lib&#10;/usr/local/lib"/>
+                       headerPath="/opt/local/include&#10;/usr/local/include&#10;/anaconda/include/python2.7"
+                       libraryPath="/opt/local/lib&#10;/usr/local/lib&#10;/anaconda/lib"
+                       defines="HAVE_PYTHON=yes"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_video" path="JuceLibraryCode/modules"/>
@@ -295,6 +299,23 @@
               file="Source/Audio/AudioComponent.h"/>
       </GROUP>
       <GROUP id="yQmqZWk" name="Processors">
+        <GROUP id="{24CB09D6-E370-1A05-0B88-22B688E7F1AE}" name="PythonProcessor">
+          <FILE id="JkAJMf" name="pyprocessor1.h" compile="0" resource="0" file="Source/Processors/PythonProcessor/pyprocessor1.h"/>
+          <FILE id="didLgW" name="PythonEvent.h" compile="0" resource="0" file="Source/Processors/PythonProcessor/PythonEvent.h"/>
+          <FILE id="RRlh4M" name="PythonFilter.cpp" compile="1" resource="0"
+                file="Source/Processors/PythonProcessor/PythonFilter.cpp"/>
+          <FILE id="HQpSRy" name="PythonFilter.h" compile="0" resource="0" file="Source/Processors/PythonProcessor/PythonFilter.h"/>
+          <FILE id="mBORBG" name="PythonParamConfig.h" compile="0" resource="0"
+                file="Source/Processors/PythonProcessor/PythonParamConfig.h"/>
+          <FILE id="GDNWRe" name="PythonPlugin.cpp" compile="1" resource="0"
+                file="Source/Processors/PythonProcessor/PythonPlugin.cpp"/>
+          <FILE id="FOHxVY" name="PythonPlugin.h" compile="0" resource="0" file="Source/Processors/PythonProcessor/PythonPlugin.h"/>
+          <FILE id="hL30PO" name="PythonSink.cpp" compile="1" resource="0" file="Source/Processors/PythonProcessor/PythonSink.cpp"/>
+          <FILE id="q7AWkg" name="PythonSink.h" compile="0" resource="0" file="Source/Processors/PythonProcessor/PythonSink.h"/>
+          <FILE id="kiMRbf" name="PythonSource.cpp" compile="1" resource="0"
+                file="Source/Processors/PythonProcessor/PythonSource.cpp"/>
+          <FILE id="sGAX3J" name="PythonSource.h" compile="0" resource="0" file="Source/Processors/PythonProcessor/PythonSource.h"/>
+        </GROUP>
         <GROUP id="{6E059BEC-4A8F-BCDA-1F91-9B22C6CBF2E4}" name="Rectifier">
           <FILE id="oMFsRh" name="Rectifier.cpp" compile="1" resource="0" file="Source/Processors/Rectifier/Rectifier.cpp"/>
           <FILE id="NdIO5Q" name="Rectifier.h" compile="0" resource="0" file="Source/Processors/Rectifier/Rectifier.h"/>
@@ -413,6 +434,9 @@
           <FILE id="qXPdAz" name="Utilities.h" compile="0" resource="0" file="Source/Processors/Dsp/Utilities.h"/>
         </GROUP>
         <GROUP id="AqvwO6w" name="Editors">
+          <FILE id="DopIi5" name="PythonEditor.cpp" compile="1" resource="0"
+                file="Source/Processors/Editors/PythonEditor.cpp"/>
+          <FILE id="upebEl" name="PythonEditor.h" compile="0" resource="0" file="Source/Processors/Editors/PythonEditor.h"/>
           <FILE id="F68NQ3" name="ChannelSelector.cpp" compile="1" resource="0"
                 file="Source/Processors/Editors/ChannelSelector.cpp"/>
           <FILE id="cOToxV" name="ChannelSelector.h" compile="0" resource="0"

@@ -29,7 +29,6 @@
 typedef  void (*initfunc_t)(void);
 typedef DL_IMPORT(void) (*startupfunc_t)(float); // passes the sampling rate 
 typedef DL_IMPORT(void) (*pluginfunc_t)(float *, int, int, PythonEvent *);
-
 typedef DL_IMPORT(int) (*isreadyfunc_t)(void);
 typedef DL_IMPORT(int) (*getparamnumfunc_t)(void);
 typedef DL_IMPORT(void) (*getparamconfigfunc_t)(struct ParamConfig*);
@@ -56,7 +55,7 @@ public:
     PythonPlugin(const String &processorName = "Python Plugin");
 
     /** The class destructor, used to deallocate memory */
-    virtual ~PythonPlugin();
+    ~PythonPlugin();
 
     /** Determines whether the processor is treated as a source. */
     virtual bool isSource()
@@ -82,7 +81,7 @@ public:
         number of continous samples in the current buffer (which may differ from the
         size of the buffer).
          */
-    void process(AudioSampleBuffer& buffer, MidiBuffer& events, int& nSamples);
+    virtual void process(AudioSampleBuffer& buffer, MidiBuffer& events);
 
     /** Any variables used by the "process" function _must_ be modified only through
         this method while data acquisition is active. If they are modified in any

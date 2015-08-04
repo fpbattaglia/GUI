@@ -11,7 +11,7 @@
 #include "PythonEditor.h"
 
 
-#include "../PythonPlugin.h"
+#include "../PythonProcessor/PythonPlugin.h"
 
 #include <stdio.h>
 
@@ -157,7 +157,7 @@ PythonParameterButtonInterface::PythonParameterButtonInterface(String paramName_
 {
     std::cout << "creating a button with name " << paramName << std::endl;
     theButton = new ToggleButton(paramName);
-    theButton->setToggleState(isEnabled, false);
+    theButton->setToggleState(isEnabled, dontSendNotification);
     theButton->addListener(this);
     //    triggerButton->setRadius(3.0f);
     theButton->setBounds(1,1,55,20);
@@ -210,7 +210,7 @@ PythonParameterComboBoxInterface::PythonParameterComboBoxInterface(String paramN
         theComboBox->addItem(String(entries[i]), i+2);
     }
     
-    theComboBox->setSelectedId(1,false);
+    theComboBox->setSelectedId(1);
     addAndMakeVisible(theComboBox);
     
     

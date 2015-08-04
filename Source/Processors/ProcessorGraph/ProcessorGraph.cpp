@@ -54,6 +54,9 @@
 #include "../PSTH/PeriStimulusTimeHistogramNode.h"
 #include "../CAR/CAR.h"
 #include "../Rectifier/Rectifier.h"
+#include "../PythonProcessor/PythonFilter.h"
+#include "../PythonProcessor/PythonSource.h"
+#include "../PythonProcessor/PythonSink.h"
 
     
 ProcessorGraph::ProcessorGraph() : currentNodeId(100)
@@ -555,7 +558,11 @@ GenericProcessor* ProcessorGraph::createProcessorFromDescription(String& descrip
 			processor = new NetworkEvents();
 			std::cout << "Creating a new signal generator." << std::endl;
 		}
-
+        else if (subProcessorType.equalsIgnoreCase("Python Source"))
+        {
+            std::cout << "Creating a new Python Source" << std::endl;
+            processor = new PythonSource();
+        }
 
 
 		CoreServices::sendStatusMessage("New source node created.");
@@ -606,6 +613,11 @@ GenericProcessor* ProcessorGraph::createProcessorFromDescription(String& descrip
         {
             std::cout << "Creating a new common average reference node." << std::endl;
             processor = new CAR();
+        }
+        else if (subProcessorType.equalsIgnoreCase("Python Filter"))
+        {
+            std::cout << "Creating a new Python Filter" << std::endl;
+            processor = new PythonFilter();
         }
 		CoreServices::sendStatusMessage("New filter node created.");
 
@@ -672,7 +684,11 @@ GenericProcessor* ProcessorGraph::createProcessorFromDescription(String& descrip
 			std::cout << "Creating a PSTH output node." << std::endl;
 			processor = new PeriStimulusTimeHistogramNode();
 		}
-
+        else if (subProcessorType.equalsIgnoreCase("Python Sink"))
+        {
+            std::cout << "Creating a new Python Sink" << std::endl;
+            processor = new PythonSink();
+        }
 		CoreServices::sendStatusMessage("New sink created.");
     }
 

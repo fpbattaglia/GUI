@@ -55,6 +55,10 @@ OBJECTS := \
   $(OBJDIR)/AccessClass_de9602d5.o \
   $(OBJDIR)/PracticalSocket_2574ecc8.o \
   $(OBJDIR)/AudioComponent_521bd9c9.o \
+  $(OBJDIR)/PythonFilter_f72e461c.o \
+  $(OBJDIR)/PythonPlugin_3cae9457.o \
+  $(OBJDIR)/PythonSink_7f968377.o \
+  $(OBJDIR)/PythonSource_1180d93f.o \
   $(OBJDIR)/Rectifier_21cc94b6.o \
   $(OBJDIR)/ArduinoOutput_d5a968de.o \
   $(OBJDIR)/ArduinoOutputEditor_e1b7e52b.o \
@@ -91,6 +95,7 @@ OBJECTS := \
   $(OBJDIR)/RBJ_6081b347.o \
   $(OBJDIR)/RootFinder_11229605.o \
   $(OBJDIR)/State_5d41ca1e.o \
+  $(OBJDIR)/PythonEditor_2772ec01.o \
   $(OBJDIR)/ChannelSelector_c1430874.o \
   $(OBJDIR)/ElectrodeButtons_a6064cc.o \
   $(OBJDIR)/GenericEditor_becb2ad6.o \
@@ -190,7 +195,7 @@ OBJECTS := \
   $(OBJDIR)/juce_opengl_c7e3506c.o \
   $(OBJDIR)/juce_video_184321c8.o \
 
-.PHONY: clean showvars
+.PHONY: clean
 
 $(OUTDIR)/$(TARGET): $(OBJECTS) $(LDDEPS) $(RESOURCES)
 	@echo Linking open-ephys
@@ -202,12 +207,6 @@ $(OUTDIR)/$(TARGET): $(OBJECTS) $(LDDEPS) $(RESOURCES)
 clean:
 	@echo Cleaning open-ephys
 	@$(CLEANCMD)
-
-showvars:
-	echo CANOPY_LIBS $(CANOPY_LIBS)
-	echo CANOPY_INCLUDES $(CANOPY_INCLUDES)
-	echo CFLAGS $(CFLAGS)
-	echo LDFLAGS $(LDFLAGS)
 
 strip:
 	@echo Stripping open-ephys
@@ -231,6 +230,26 @@ $(OBJDIR)/PracticalSocket_2574ecc8.o: ../../Source/Network/PracticalSocket.cpp
 $(OBJDIR)/AudioComponent_521bd9c9.o: ../../Source/Audio/AudioComponent.cpp
 	-@mkdir -p $(OBJDIR)
 	@echo "Compiling AudioComponent.cpp"
+	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
+
+$(OBJDIR)/PythonFilter_f72e461c.o: ../../Source/Processors/PythonProcessor/PythonFilter.cpp
+	-@mkdir -p $(OBJDIR)
+	@echo "Compiling PythonFilter.cpp"
+	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
+
+$(OBJDIR)/PythonPlugin_3cae9457.o: ../../Source/Processors/PythonProcessor/PythonPlugin.cpp
+	-@mkdir -p $(OBJDIR)
+	@echo "Compiling PythonPlugin.cpp"
+	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
+
+$(OBJDIR)/PythonSink_7f968377.o: ../../Source/Processors/PythonProcessor/PythonSink.cpp
+	-@mkdir -p $(OBJDIR)
+	@echo "Compiling PythonSink.cpp"
+	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
+
+$(OBJDIR)/PythonSource_1180d93f.o: ../../Source/Processors/PythonProcessor/PythonSource.cpp
+	-@mkdir -p $(OBJDIR)
+	@echo "Compiling PythonSource.cpp"
 	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 
 $(OBJDIR)/Rectifier_21cc94b6.o: ../../Source/Processors/Rectifier/Rectifier.cpp
@@ -411,6 +430,11 @@ $(OBJDIR)/RootFinder_11229605.o: ../../Source/Processors/Dsp/RootFinder.cpp
 $(OBJDIR)/State_5d41ca1e.o: ../../Source/Processors/Dsp/State.cpp
 	-@mkdir -p $(OBJDIR)
 	@echo "Compiling State.cpp"
+	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
+
+$(OBJDIR)/PythonEditor_2772ec01.o: ../../Source/Processors/Editors/PythonEditor.cpp
+	-@mkdir -p $(OBJDIR)
+	@echo "Compiling PythonEditor.cpp"
 	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 
 $(OBJDIR)/ChannelSelector_c1430874.o: ../../Source/Processors/Editors/ChannelSelector.cpp

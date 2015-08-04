@@ -15,7 +15,7 @@
 
 #include "../../JuceLibraryCode/JuceHeader.h"
 #include "PythonPlugin.h"
-#include "Editors/PythonEditor.h"
+#include "../Editors/PythonEditor.h"
 
 #include <dlfcn.h>
 
@@ -27,7 +27,7 @@ PythonPlugin::PythonPlugin(const String &processorName)
     //parameters.add(Parameter("thresh", 0.0, 500.0, 200.0, 0));
         filePath = "";
         plugin = 0;
-        Py_SetProgramName ("PythonPlugin");
+        Py_SetProgramName ((char *)"PythonPlugin");
         Py_Initialize ();
 }
 
@@ -50,12 +50,12 @@ bool PythonPlugin::isReady()
 {
     if (plugin == 0 )
     {
-        sendActionMessage("No plugin selected in Python Plugin.");
+        // sendActionMessage("No plugin selected in Python Plugin."); // FIXME how to send error message?
         return false;
     }
     else if (pluginIsReady && !(*pluginIsReady)())
     {
-        sendActionMessage("Plugin is not ready");
+        // sendActionMessage("Plugin is not ready"); // FIXME how to send error message?
         return false;
     }
     else
@@ -78,8 +78,7 @@ void PythonPlugin::setParameter(int parameterIndex, float newValue)
 }
 
 void PythonPlugin::process(AudioSampleBuffer& buffer,
-                               MidiBuffer& events,
-                               int& nSamples)
+                               MidiBuffer& events)
 {
 
     // for (int i = 0; i < nSamples; i++)
@@ -103,7 +102,7 @@ void PythonPlugin::process(AudioSampleBuffer& buffer,
 
     PythonEvent *pyEvents = (PythonEvent *)calloc(1, sizeof(PythonEvent));
     pyEvents->type = 0; // this marks an empty event
-    (*pluginFunction)(*(buffer.getArrayOfChannels()), buffer.getNumChannels(), buffer.getNumSamples(), pyEvents);
+    (*pluginFunction)(*(buffer.getArrayOfWritePointers()), buffer.getNumChannels(), buffer.getNumSamples(), pyEvents);
     if(pyEvents->type != 0)
     {
         std::cout << (int)pyEvents->type << std::endl;
