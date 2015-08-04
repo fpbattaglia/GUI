@@ -1,6 +1,7 @@
 # Files and folders to ignore
 
 # 1. intermediate files
+**/*.so
 *.o
 *.d
 
@@ -96,3 +97,11 @@ Introjucer/Builds/MacOSX/The Introjucer.xcodeproj/*.pbxuser
 Introjucer/Builds/MacOSX/The Introjucer.xcodeproj/xcuserdata
 Introjucer/Builds/MacOSX/The Introjucer.xcodeproj/project.xcworkspace
 Introjucer/Builds/MacOSX/build
+Introjucer/Builds/MacOSX
+.idea
+Tests
+
+# 9. automatically generated files
+gmon.out
+python_libs
+run_open_ephys

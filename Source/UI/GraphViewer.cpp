@@ -390,6 +390,7 @@ bool GraphNode::hasEditor(GenericEditor* ed)
 
 bool GraphNode::isSplitter()
 {
+	std::cout << "Editor" << editor << std::endl;
     return editor->isSplitter();
 }
 

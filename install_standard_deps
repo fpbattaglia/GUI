@@ -1,0 +1,7 @@
+#!/bin/bash
+# dependencies for having python plugin install under the standard python distributino of Ubuntu
+apt-get install python-numpy python-scipy python-matplotlib ipython ipython-notebook python-pandas python-sympy python-nose
+apt-get install python-dev
+apt-get python-setuptools
+apt-get install  python-setuptools
+easy_install cython

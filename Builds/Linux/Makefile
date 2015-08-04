@@ -190,7 +190,7 @@ OBJECTS := \
   $(OBJDIR)/juce_opengl_c7e3506c.o \
   $(OBJDIR)/juce_video_184321c8.o \
 
-.PHONY: clean
+.PHONY: clean showvars
 
 $(OUTDIR)/$(TARGET): $(OBJECTS) $(LDDEPS) $(RESOURCES)
 	@echo Linking open-ephys
@@ -202,6 +202,12 @@ $(OUTDIR)/$(TARGET): $(OBJECTS) $(LDDEPS) $(RESOURCES)
 clean:
 	@echo Cleaning open-ephys
 	@$(CLEANCMD)
+
+showvars:
+	echo CANOPY_LIBS $(CANOPY_LIBS)
+	echo CANOPY_INCLUDES $(CANOPY_INCLUDES)
+	echo CFLAGS $(CFLAGS)
+	echo LDFLAGS $(LDFLAGS)
 
 strip:
 	@echo Stripping open-ephys
