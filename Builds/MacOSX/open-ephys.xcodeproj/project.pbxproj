@@ -154,6 +154,16 @@
 		F2586A2DCEF44961AEA247E8 /* ParameterEditor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 934B37E2BECD69E6E27051F6 /* ParameterEditor.cpp */; };
 		F4397EAE00E0B9F96C8B6C07 /* InfoLabel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 17E13CCDA0C82F92EAB05BE6 /* InfoLabel.cpp */; };
 		F4808CE43E77C8EC285A39DC /* EventNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2592795DB135E0F2C04406F3 /* EventNode.cpp */; };
+		F7BEE7181B7142AE00CC18D1 /* PythonExampleProcessor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7BEE70D1B7142AE00CC18D1 /* PythonExampleProcessor.cpp */; };
+		F7BEE7191B7142AE00CC18D1 /* PythonFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7BEE70F1B7142AE00CC18D1 /* PythonFilter.cpp */; };
+		F7BEE71A1B7142AE00CC18D1 /* PythonPlugin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7BEE7121B7142AE00CC18D1 /* PythonPlugin.cpp */; };
+		F7BEE71B1B7142AE00CC18D1 /* PythonSink.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7BEE7141B7142AE00CC18D1 /* PythonSink.cpp */; };
+		F7BEE71C1B7142AE00CC18D1 /* PythonSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7BEE7161B7142AE00CC18D1 /* PythonSource.cpp */; };
+		F7BEE72A1B71438C00CC18D1 /* PythonExampleProcessor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7BEE71F1B71438C00CC18D1 /* PythonExampleProcessor.cpp */; };
+		F7BEE72B1B71438C00CC18D1 /* PythonFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7BEE7211B71438C00CC18D1 /* PythonFilter.cpp */; };
+		F7BEE72C1B71438C00CC18D1 /* PythonPlugin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7BEE7241B71438C00CC18D1 /* PythonPlugin.cpp */; };
+		F7BEE72D1B71438C00CC18D1 /* PythonSink.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7BEE7261B71438C00CC18D1 /* PythonSink.cpp */; };
+		F7BEE72E1B71438C00CC18D1 /* PythonSource.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7BEE7281B71438C00CC18D1 /* PythonSource.cpp */; };
 		FA2A052548AAD146F3F5AD83 /* juce_video.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4A7695E93CE32F4E95042FCB /* juce_video.mm */; };
 		FA882EEE408CBBDC7BD90F14 /* LfpDisplayNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1C64C490BD7FE9E57D6C682D /* LfpDisplayNode.cpp */; };
 		FAE745870674A07A65690433 /* DataBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 788F8B7719B70465762B634B /* DataBuffer.cpp */; };
@@ -1330,6 +1340,30 @@
 		F753A8E9CE0C51998066EA07 /* SpikeSorterEditor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SpikeSorterEditor.h; path = ../../Source/Processors/SpikeSorter/SpikeSorterEditor.h; sourceTree = SOURCE_ROOT; };
 		F796260525BD82FFC1D1732C /* juce_Uuid.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = juce_Uuid.cpp; path = ../../JuceLibraryCode/modules/juce_core/misc/juce_Uuid.cpp; sourceTree = SOURCE_ROOT; };
 		F7979AFD5780D9B2208736EE /* juce_TooltipWindow.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = juce_TooltipWindow.cpp; path = ../../JuceLibraryCode/modules/juce_gui_basics/windows/juce_TooltipWindow.cpp; sourceTree = SOURCE_ROOT; };
+		F7BEE70C1B7142AE00CC18D1 /* PythonEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PythonEvent.h; path = ../../Source/Processors/PythonEvent.h; sourceTree = "<group>"; };
+		F7BEE70D1B7142AE00CC18D1 /* PythonExampleProcessor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PythonExampleProcessor.cpp; path = ../../Source/Processors/PythonExampleProcessor.cpp; sourceTree = "<group>"; };
+		F7BEE70E1B7142AE00CC18D1 /* PythonExampleProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PythonExampleProcessor.h; path = ../../Source/Processors/PythonExampleProcessor.h; sourceTree = "<group>"; };
+		F7BEE70F1B7142AE00CC18D1 /* PythonFilter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PythonFilter.cpp; path = ../../Source/Processors/PythonFilter.cpp; sourceTree = "<group>"; };
+		F7BEE7101B7142AE00CC18D1 /* PythonFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PythonFilter.h; path = ../../Source/Processors/PythonFilter.h; sourceTree = "<group>"; };
+		F7BEE7111B7142AE00CC18D1 /* PythonParamConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PythonParamConfig.h; path = ../../Source/Processors/PythonParamConfig.h; sourceTree = "<group>"; };
+		F7BEE7121B7142AE00CC18D1 /* PythonPlugin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PythonPlugin.cpp; path = ../../Source/Processors/PythonPlugin.cpp; sourceTree = "<group>"; };
+		F7BEE7131B7142AE00CC18D1 /* PythonPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PythonPlugin.h; path = ../../Source/Processors/PythonPlugin.h; sourceTree = "<group>"; };
+		F7BEE7141B7142AE00CC18D1 /* PythonSink.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PythonSink.cpp; path = ../../Source/Processors/PythonSink.cpp; sourceTree = "<group>"; };
+		F7BEE7151B7142AE00CC18D1 /* PythonSink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PythonSink.h; path = ../../Source/Processors/PythonSink.h; sourceTree = "<group>"; };
+		F7BEE7161B7142AE00CC18D1 /* PythonSource.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PythonSource.cpp; path = ../../Source/Processors/PythonSource.cpp; sourceTree = "<group>"; };
+		F7BEE7171B7142AE00CC18D1 /* PythonSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PythonSource.h; path = ../../Source/Processors/PythonSource.h; sourceTree = "<group>"; };
+		F7BEE71E1B71438C00CC18D1 /* PythonEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PythonEvent.h; path = ../../Source/Processors/PythonProcessor/PythonEvent.h; sourceTree = "<group>"; };
+		F7BEE71F1B71438C00CC18D1 /* PythonExampleProcessor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PythonExampleProcessor.cpp; path = ../../Source/Processors/PythonProcessor/PythonExampleProcessor.cpp; sourceTree = "<group>"; };
+		F7BEE7201B71438C00CC18D1 /* PythonExampleProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PythonExampleProcessor.h; path = ../../Source/Processors/PythonProcessor/PythonExampleProcessor.h; sourceTree = "<group>"; };
+		F7BEE7211B71438C00CC18D1 /* PythonFilter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PythonFilter.cpp; path = ../../Source/Processors/PythonProcessor/PythonFilter.cpp; sourceTree = "<group>"; };
+		F7BEE7221B71438C00CC18D1 /* PythonFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PythonFilter.h; path = ../../Source/Processors/PythonProcessor/PythonFilter.h; sourceTree = "<group>"; };
+		F7BEE7231B71438C00CC18D1 /* PythonParamConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PythonParamConfig.h; path = ../../Source/Processors/PythonProcessor/PythonParamConfig.h; sourceTree = "<group>"; };
+		F7BEE7241B71438C00CC18D1 /* PythonPlugin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PythonPlugin.cpp; path = ../../Source/Processors/PythonProcessor/PythonPlugin.cpp; sourceTree = "<group>"; };
+		F7BEE7251B71438C00CC18D1 /* PythonPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PythonPlugin.h; path = ../../Source/Processors/PythonProcessor/PythonPlugin.h; sourceTree = "<group>"; };
+		F7BEE7261B71438C00CC18D1 /* PythonSink.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PythonSink.cpp; path = ../../Source/Processors/PythonProcessor/PythonSink.cpp; sourceTree = "<group>"; };
+		F7BEE7271B71438C00CC18D1 /* PythonSink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PythonSink.h; path = ../../Source/Processors/PythonProcessor/PythonSink.h; sourceTree = "<group>"; };
+		F7BEE7281B71438C00CC18D1 /* PythonSource.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PythonSource.cpp; path = ../../Source/Processors/PythonProcessor/PythonSource.cpp; sourceTree = "<group>"; };
+		F7BEE7291B71438C00CC18D1 /* PythonSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PythonSource.h; path = ../../Source/Processors/PythonProcessor/PythonSource.h; sourceTree = "<group>"; };
 		F7F374C05CDE0DB7712D18D1 /* juce_Atomic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = juce_Atomic.h; path = ../../JuceLibraryCode/modules/juce_core/memory/juce_Atomic.h; sourceTree = SOURCE_ROOT; };
 		F8322ED101601866FFB1698C /* juce_FileOutputStream.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = juce_FileOutputStream.h; path = ../../JuceLibraryCode/modules/juce_core/files/juce_FileOutputStream.h; sourceTree = SOURCE_ROOT; };
 		F88A99110564C87FBA281F2C /* juce_module_info */ = {isa = PBXFileReference; lastKnownFileType = text; name = juce_module_info; path = ../../JuceLibraryCode/modules/juce_video/juce_module_info; sourceTree = SOURCE_ROOT; };
@@ -2614,6 +2648,7 @@
 		83A3E005DDFCC55F277EEDA5 /* Processors */ = {
 			isa = PBXGroup;
 			children = (
+				F7BEE71D1B7142CD00CC18D1 /* PythonProcessor */,
 				90841694147021ABA55902E3 /* Rectifier */,
 				9C8E3549A602E74DCFC44244 /* ArduinoOutput */,
 				9C7703C01E449614C1CD884D /* AudioNode */,
@@ -3718,6 +3753,37 @@
 			name = juce_events;
 			sourceTree = "<group>";
 		};
+		F7BEE71D1B7142CD00CC18D1 /* PythonProcessor */ = {
+			isa = PBXGroup;
+			children = (
+				F7BEE71E1B71438C00CC18D1 /* PythonEvent.h */,
+				F7BEE71F1B71438C00CC18D1 /* PythonExampleProcessor.cpp */,
+				F7BEE7201B71438C00CC18D1 /* PythonExampleProcessor.h */,
+				F7BEE7211B71438C00CC18D1 /* PythonFilter.cpp */,
+				F7BEE7221B71438C00CC18D1 /* PythonFilter.h */,
+				F7BEE7231B71438C00CC18D1 /* PythonParamConfig.h */,
+				F7BEE7241B71438C00CC18D1 /* PythonPlugin.cpp */,
+				F7BEE7251B71438C00CC18D1 /* PythonPlugin.h */,
+				F7BEE7261B71438C00CC18D1 /* PythonSink.cpp */,
+				F7BEE7271B71438C00CC18D1 /* PythonSink.h */,
+				F7BEE7281B71438C00CC18D1 /* PythonSource.cpp */,
+				F7BEE7291B71438C00CC18D1 /* PythonSource.h */,
+				F7BEE70C1B7142AE00CC18D1 /* PythonEvent.h */,
+				F7BEE70D1B7142AE00CC18D1 /* PythonExampleProcessor.cpp */,
+				F7BEE70E1B7142AE00CC18D1 /* PythonExampleProcessor.h */,
+				F7BEE70F1B7142AE00CC18D1 /* PythonFilter.cpp */,
+				F7BEE7101B7142AE00CC18D1 /* PythonFilter.h */,
+				F7BEE7111B7142AE00CC18D1 /* PythonParamConfig.h */,
+				F7BEE7121B7142AE00CC18D1 /* PythonPlugin.cpp */,
+				F7BEE7131B7142AE00CC18D1 /* PythonPlugin.h */,
+				F7BEE7141B7142AE00CC18D1 /* PythonSink.cpp */,
+				F7BEE7151B7142AE00CC18D1 /* PythonSink.h */,
+				F7BEE7161B7142AE00CC18D1 /* PythonSource.cpp */,
+				F7BEE7171B7142AE00CC18D1 /* PythonSource.h */,
+			);
+			name = PythonProcessor;
+			sourceTree = "<group>";
+		};
 		F8338C653582335A30EADE40 /* EventDetector */ = {
 			isa = PBXGroup;
 			children = (
@@ -3866,18 +3932,22 @@
 				55227B30828797A8DCB0B91D /* ArduinoOutput.cpp in Sources */,
 				527EB48A4A9C2F4FF1BC4FB2 /* ArduinoOutputEditor.cpp in Sources */,
 				8352817FEDC7542D3E65B49A /* AudioEditor.cpp in Sources */,
+				F7BEE72E1B71438C00CC18D1 /* PythonSource.cpp in Sources */,
 				44DB81313BDDF1ECB6AD33FE /* AudioNode.cpp in Sources */,
 				2BBDCC829E8525DF770E7E6A /* CAR.cpp in Sources */,
 				C45009DBCD71E9E234BFCE97 /* Channel.cpp in Sources */,
 				E6038800731F7C747D181A51 /* ChannelMappingEditor.cpp in Sources */,
 				FFCA1C44C024BCA1878F49FE /* ChannelMappingNode.cpp in Sources */,
 				C9678AAD3560E89CCE8FA529 /* EcubeEditor.cpp in Sources */,
+				F7BEE7181B7142AE00CC18D1 /* PythonExampleProcessor.cpp in Sources */,
 				B88BCF2522AD283DDC0B4F16 /* RHD2000Editor.cpp in Sources */,
 				5C597B1A42C8CB3940CBDDA9 /* EcubeThread.cpp in Sources */,
 				89FCE8890946693CD5FC4A70 /* okFrontPanelDLL.cpp in Sources */,
 				C9AC286A46B3A1318F298DEF /* rhd2000datablock.cpp in Sources */,
 				DA836EC803E4FF4EDEBE6386 /* rhd2000evalboard.cpp in Sources */,
 				702C9BFCE865CB6C6B8BFB0D /* rhd2000registers.cpp in Sources */,
+				F7BEE72D1B71438C00CC18D1 /* PythonSink.cpp in Sources */,
+				F7BEE7191B7142AE00CC18D1 /* PythonFilter.cpp in Sources */,
 				739573501D1D440A72C5C2E5 /* RHD2000Thread.cpp in Sources */,
 				FAE745870674A07A65690433 /* DataBuffer.cpp in Sources */,
 				24CC7E9A7E87F762D4AB0467 /* DataThread.cpp in Sources */,
@@ -3929,18 +3999,22 @@
 				82160D8346428EC9F641FAD6 /* PulsePalOutput.cpp in Sources */,
 				15C43033BAB27663B4226539 /* PulsePalOutputEditor.cpp in Sources */,
 				BD091BDB684BB28E0F953B8B /* RecordControl.cpp in Sources */,
+				F7BEE72A1B71438C00CC18D1 /* PythonExampleProcessor.cpp in Sources */,
 				395F1886484CA576C63B7112 /* RecordControlEditor.cpp in Sources */,
 				E1247DDF1C88D99691499E52 /* EngineConfigWindow.cpp in Sources */,
 				0E036CEA1285F9B162A07356 /* HDF5FileFormat.cpp in Sources */,
+				F7BEE71C1B7142AE00CC18D1 /* PythonSource.cpp in Sources */,
 				A4A2DF3FA65BAB4322FE5E74 /* HDF5Recording.cpp in Sources */,
 				0A8D8C2D02858F0F08356EA9 /* OriginalRecording.cpp in Sources */,
 				AEDA8F23648EABF79215B566 /* RecordEngine.cpp in Sources */,
+				F7BEE72B1B71438C00CC18D1 /* PythonFilter.cpp in Sources */,
 				B806F023DF817BB2D59FEEFD /* RecordNode.cpp in Sources */,
 				96BFF19817240A0D9062A1A2 /* NetworkEvents.cpp in Sources */,
 				B8E8A7F22DCE37B735E65C43 /* PeriStimulusTimeHistogramEditor.cpp in Sources */,
 				093F0BA37D6C91C7E92AB658 /* PeriStimulusTimeHistogramNode.cpp in Sources */,
 				620CF6292EFB911F15916EA6 /* tictoc.cpp in Sources */,
 				7B50AD44D4F9610CE4A43414 /* TrialCircularBuffer.cpp in Sources */,
+				F7BEE72C1B71438C00CC18D1 /* PythonPlugin.cpp in Sources */,
 				69B5045877D4C674E8A4967F /* ResamplingNode.cpp in Sources */,
 				97105BCBC5B1BE4E86D48899 /* ResamplingNodeEditor.cpp in Sources */,
 				790911EDF00A4BF77327D99A /* PulsePal.cpp in Sources */,
@@ -3974,6 +4048,7 @@
 				E85DA5FC9A162F129ABA7113 /* SignalChainManager.cpp in Sources */,
 				6A13D8F42A330E2C410B43E3 /* EditorViewport.cpp in Sources */,
 				13F1111511DD01E843E631CA /* ProcessorList.cpp in Sources */,
+				F7BEE71B1B7142AE00CC18D1 /* PythonSink.cpp in Sources */,
 				9A80E3D1D1758A31D2169497 /* CustomLookAndFeel.cpp in Sources */,
 				F4397EAE00E0B9F96C8B6C07 /* InfoLabel.cpp in Sources */,
 				09673DA3B4D6EA61DEFC0C46 /* DataViewport.cpp in Sources */,
@@ -3991,6 +4066,7 @@
 				06BCB79AE267E5841F641E38 /* juce_cryptography.mm in Sources */,
 				A0DAD4E5F7583349DC9275F2 /* juce_data_structures.mm in Sources */,
 				FCB767F14565886C9D823916 /* juce_events.mm in Sources */,
+				F7BEE71A1B7142AE00CC18D1 /* PythonPlugin.cpp in Sources */,
 				7015D104F55D5B128341CEA8 /* juce_graphics.mm in Sources */,
 				A269A876BDF3B7011FA4C681 /* juce_gui_basics.mm in Sources */,
 				58E0EC510F2A88E14AE55439 /* juce_gui_extra.mm in Sources */,
