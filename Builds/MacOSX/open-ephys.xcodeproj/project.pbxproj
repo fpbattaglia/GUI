@@ -3845,6 +3845,7 @@
 				256EEB2E7946EFA9B0774D25 /* Resources */,
 				0C1B429379FBBA77A635B49A /* Sources */,
 				7BE915E5A64C787EBF13A8E7 /* Frameworks */,
+				F70197A21B72C0030034CD04 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -3891,6 +3892,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		F70197A21B72C0030034CD04 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "install_name_tool -change libpython2.7.dylib /anaconda/lib/libpython2.7.dylib \"$TARGET_BUILD_DIR/$TARGET_NAME.app/Contents/MacOS/$PRODUCT_NAME\"";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		0C1B429379FBBA77A635B49A /* Sources */ = {
