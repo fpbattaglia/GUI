@@ -41,7 +41,7 @@ typedef DL_IMPORT(void) (*setfloatparamfunc_t)(char*, float);
 #endif
 
 #include "../../JuceLibraryCode/JuceHeader.h"
-#include "GenericProcessor.h"
+#include "../GenericProcessor/GenericProcessor.h"
 
 
 

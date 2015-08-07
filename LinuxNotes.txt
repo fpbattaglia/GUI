@@ -1,0 +1,7 @@
+install hdf5
+./configure --prefix=/usr/local --enable-cxx
+zeromq from source tarball, standard config.
+
+add pyserial to anaconda 
+export LD_LIBRARY_PATH=/home/fpbatta/workspace/GUI060815/GUI/python-libs/:/usr/local/lib
+ export PYTHONHOME=/home/fpbatta/anaconda
