@@ -128,7 +128,7 @@ bool FileReader::setFile(String fullpath)
     if (input->getNumRecords() <= 0)
     {
         input = nullptr;
-		CoreServices::sendStatusMessage("Empty file. Inoring open operation");
+		CoreServices::sendStatusMessage("Empty file. Ignoring open operation");
         return false;
     }
     static_cast<FileReaderEditor*>(getEditor())->populateRecordings(input);
