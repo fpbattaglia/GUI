@@ -1,0 +1,5 @@
+
+install_name_tool -change libpython2.7.dylib /anaconda/lib/libpython2.7.dylib open-ephys
+set PYTHONHOME to /anaconda (from the edit scheme window)
+a new run script build phase with 
+install_name_tool -change libpython2.7.dylib /anaconda/lib/libpython2.7.dylib "$TARGET_BUILD_DIR/$TARGET_NAME.app/Contents/MacOS/$PRODUCT_NAME"
