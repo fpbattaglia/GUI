@@ -48,9 +48,9 @@
                 extraCompilerFlags="-export-dynamic -g -pg -std=c++0x" extraDefs="ZEROMQ">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" isDebug="1" optimisation="3" targetName="open-ephys"
-                       libraryPath="/usr/X11R6/lib/&#10;/usr/local/lib&#10;/usr/lib/x86_64-linux-gnu/mesa&#10;/usr/lib/x86_64-linux-gnu&#10;/usr/lib/x86_64-linux-gnu/hdf5/serial&#10;/home/fpbatta/anaconda/lib"
-                       headerPath="/usr/include/hdf5/serial&#10;/home/fpbatta/anaconda/include/python2.7"
-                       defines="HAVE_PYTHON=&quot;yes&quot;&#10;PYTHON_HOME=&quot;/home/fpbatta/anaconda&quot;"/>
+                       libraryPath="/usr/X11R6/lib/&#10;/usr/local/lib&#10;/usr/lib/x86_64-linux-gnu/mesa&#10;/usr/lib/x86_64-linux-gnu&#10;/usr/lib/x86_64-linux-gnu/hdf5/serial&#10;$CONDA_HOME/lib"
+                       headerPath="/usr/include/hdf5/serial&#10;$(CONDA_HOME)/include/python2.7"
+                       defines="HAVE_PYTHON=&quot;yes&quot;&#10;PYTHON_HOME=$(CONDA_HOME)"/>
         <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="open-ephys-release"
                        libraryPath="/usr/X11R6/lib/&#10;/usr/lib/x86_64-linux-gnu/hdf5/serial"
                        headerPath="/usr/include/hdf5/serial"/>

@@ -1,7 +1,28 @@
-install hdf5
-./configure --prefix=/usr/local --enable-cxx
-zeromq from source tarball, standard config.
+PRELIMINARY STEPS
 
-add pyserial to anaconda 
-export LD_LIBRARY_PATH=/home/fpbatta/workspace/GUI060815/GUI/python-libs/:/usr/local/lib
- export PYTHONHOME=/home/fpbatta/anaconda
+- install latest HDF5 from sources
+from source dir 
+./configure --prefix=/usr/local --enable-cxx
+make; make install
+- install zeromq from source tarball, standard config.
+
+- add pyserial to anaconda 
+
+- download the code with 
+git clone https://github.com/fpbattaglia/GUI.git
+
+
+- If you need to change the configuration, you need to run the Jucer. If you used standard configurations to install the dependencies (see above) this shouldn't be needed. If needed, from the source root, compile the jucer 
+cd Introjucer/Builds/Linux/
+make
+
+- if you need to run the jucer, from the source root 
+Introjucer/Builds/Linux/build/Introjucer
+
+- from the source root directory, run 
+./build-linux.sh 
+
+- if compilation succeeds, you'll find the executable in Builds/Linux/build/open-ephys
+
+
+
