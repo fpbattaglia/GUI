@@ -19,10 +19,14 @@ make
 - if you need to run the jucer, from the source root 
 Introjucer/Builds/Linux/build/Introjucer
 
+- make sure that the anaconda python interpreter is the default one on the PATH. For example run (anaconda_root)/bin/activate (anaconda_root) 
 - from the source root directory, run 
 ./build-linux.sh 
 
 - if compilation succeeds, you'll find the executable in Builds/Linux/build/open-ephys
 
+- compile the plugins by cd-ing to the relative directory and run 
+make -f Makefile.Linux
 
+ttttt pu
 
