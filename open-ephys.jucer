@@ -9,7 +9,7 @@
               pluginAUExportPrefix="JuceProjectAU" pluginAUViewClass="JuceProjectAU_V1"
               pluginRTASCategory="" bundleIdentifier="org.open-ephys.gui" jucerVersion="3.1.0"
               companyName="Open Ephys" userNotes="The Open Ephys GUI was designed to provide a fast and flexible interface for acquiring, processing, and visualizing data from extracellular electrodes. See open-ephys.org for more information."
-              includeBinaryInAppConfig="0">
+              includeBinaryInAppConfig="1">
   <EXPORTFORMATS>
     <XCODE_MAC targetFolder="Builds/MacOSX" vstFolder="~/SDKs/vstsdk2.4" rtasFolder="~/SDKs/PT_80_SDK"
                extraLinkerFlags="-lhdf5 -lhdf5_cpp -lzmq -lpython2.7" objCExtraSuffix="fea2mT"
@@ -44,13 +44,13 @@
         <MODULEPATH id="juce_audio_basics" path="JuceLibraryCode/modules"/>
       </MODULEPATHS>
     </XCODE_MAC>
-    <LINUX_MAKE targetFolder="Builds/Linux" vstFolder="~/SDKs/vstsdk2.4" extraLinkerFlags="-pg -ldl -lXext -lGLU -lhdf5 -lhdf5_cpp -lzmq -lpython2.7 -Wl,-rpath=/home/fpbatta/workspace/GUI060815/GUI/python-libs"
+    <LINUX_MAKE targetFolder="Builds/Linux" vstFolder="~/SDKs/vstsdk2.4" extraLinkerFlags="-pg -ldl -lXext -lGLU -lhdf5 -lhdf5_cpp -lzmq -lpython2.7 -Wl,-rpath=$(SOURCE_DIR)/python-libs"
                 extraCompilerFlags="-export-dynamic -g -pg -std=c++0x" extraDefs="ZEROMQ">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" isDebug="1" optimisation="3" targetName="open-ephys"
-                       libraryPath="/usr/X11R6/lib/&#10;/usr/local/include&#10;/usr/lib/x86_64-linux-gnu/mesa&#10;/usr/lib/x86_64-linux-gnu&#10;/usr/lib/x86_64-linux-gnu/hdf5/serial&#10;/home/fpbatta/anaconda/lib"
+                       libraryPath="/usr/X11R6/lib/&#10;/usr/local/lib&#10;/usr/lib/x86_64-linux-gnu/mesa&#10;/usr/lib/x86_64-linux-gnu&#10;/usr/lib/x86_64-linux-gnu/hdf5/serial&#10;/home/fpbatta/anaconda/lib"
                        headerPath="/usr/include/hdf5/serial&#10;/home/fpbatta/anaconda/include/python2.7"
-                       defines="HAVE_PYTHON=yess"/>
+                       defines="HAVE_PYTHON=&quot;yes&quot;&#10;PYTHON_HOME=&quot;/home/fpbatta/anaconda&quot;"/>
         <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="open-ephys-release"
                        libraryPath="/usr/X11R6/lib/&#10;/usr/lib/x86_64-linux-gnu/hdf5/serial"
                        headerPath="/usr/include/hdf5/serial"/>

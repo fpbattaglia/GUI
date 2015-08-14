@@ -18,6 +18,7 @@
 #include "../Editors/PythonEditor.h"
 
 #include <dlfcn.h>
+#include <stdlib.h>
 
 PythonPlugin::PythonPlugin(const String &processorName)
     : GenericProcessor(processorName) //, threshold(200.0), state(true)
@@ -27,13 +28,17 @@ PythonPlugin::PythonPlugin(const String &processorName)
     //parameters.add(Parameter("thresh", 0.0, 500.0, 200.0, 0));
     filePath = "";
     plugin = 0;
+#if defined(__linux__)
+#define QUOTE(name) #name
+#define STR(macro) QUOTE(macro)
+#define PYTHON_HOME_NAME STR(PYTHON_HOME)
+    setenv("PYTHONHOME", PYTHON_HOME_NAME, 1);
+    std::cout << "PYTHONHOME: " << getenv("PYTHONHOME") << std::endl;
+#endif    
     Py_SetProgramName ((char *)"PythonPlugin");
     Py_Initialize ();
     std::cout << Py_GetPrefix() << std::endl;
     std::cout << Py_GetVersion() << std::endl;
-    /* PyRun_SimpleString(
-                       "import sys\n"
-                       "sys.path = ['/anaconda/lib/python2.7/site-packages/Brian2-2.0beta-py2.7-macosx-10.5-x86_64.egg', '/anaconda/lib/python27.zip', '/anaconda/lib/python2.7', '/anaconda/lib/python2.7/plat-darwin', '/anaconda/lib/python2.7/plat-mac', '/anaconda/lib/python2.7/plat-mac/lib-scriptpackages', '/anaconda/lib/python2.7/lib-tk', '/anaconda/lib/python2.7/lib-old', '/anaconda/lib/python2.7/lib-dynload', '/anaconda/lib/python2.7/site-packages', '/anaconda/lib/python2.7/site-packages/PIL', '/anaconda/lib/python2.7/site-packages/Sphinx-1.2.3-py2.7.egg', '/anaconda/lib/python2.7/site-packages/aeosa', '/anaconda/lib/python2.7/site-packages/cryptography-0.8-py2.7-macosx-10.5-x86_64.egg', '/anaconda/lib/python2.7/site-packages/setuptools-14.3-py2.7.egg', '/anaconda/lib/python2.7/site-packages/IPython/extensions', '/Users/fpbatta/src/GUImerge/GUI/Plugins']\n"); */
 }
 
 PythonPlugin::~PythonPlugin()
