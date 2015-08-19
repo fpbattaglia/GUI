@@ -513,7 +513,7 @@
 		4C4E2282C145D13C86CB23FA /* juce_OpenGLHelpers.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = juce_OpenGLHelpers.h; path = ../../JuceLibraryCode/modules/juce_opengl/opengl/juce_OpenGLHelpers.h; sourceTree = SOURCE_ROOT; };
 		4C81E05B39376F54775A1027 /* juce_Colour.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = juce_Colour.h; path = ../../JuceLibraryCode/modules/juce_graphics/colour/juce_Colour.h; sourceTree = SOURCE_ROOT; };
 		4CA9556E9C18029A47F34C7C /* juce_LAMEEncoderAudioFormat.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = juce_LAMEEncoderAudioFormat.h; path = ../../JuceLibraryCode/modules/juce_audio_formats/codecs/juce_LAMEEncoderAudioFormat.h; sourceTree = SOURCE_ROOT; };
-		4CB63EE1552BBFDEB1DADB0A /* ProcessorGraph.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; lineEnding = 0; name = ProcessorGraph.cpp; path = ../../Source/Processors/ProcessorGraph/ProcessorGraph.cpp; sourceTree = SOURCE_ROOT; };
+		4CB63EE1552BBFDEB1DADB0A /* ProcessorGraph.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ProcessorGraph.cpp; path = ../../Source/Processors/ProcessorGraph/ProcessorGraph.cpp; sourceTree = SOURCE_ROOT; };
 		4CCA36B2A6C4821E493E74D2 /* juce_AudioFormatReader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = juce_AudioFormatReader.cpp; path = ../../JuceLibraryCode/modules/juce_audio_formats/format/juce_AudioFormatReader.cpp; sourceTree = SOURCE_ROOT; };
 		4CF403118BBAAD5B6763542A /* juce_OpenGLContext.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = juce_OpenGLContext.cpp; path = ../../JuceLibraryCode/modules/juce_opengl/opengl/juce_OpenGLContext.cpp; sourceTree = SOURCE_ROOT; };
 		4D67518E9223C1C19BD4EF2E /* juce_linux_Threads.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = juce_linux_Threads.cpp; path = ../../JuceLibraryCode/modules/juce_core/native/juce_linux_Threads.cpp; sourceTree = SOURCE_ROOT; };
@@ -3845,7 +3845,7 @@
 				256EEB2E7946EFA9B0774D25 /* Resources */,
 				0C1B429379FBBA77A635B49A /* Sources */,
 				7BE915E5A64C787EBF13A8E7 /* Frameworks */,
-				F70197A21B72C0030034CD04 /* ShellScript */,
+				F786D69C1B84D4DF005543A3 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -3894,7 +3894,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		F70197A21B72C0030034CD04 /* ShellScript */ = {
+		F786D69C1B84D4DF005543A3 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -3905,7 +3905,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "install_name_tool -change libpython2.7.dylib /anaconda/lib/libpython2.7.dylib \"$TARGET_BUILD_DIR/$TARGET_NAME.app/Contents/MacOS/$PRODUCT_NAME\"";
+			shellScript = "install_name_tool -change libpython2.7.dylib /usr/local/anaconda/lib/libpython2.7.dylib \"$TARGET_BUILD_DIR/$TARGET_NAME.app/Contents/MacOS/$PRODUCT_NAME\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -4156,7 +4156,7 @@
 					../../JuceLibraryCode/modules,
 					/opt/local/include,
 					/usr/local/include,
-					/anaconda/include/python2.7,
+					/usr/local/anaconda/include/python2.7,
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = Info.plist;
@@ -4165,7 +4165,7 @@
 					"$(inherited)",
 					"\"/opt/local/lib\"",
 					"\"/usr/local/lib\"",
-					"\"/anaconda/lib\"",
+					"\"/usr/local/anaconda/lib\"",
 				);
 				MACOSX_DEPLOYMENT_TARGET_ppc = 10.4;
 				OTHER_LDFLAGS = (
