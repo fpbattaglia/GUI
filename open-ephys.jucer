@@ -17,8 +17,8 @@
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" isDebug="1" optimisation="3" targetName="open-ephys"
                        osxSDK="default" osxCompatibility="default" osxArchitecture="default"
-                       headerPath="/opt/local/include&#10;/usr/local/include&#10;/anaconda/include/python2.7"
-                       libraryPath="/opt/local/lib&#10;/usr/local/lib&#10;/anaconda/lib"
+                       headerPath="/opt/local/include&#10;/usr/local/include&#10;/usr/local/anaconda/include/python2.7"
+                       libraryPath="/opt/local/lib&#10;/usr/local/lib&#10;/usr/local/anaconda/lib"
                        defines="HAVE_PYTHON=yes" linkTimeOptimisation="0"/>
         <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="open-ephys"
                        osxSDK="default" osxCompatibility="default" osxArchitecture="default"
