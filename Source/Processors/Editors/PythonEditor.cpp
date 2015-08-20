@@ -58,21 +58,18 @@ void PythonEditor::setFile(String file)
     
     // TODO for the moment here, then in a new method
     
-    //ToggleButton *tb = new ToggleButton("cucu");
     int *gg = new int[5];
     for(int i = 0;i < 5; i++)
     {
         gg[i] = i+1;
     }
     
-    // addComboBox(String("baubau"), 5, gg);
-    // addSlider(String("cane"), 0., 10., 5.);
     
     
     repaint();
 }
 
-void PythonEditor::addToggleButton(String paramName, bool isEnabled)
+Component *PythonEditor::addToggleButton(String paramName, bool isEnabled)
 {
     PythonParameterButtonInterface *ppbi = new PythonParameterButtonInterface(paramName, isEnabled, (PythonPlugin *)getProcessor());
     parameterInterfaces.add(ppbi);
@@ -80,10 +77,11 @@ void PythonEditor::addToggleButton(String paramName, bool isEnabled)
     ppbi->setBounds(10, 22 * i, 100 ,21);
     addAndMakeVisible(ppbi);
     std::cout << "Created button " << i << std::endl;
+    return ppbi;
 
 }
 
-void PythonEditor::addComboBox(String paramName, int nEntries, int *entries)
+Component *PythonEditor::addComboBox(String paramName, int nEntries, int *entries)
 {
     PythonParameterComboBoxInterface *ppcbi = new PythonParameterComboBoxInterface(paramName, nEntries, entries, (PythonPlugin *)getProcessor());
     parameterInterfaces.add(ppcbi);
@@ -91,10 +89,10 @@ void PythonEditor::addComboBox(String paramName, int nEntries, int *entries)
     ppcbi->setBounds(10, 22 * i, 100 ,21);
     addAndMakeVisible(ppcbi);
     std::cout << "Created combobox " << i << std::endl;
-    
+    return ppcbi;
 }
 
-void PythonEditor::addSlider(String paramName, float rangeMin, float rangeMax, float startValue)
+Component *PythonEditor::addSlider(String paramName, float rangeMin, float rangeMax, float startValue)
 {
     PythonParameterSliderInterface *ppsi = new PythonParameterSliderInterface(paramName, (double)rangeMin, (double)rangeMax, (double)startValue, (PythonPlugin *)getProcessor());
     parameterInterfaces.add(ppsi);
@@ -102,7 +100,7 @@ void PythonEditor::addSlider(String paramName, float rangeMin, float rangeMax, f
     ppsi->setBounds(10, 22 * i, 150 ,21);
     addAndMakeVisible(ppsi);
     std::cout << "Created slider " << i << std::endl;
-    
+    return ppsi;
 }
 
 void PythonEditor::buttonEvent(Button* button)
@@ -128,30 +126,82 @@ void PythonEditor::buttonEvent(Button* button)
     }
 }
 
-void PythonEditor::saveEditorParameters(XmlElement* xml)
+void PythonEditor::saveCustomParameters(XmlElement* xml)
 {
 
-    // XmlElement* fileName = xml->createNewChildElement("FILENAME");
-    // fileName->addTextElement(lastFilePath.getFullPathName());
+    xml->setAttribute("Type","PythonPlugin");
+    XmlElement* childNode = xml->createNewChildElement("PYTHONPLUGIN");
+    childNode->setAttribute("path", pythonPlugin->getFile());
+    ParamConfig *params = pythonPlugin->getPythonParams();
+    
+    for(int i = 0; i < pythonPlugin->getNumPythonParams(); i++)
+    {
+        char *name = params[i].name;
+        if(params[i].type == INT_SET || params[i].type == TOGGLE)
+        {
+            int value = pythonPlugin->getIntPythonParameter(String(name));
+            childNode->setAttribute(name, value);
+        }
+        else
+        {
+            float value = pythonPlugin->getFloatPythonParameter(String(name));
+            childNode->setAttribute(name, value);
+
+        }
+    }
 
 }
 
-void PythonEditor::loadEditorParameters(XmlElement* xml)
+void PythonEditor::loadCustomParameters(XmlElement* xml)
 {
 
-    // forEachXmlChildElement(*xml, xmlNode)
-    //    {
-    //       if (xmlNode->hasTagName("FILENAME"))
-    //       {
+    forEachXmlChildElement(*xml, element)
+    {
+        if (element->hasTagName("PYTHONPLUGIN"))
+        {
+            String filepath = element->getStringAttribute("path");
+            setFile(filepath);
+            ParamConfig *params = pythonPlugin->getPythonParams();
+            Component **controls = pythonPlugin->getParamsControl();
 
-    //           lastFilePath = File(xmlNode->getText());
-    //           thread->setFile(lastFilePath.getFullPathName());
-    //           fileNameLabel->setText(lastFilePath.getFullPathName(),false);
-    //       }
-    //   }
+            for(int i = 0; i < pythonPlugin->getNumPythonParams(); i++)
+                {
+                    if(element->hasAttribute(String(params[i].name)))
+                       {
+                           if(params[i].type == INT_SET || params[i].type == TOGGLE)
+                           {
+                               int value = element->getIntAttribute(String(params[i].name));
+                               pythonPlugin->setIntPythonParameter(String(params[i].name), value);
+                               if(params[i].type == INT_SET)
+                               {
+                                   // it's a combo box
+                                   PythonParameterComboBoxInterface *pcbi =  dynamic_cast<PythonParameterComboBoxInterface *>(controls[i]);
+                                   pcbi->setEntryFromValue(value);
+                               }
+                               else
+                               {
+                                   // it's a toggle button
+                                   PythonParameterButtonInterface *pbi = dynamic_cast<PythonParameterButtonInterface *>(controls[i]);
+                                   pbi->setToggleStateFromValue(value);
+                               }
+                           }
+                           else
+                           {
+                               float value = element->getDoubleAttribute(String(params[i].name));
+                               pythonPlugin->setFloatPythonParameter(String(params[i].name), value);
+                               // it's a slider
+                               PythonParameterSliderInterface *psi = dynamic_cast<PythonParameterSliderInterface *>(controls[i]);
+                               psi->setSliderFromValue(value);
 
+                           }
+                       }
+                }
+        }
+    }
 }
 
+                       
+                       
 PythonParameterButtonInterface::PythonParameterButtonInterface(String paramName_, int defaultVal, PythonPlugin *plugin_)
 :  paramName(paramName_), isEnabled(defaultVal), plugin(plugin_)
 {
@@ -184,16 +234,18 @@ void PythonParameterButtonInterface::paint(Graphics& g)
     
     g.setFont(Font("Small Text", 10, Font::plain));
     
-    //g.drawText(name, 5, 80, 200, 10, Justification::left, false);
 }
 
 void PythonParameterButtonInterface::buttonClicked(Button* button)
 {
     // delegate to processor
     plugin->setIntPythonParameter(paramName, theButton->getToggleState());
-//    std::cout << paramName << ": changed to" << String(theButton->getToggleState()) << std::endl;
 }
 
+void PythonParameterButtonInterface::setToggleStateFromValue(int value)
+{
+    theButton->setToggleState((bool)value, dontSendNotification);
+}
 
 PythonParameterComboBoxInterface::PythonParameterComboBoxInterface(String paramName_, int nEntries_, int *entries_, PythonPlugin *plugin_)
 :  paramName(paramName_), nEntries(nEntries_), entries(entries_),  plugin(plugin_)
@@ -249,7 +301,20 @@ void PythonParameterComboBoxInterface::comboBoxChanged(ComboBox* comboBox)
     }
 }
 
-
+void PythonParameterComboBoxInterface::setEntryFromValue(int value)
+{
+    int id;
+    for (int i; i < nEntries; i++)
+    {
+        if(entries[i]==value)
+        {
+            id = i+2;
+            break;
+        }
+            
+    }
+    theComboBox->setSelectedId(id);
+}
 
 PythonParameterSliderInterface::PythonParameterSliderInterface(String paramName_, double rangeMin, double rangeMax, double startValue, PythonPlugin *plugin_)
 :  paramName(paramName_),  plugin(plugin_)
@@ -303,7 +368,10 @@ void PythonParameterSliderInterface::sliderValueChanged(Slider *slider)
     std::cout << paramName << ": changed to " << resp << std::endl;
 }
 
-
+void PythonParameterSliderInterface::setSliderFromValue(float value)
+{
+    theSlider->setValue((double)value);
+}
 
 
 

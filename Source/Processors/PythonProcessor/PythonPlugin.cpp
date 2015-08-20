@@ -91,25 +91,7 @@ void PythonPlugin::process(AudioSampleBuffer& buffer,
                                MidiBuffer& events)
 {
 
-    // for (int i = 0; i < nSamples; i++)
-    // {
-    //
-    //     if ((*buffer.getSampleData(0, i) < -threshold) && !state)
-    //     {
-    //
-    //         // generate midi event
-    //         addEvent(events, TTL, i);
-    //
-    //         state = true;
-    //
-    //     } else if ((*buffer.getSampleData(0, i) > -threshold + bufferZone)  && state)
-    //     {
-    //         state = false;
-    //     }
-    //
-    //
-    // }
-
+    
     PythonEvent *pyEvents = (PythonEvent *)calloc(1, sizeof(PythonEvent));
     pyEvents->type = 0; // this marks an empty event
     (*pluginFunction)(*(buffer.getArrayOfWritePointers()), buffer.getNumChannels(), buffer.getNumSamples(), pyEvents);
@@ -262,6 +244,35 @@ void PythonPlugin::setFile(String fullpath)
 
     setFloatParamFunction = (setfloatparamfunc_t)cfunc;
 
+    cfunc = dlsym(plugin, "getIntParam");
+    // std::cout << "plugin:   " << cfunc << std::endl;
+    if (!cfunc)
+    {
+        std::cout << "Can't find getIntParam function in plugin "
+        << '"' << path << "\"" << std::endl
+        << dlerror()
+        << std::endl;
+        plugin = 0;
+        return;
+    }
+    getIntParamFunction = (getintparamfunc_t)cfunc;
+    
+
+    
+    cfunc = dlsym(plugin, "getFloatParam");
+    // std::cout << "plugin:   " << cfunc << std::endl;
+    if (!cfunc)
+    {
+        std::cout << "Can't find getFloatParam function in plugin "
+        << '"' << path << "\"" << std::endl
+        << dlerror()
+        << std::endl;
+        plugin = 0;
+        return;
+    }
+    
+    getFloatParamFunction = (getfloatparamfunc_t)cfunc;
+
     
 // now the API should be fully loaded
 
@@ -276,7 +287,9 @@ void PythonPlugin::setFile(String fullpath)
     numPythonParams = (*getParamNumFunction)();
     std::cout << "the plugin wants " << numPythonParams
         << " parameters" << std::endl;
-    ParamConfig *params = (ParamConfig *)calloc(numPythonParams, sizeof(ParamConfig));
+    params = (ParamConfig *)calloc(numPythonParams, sizeof(ParamConfig));
+    paramsControl = (Component **)calloc(numPythonParams, sizeof(Component *));
+    
     (*getParamConfigFunction)(params);
     for(int i = 0; i < numPythonParams; i++)
     {
@@ -284,13 +297,13 @@ void PythonPlugin::setFile(String fullpath)
         std::cout << "it is named: " << params[i].name << std::endl << std::endl;
         switch (params[i].type) {
             case TOGGLE:
-                dynamic_cast<PythonEditor *>(getEditor())->addToggleButton(String(params[i].name), params[i].isEnabled);
+                paramsControl[i] = dynamic_cast<PythonEditor *>(getEditor())->addToggleButton(String(params[i].name), params[i].isEnabled);
                 break;
             case INT_SET:
-                dynamic_cast<PythonEditor *>(getEditor())->addComboBox(String(params[i].name), params[i].nEntries, params[i].entries);
+                paramsControl[i] = dynamic_cast<PythonEditor *>(getEditor())->addComboBox(String(params[i].name), params[i].nEntries, params[i].entries);
                 break;
             case FLOAT_RANGE:
-                dynamic_cast<PythonEditor *>(getEditor())->addSlider(String(params[i].name), params[i].rangeMin, params[i].rangeMax, params[i].startValue);
+                paramsControl[i] = dynamic_cast<PythonEditor *>(getEditor())->addSlider(String(params[i].name), params[i].rangeMin, params[i].rangeMax, params[i].startValue);
                 break;
             default:
                 break;
@@ -321,5 +334,19 @@ void PythonPlugin::setFloatPythonParameter(String name, float value)
     // TODO pass it to python
     //std::cout << name << ": changed to" << value << std::endl;
     (*setFloatParamFunction)(name.getCharPointer().getAddress(), value);
+}
+
+int PythonPlugin::getIntPythonParameter(String name)
+{
+    int value;
+    value = (*getIntParamFunction)(name.getCharPointer().getAddress());
+    return value;
+}
+
+float PythonPlugin::getFloatPythonParameter(String name)
+{
+    float value;
+    value = (*getFloatParamFunction)(name.getCharPointer().getAddress());
+    return value;
 }
 
