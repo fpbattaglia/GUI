@@ -34,6 +34,8 @@ typedef DL_IMPORT(int) (*getparamnumfunc_t)(void);
 typedef DL_IMPORT(void) (*getparamconfigfunc_t)(struct ParamConfig*);
 typedef DL_IMPORT(void) (*setintparamfunc_t)(char*, int);
 typedef DL_IMPORT(void) (*setfloatparamfunc_t)(char*, float);
+typedef DL_IMPORT(int) (*getintparamfunc_t)(char*);
+typedef DL_IMPORT(float) (*getfloatparamfunc_t)(char*);
 
 
 #ifdef _WIN32
@@ -102,6 +104,25 @@ public:
     bool isReady();
     void setIntPythonParameter(String name, int value);
     void setFloatPythonParameter(String name, float value);
+    
+    int getNumPythonParams()
+    {
+        return numPythonParams;
+    }
+    
+    ParamConfig *getPythonParams() const
+    {
+        return params;
+    }
+    
+    Component **getParamsControl() const
+    {
+        return paramsControl;
+    }
+    
+    int getIntPythonParameter(String name);
+    float getFloatPythonParameter(String name);
+    
 private:
 
     String filePath;
@@ -112,8 +133,9 @@ private:
     //
     // float threshold;
     // bool state;
-    int numPythonParams;
-
+    int numPythonParams = 0;
+    ParamConfig *params;
+    Component **paramsControl;
     // function pointers to the python plugin
     pluginfunc_t pluginFunction;
     isreadyfunc_t pluginIsReady;
@@ -122,6 +144,9 @@ private:
     getparamconfigfunc_t getParamConfigFunction;
     setintparamfunc_t setIntParamFunction;
     setfloatparamfunc_t setFloatParamFunction;
+    getintparamfunc_t getIntParamFunction;
+    getfloatparamfunc_t getFloatParamFunction;
+
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(PythonPlugin);
 
 };

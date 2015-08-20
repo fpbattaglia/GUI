@@ -28,15 +28,17 @@ public:
 
     void setFile(String file);
 
-    void saveEditorParameters(XmlElement*);
+    void saveCustomParameters(XmlElement*);
 
-    void loadEditorParameters(XmlElement*);
+    void loadCustomParameters(XmlElement*);
 
-    void addToggleButton(String, bool);
+    Component *addToggleButton(String, bool);
     
-    void addComboBox(String, int, int*);
+    Component *addComboBox(String, int, int*);
     
-    void addSlider(String, float, float, float);
+    Component *addSlider(String, float, float, float);
+    
+    
     
 private:
     
@@ -61,13 +63,12 @@ public:
     virtual ~PythonParameterButtonInterface();
     void paint(Graphics& g);
     void buttonClicked(Button* button);
-    
+    void setToggleStateFromValue(int value);
     
 private:
     String paramName;
     bool isEnabled;
     PythonPlugin *plugin;
-    
     ScopedPointer<ToggleButton> theButton;
     
     
@@ -80,7 +81,7 @@ public:
     virtual ~PythonParameterComboBoxInterface();
     void paint(Graphics& g);
     void comboBoxChanged(ComboBox* comboBox);
-    
+    void setEntryFromValue(int value);
     
 private:
     String paramName;
@@ -101,7 +102,7 @@ public:
     virtual ~PythonParameterSliderInterface();
     void paint(Graphics& g);
     void sliderValueChanged(Slider* slider);
-    
+    void setSliderFromValue(float value);
     
 private:
     String paramName;
