@@ -123,6 +123,7 @@ public:
     int getIntPythonParameter(String name);
     float getFloatPythonParameter(String name);
     
+    void resetConnections();
 private:
 
     String filePath;
@@ -146,7 +147,8 @@ private:
     setfloatparamfunc_t setFloatParamFunction;
     getintparamfunc_t getIntParamFunction;
     getfloatparamfunc_t getFloatParamFunction;
-
+    PyThreadState *GUIThreadState = 0;
+    PyThreadState *processThreadState = 0;
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(PythonPlugin);
 
 };

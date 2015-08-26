@@ -20,6 +20,21 @@
 #include <dlfcn.h>
 #include <stdlib.h>
 
+
+#define PYTHON_DEBUG
+
+#ifdef PYTHON_DEBUG
+#if defined(__linux__)
+#include <sys/types.h>
+#else
+#include <pthread.h> 
+#endif
+#endif
+
+
+
+static int gil_init = 0;
+
 PythonPlugin::PythonPlugin(const String &processorName)
     : GenericProcessor(processorName) //, threshold(200.0), state(true)
 
@@ -35,10 +50,28 @@ PythonPlugin::PythonPlugin(const String &processorName)
     setenv("PYTHONHOME", PYTHON_HOME_NAME, 1);
     std::cout << "PYTHONHOME: " << getenv("PYTHONHOME") << std::endl;
 #endif    
+    
+#ifdef PYTHON_DEBUG
+#if defined(__linux__)
+    pid_t tid;
+    tid = gettid();
+#else
+    uint64_t tid;
+    pthread_threadid_np(NULL, &tid);
+#endif
+    std::cout << "in constructor pthread_threadid_np()=" << tid << std::endl;
+#endif
+    
     Py_SetProgramName ((char *)"PythonPlugin");
     Py_Initialize ();
+    PyEval_InitThreads();
+
+    
+    PyRun_SimpleString("import sys");
+    PyRun_SimpleString("sys.setcheckinterval(10000)");
     std::cout << Py_GetPrefix() << std::endl;
     std::cout << Py_GetVersion() << std::endl;
+    GUIThreadState = PyEval_SaveThread();
 }
 
 PythonPlugin::~PythonPlugin()
@@ -58,20 +91,37 @@ AudioProcessorEditor* PythonPlugin::createEditor()
 
 bool PythonPlugin::isReady()
 {
+#ifdef PYTHON_DEBUG
+#if defined(__linux__)
+    pid_t tid;
+    tid = gettid();
+#else
+    uint64_t tid;
+    pthread_threadid_np(NULL, &tid);
+#endif
+    std::cout << "in isReady pthread_threadid_np()=" << tid << std::endl;
+#endif
+
+
+    bool ret;
+    PyEval_RestoreThread(GUIThreadState);
     if (plugin == 0 )
     {
         // sendActionMessage("No plugin selected in Python Plugin."); // FIXME how to send error message?
-        return false;
+        ret = false;
     }
     else if (pluginIsReady && !(*pluginIsReady)())
     {
         // sendActionMessage("Plugin is not ready"); // FIXME how to send error message?
-        return false;
+        ret = false;
     }
     else
     {
-        return true;
+        ret = true;
     }
+    GUIThreadState = PyEval_SaveThread();
+    return ret;
+
 }
 
 void PythonPlugin::setParameter(int parameterIndex, float newValue)
@@ -87,14 +137,82 @@ void PythonPlugin::setParameter(int parameterIndex, float newValue)
     editor->updateParameterButtons(parameterIndex);
 }
 
+
+void PythonPlugin::resetConnections()
+{
+    
+#ifdef PYTHON_DEBUG
+#if defined(__linux__)
+    pid_t tid;
+    tid = gettid();
+#else
+    uint64_t tid;
+    pthread_threadid_np(NULL, &tid);
+#endif
+    std::cout << "in resetConnection pthread_threadid_np()=" << tid << std::endl;
+#endif
+
+    nextAvailableChannel = 0;
+    
+    wasConnected = false;
+    std::cout << "resetting ThreadState, which was "  << processThreadState << std::endl;
+    processThreadState = 0;
+}
+
 void PythonPlugin::process(AudioSampleBuffer& buffer,
                                MidiBuffer& events)
 {
 
+#ifdef PYTHON_DEBUG
+#if defined(__linux__)
+    pid_t tid;
+    tid = gettid();
+#else
+    uint64_t tid;
+    pthread_threadid_np(NULL, &tid);
+#endif
+    std::cout << "in process pthread_threadid_np()=" << tid << std::endl;
+#endif
+    
+    
+    if(!processThreadState)
+    {
+        
+        //DEBUG
+        PyThreadState *nowState;
+        nowState = PyGILState_GetThisThreadState();
+#ifdef PYTHON_DEBUG
+        std::cout << "currentState: " << nowState << std::endl;
+        std::cout << "initialiting ThreadState" << std::endl;
+#endif
+        if(nowState) //UGLY HACK!!!
+        {
+            processThreadState = nowState;
+        }
+        else
+        {
+            processThreadState =  PyThreadState_New(GUIThreadState->interp);
+        }
+        if(!processThreadState)
+            std::cout << "ThreadState is Null!" << std::endl;
+    }
+
+    PyEval_RestoreThread(processThreadState);
     
     PythonEvent *pyEvents = (PythonEvent *)calloc(1, sizeof(PythonEvent));
     pyEvents->type = 0; // this marks an empty event
+    std::cout << "in process, trying to acquire lock" << std::endl;
+
+    // PyEval_InitThreads();
+//    
+//    std::cout << "in process, threadstate: " << PyGILState_GetThisThreadState() << std::endl;
+//    PyGILState_STATE gstate;
+//    gstate = PyGILState_Ensure();
+//    std::cout << "in process, lock acquired" << std::endl;
     (*pluginFunction)(*(buffer.getArrayOfWritePointers()), buffer.getNumChannels(), buffer.getNumSamples(), pyEvents);
+//    PyGILState_Release(gstate);
+//    std::cout << "in process, lock released" << std::endl;
+    
     if(pyEvents->type != 0)
     {
         std::cout << (int)pyEvents->type << std::endl;
@@ -103,29 +221,41 @@ void PythonPlugin::process(AudioSampleBuffer& buffer,
         PythonEvent *lastEvent = pyEvents;
         PythonEvent *nextEvent = lastEvent->nextEvent;
         while (nextEvent) {
-            free((void *)lastEvent);
             addEvent(events, nextEvent->type, nextEvent->sampleNum, nextEvent->eventId, nextEvent->eventChannel, nextEvent->numBytes, nextEvent->eventData);
             nextEvent = lastEvent->nextEvent;
+            free((void *)lastEvent);
             
         }
     }
     
-    
-
+    processThreadState = PyEval_SaveThread();
+    std::cout << "Thread saved" << std::endl;
 }
 
 
 /* The complete API that the Cython plugin has to expose is
  void pluginStartup(void): a function to initialize the plugin data structures prior to start ACQ
  int isReady(void): a boolean function telling the processor whether the plugin is ready  to receive data
- int getParamNum(void) get the number of parameters that the plugin takes TODO
+ int getParamNum(void) get the number of parameters that the plugin takes
  ParamConfig *getParamConfig(void) this will allow generating the editor GUI TODO
- void setIntParameter(char *name, int value) set integer parameter TODO
- void set FloatParameter(char *name, float value) set float parameter TODO
+ void setIntParameter(char *name, int value) set integer parameter
+ void set FloatParameter(char *name, float value) set float parameter
  
  */
 void PythonPlugin::setFile(String fullpath)
 {
+#ifdef PYTHON_DEBUG
+#if defined(__linux__)
+    pid_t tid;
+    tid = gettid();
+#else
+    uint64_t tid;
+    pthread_threadid_np(NULL, &tid);
+#endif
+    std::cout << "in setFile pthread_threadid_np()=" << tid << std::endl;
+#endif
+    
+
     filePath = fullpath;
 
     const char* path = filePath.getCharPointer();
@@ -275,22 +405,28 @@ void PythonPlugin::setFile(String fullpath)
 
     
 // now the API should be fully loaded
-
+    
+    PyEval_RestoreThread(GUIThreadState);
     // initialize the plugin
     std::cout << "before initplugin" << std::endl; // DEBUG
+    
     (*initF)();
+    
     std::cout << "after initplugin" << std::endl; // DEBUG
 
     (*pluginStartupFunction)(getSampleRate());
     
     // load the parameter configuration
     numPythonParams = (*getParamNumFunction)();
+
     std::cout << "the plugin wants " << numPythonParams
         << " parameters" << std::endl;
     params = (ParamConfig *)calloc(numPythonParams, sizeof(ParamConfig));
     paramsControl = (Component **)calloc(numPythonParams, sizeof(Component *));
     
     (*getParamConfigFunction)(params);
+    std::cout << "release paramconfig" << std::endl;
+
     for(int i = 0; i < numPythonParams; i++)
     {
         std::cout << "param " << i << " is a " << params[i].type << std::endl;
@@ -309,6 +445,7 @@ void PythonPlugin::setFile(String fullpath)
                 break;
         }
     }
+    GUIThreadState = PyEval_SaveThread();
 }
 
 
@@ -324,29 +461,81 @@ void PythonPlugin::updateSettings()
 
 void PythonPlugin::setIntPythonParameter(String name, int value)
 {
-    // TODO pass it to python
-    //std::cout << name << ": changed to" << value << std::endl;
+    
+#ifdef PYTHON_DEBUG
+#if defined(__linux__)
+    pid_t tid;
+    tid = gettid();
+#else
+    uint64_t tid;
+    pthread_threadid_np(NULL, &tid);
+#endif
+    std::cout << "in setintparam pthread_threadid_np()=" << tid << std::endl;
+#endif
+    
+    PyEval_RestoreThread(GUIThreadState);
     (*setIntParamFunction)(name.getCharPointer().getAddress(), value);
+    GUIThreadState = PyEval_SaveThread();
 }
 
 void PythonPlugin::setFloatPythonParameter(String name, float value)
 {
-    // TODO pass it to python
-    //std::cout << name << ": changed to" << value << std::endl;
+
+#ifdef PYTHON_DEBUG
+#if defined(__linux__)
+    pid_t tid;
+    tid = gettid();
+#else
+    uint64_t tid;
+    pthread_threadid_np(NULL, &tid);
+#endif
+    std::cout << "in setfloatparam pthread_threadid_np()=" << tid << std::endl;
+#endif
+    PyEval_RestoreThread(GUIThreadState);
     (*setFloatParamFunction)(name.getCharPointer().getAddress(), value);
+    GUIThreadState = PyEval_SaveThread();
 }
 
 int PythonPlugin::getIntPythonParameter(String name)
 {
+
+#ifdef PYTHON_DEBUG
+#if defined(__linux__)
+    pid_t tid;
+    tid = gettid();
+#else
+    uint64_t tid;
+    pthread_threadid_np(NULL, &tid);
+#endif
+    std::cout << "in getintparam pthread_threadid_np()=" << tid << std::endl;
+#endif
+
     int value;
+    PyEval_RestoreThread(GUIThreadState);
     value = (*getIntParamFunction)(name.getCharPointer().getAddress());
+    GUIThreadState = PyEval_SaveThread();
     return value;
 }
 
 float PythonPlugin::getFloatPythonParameter(String name)
 {
+    
+    
+#ifdef PYTHON_DEBUG
+#if defined(__linux__)
+    pid_t tid;
+    tid = gettid();
+#else
+    uint64_t tid;
+    pthread_threadid_np(NULL, &tid);
+#endif
+    std::cout << "in getfloatparam pthread_threadid_np()=" << tid << std::endl;
+#endif
+    
+    PyEval_RestoreThread(GUIThreadState);
     float value;
     value = (*getFloatParamFunction)(name.getCharPointer().getAddress());
+    GUIThreadState = PyEval_SaveThread();
     return value;
 }
 
