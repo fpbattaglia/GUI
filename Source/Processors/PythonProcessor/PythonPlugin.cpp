@@ -20,12 +20,12 @@
 #include <dlfcn.h>
 #include <stdlib.h>
 
-
 #define PYTHON_DEBUG
 
 #ifdef PYTHON_DEBUG
 #if defined(__linux__)
-#include <sys/types.h>
+#include <sys/syscall.h>
+#include <unistd.h>
 #else
 #include <pthread.h> 
 #endif
@@ -54,7 +54,7 @@ PythonPlugin::PythonPlugin(const String &processorName)
 #ifdef PYTHON_DEBUG
 #if defined(__linux__)
     pid_t tid;
-    tid = gettid();
+    tid = syscall(SYS_gettid);
 #else
     uint64_t tid;
     pthread_threadid_np(NULL, &tid);
@@ -94,7 +94,7 @@ bool PythonPlugin::isReady()
 #ifdef PYTHON_DEBUG
 #if defined(__linux__)
     pid_t tid;
-    tid = gettid();
+    tid = syscall(SYS_gettid);
 #else
     uint64_t tid;
     pthread_threadid_np(NULL, &tid);
@@ -144,7 +144,7 @@ void PythonPlugin::resetConnections()
 #ifdef PYTHON_DEBUG
 #if defined(__linux__)
     pid_t tid;
-    tid = gettid();
+    tid = syscall(SYS_gettid);
 #else
     uint64_t tid;
     pthread_threadid_np(NULL, &tid);
@@ -166,7 +166,7 @@ void PythonPlugin::process(AudioSampleBuffer& buffer,
 #ifdef PYTHON_DEBUG
 #if defined(__linux__)
     pid_t tid;
-    tid = gettid();
+    tid = syscall(SYS_gettid);
 #else
     uint64_t tid;
     pthread_threadid_np(NULL, &tid);
@@ -247,7 +247,7 @@ void PythonPlugin::setFile(String fullpath)
 #ifdef PYTHON_DEBUG
 #if defined(__linux__)
     pid_t tid;
-    tid = gettid();
+    tid = syscall(SYS_gettid);
 #else
     uint64_t tid;
     pthread_threadid_np(NULL, &tid);
@@ -465,7 +465,7 @@ void PythonPlugin::setIntPythonParameter(String name, int value)
 #ifdef PYTHON_DEBUG
 #if defined(__linux__)
     pid_t tid;
-    tid = gettid();
+    tid = syscall(SYS_gettid);
 #else
     uint64_t tid;
     pthread_threadid_np(NULL, &tid);
@@ -484,7 +484,7 @@ void PythonPlugin::setFloatPythonParameter(String name, float value)
 #ifdef PYTHON_DEBUG
 #if defined(__linux__)
     pid_t tid;
-    tid = gettid();
+    tid = syscall(SYS_gettid);
 #else
     uint64_t tid;
     pthread_threadid_np(NULL, &tid);
@@ -502,7 +502,7 @@ int PythonPlugin::getIntPythonParameter(String name)
 #ifdef PYTHON_DEBUG
 #if defined(__linux__)
     pid_t tid;
-    tid = gettid();
+    tid = syscall(SYS_gettid);
 #else
     uint64_t tid;
     pthread_threadid_np(NULL, &tid);
@@ -524,7 +524,7 @@ float PythonPlugin::getFloatPythonParameter(String name)
 #ifdef PYTHON_DEBUG
 #if defined(__linux__)
     pid_t tid;
-    tid = gettid();
+    tid = syscall(SYS_gettid);
 #else
     uint64_t tid;
     pthread_threadid_np(NULL, &tid);
