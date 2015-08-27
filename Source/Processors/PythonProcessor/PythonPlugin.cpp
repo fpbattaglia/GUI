@@ -33,7 +33,6 @@
 
 
 
-static int gil_init = 0;
 
 PythonPlugin::PythonPlugin(const String &processorName)
     : GenericProcessor(processorName) //, threshold(200.0), state(true)
@@ -220,9 +219,11 @@ void PythonPlugin::process(AudioSampleBuffer& buffer,
                  pyEvents->eventChannel, pyEvents->numBytes, pyEvents->eventData);
         PythonEvent *lastEvent = pyEvents;
         PythonEvent *nextEvent = lastEvent->nextEvent;
+        free((void *)lastEvent);
         while (nextEvent) {
             addEvent(events, nextEvent->type, nextEvent->sampleNum, nextEvent->eventId, nextEvent->eventChannel, nextEvent->numBytes, nextEvent->eventData);
-            nextEvent = lastEvent->nextEvent;
+            lastEvent = nextEvent;
+            nextEvent = nextEvent->nextEvent;
             free((void *)lastEvent);
             
         }
