@@ -59,5 +59,6 @@ void JUCE_API JUCE_CALLTYPE logAssertion (const char* const filename, const int 
    #else
     DBG (m);
    #endif
+    abort();
 }
 #endif
