@@ -20,7 +20,7 @@
 #include <dlfcn.h>
 #include <stdlib.h>
 
-#define PYTHON_DEBUG
+#undef PYTHON_DEBUG
 
 #ifdef PYTHON_DEBUG
 #if defined(__linux__)
@@ -47,7 +47,9 @@ PythonPlugin::PythonPlugin(const String &processorName)
 #define STR(macro) QUOTE(macro)
 #define PYTHON_HOME_NAME STR(PYTHON_HOME)
     setenv("PYTHONHOME", PYTHON_HOME_NAME, 1);
+#ifdef PYTHON_DEBUG
     std::cout << "PYTHONHOME: " << getenv("PYTHONHOME") << std::endl;
+#endif
 #endif    
     
 #ifdef PYTHON_DEBUG
@@ -68,8 +70,10 @@ PythonPlugin::PythonPlugin(const String &processorName)
     
     PyRun_SimpleString("import sys");
     PyRun_SimpleString("sys.setcheckinterval(10000)");
+#ifdef PYTHON_DEBUG
     std::cout << Py_GetPrefix() << std::endl;
     std::cout << Py_GetVersion() << std::endl;
+#endif
     GUIThreadState = PyEval_SaveThread();
 }
 
@@ -80,7 +84,8 @@ PythonPlugin::~PythonPlugin()
 
 AudioProcessorEditor* PythonPlugin::createEditor()
 {
-        std::cout << "in PythonEditor::createEditor()" << std::endl;
+
+//        std::cout << "in PythonEditor::createEditor()" << std::endl;
     editor = new PythonEditor(this, true);
 
     return editor;
@@ -154,7 +159,9 @@ void PythonPlugin::resetConnections()
     nextAvailableChannel = 0;
     
     wasConnected = false;
+#ifdef PYTHON_DEBUG
     std::cout << "resetting ThreadState, which was "  << processThreadState << std::endl;
+#endif
     processThreadState = 0;
 }
 
@@ -200,8 +207,10 @@ void PythonPlugin::process(AudioSampleBuffer& buffer,
     
     PythonEvent *pyEvents = (PythonEvent *)calloc(1, sizeof(PythonEvent));
     pyEvents->type = 0; // this marks an empty event
+#ifdef PYTHON_DEBUG
     std::cout << "in process, trying to acquire lock" << std::endl;
-
+#endif 
+    
     // PyEval_InitThreads();
 //    
 //    std::cout << "in process, threadstate: " << PyGILState_GetThisThreadState() << std::endl;
@@ -214,7 +223,9 @@ void PythonPlugin::process(AudioSampleBuffer& buffer,
     
     if(pyEvents->type != 0)
     {
+#ifdef PYTHON_DEBUG
         std::cout << (int)pyEvents->type << std::endl;
+#endif
         addEvent(events, pyEvents->type, pyEvents->sampleNum, pyEvents->eventId,
                  pyEvents->eventChannel, pyEvents->numBytes, pyEvents->eventData);
         PythonEvent *lastEvent = pyEvents;
@@ -230,7 +241,9 @@ void PythonPlugin::process(AudioSampleBuffer& buffer,
     }
     
     processThreadState = PyEval_SaveThread();
+#ifdef PYTHON_DEBUG
     std::cout << "Thread saved" << std::endl;
+#endif
 }
 
 
@@ -270,8 +283,9 @@ void PythonPlugin::setFile(String fullpath)
       }
 
     void *initializer = dlsym(plugin,"initplugin");
+#ifdef PYTHON_DEBUG
     std::cout << "initializer: " << initializer << std::endl;
-
+#endif
     if (!initializer)
     {
     	std::cout << "Can't find init function in plugin "
@@ -409,29 +423,38 @@ void PythonPlugin::setFile(String fullpath)
     
     PyEval_RestoreThread(GUIThreadState);
     // initialize the plugin
+#ifdef PYTHON_DEBUG
     std::cout << "before initplugin" << std::endl; // DEBUG
+#endif 
     
     (*initF)();
-    
-    std::cout << "after initplugin" << std::endl; // DEBUG
 
+#ifdef PYTHON_DEBUG
+    std::cout << "after initplugin" << std::endl; // DEBUG
+#endif
+    
     (*pluginStartupFunction)(getSampleRate());
     
     // load the parameter configuration
     numPythonParams = (*getParamNumFunction)();
-
+#ifdef PYTHON_DEBUG
     std::cout << "the plugin wants " << numPythonParams
         << " parameters" << std::endl;
+#endif
     params = (ParamConfig *)calloc(numPythonParams, sizeof(ParamConfig));
     paramsControl = (Component **)calloc(numPythonParams, sizeof(Component *));
     
     (*getParamConfigFunction)(params);
+#ifdef PYTHON_DEBUG
     std::cout << "release paramconfig" << std::endl;
-
+#endif
+    
     for(int i = 0; i < numPythonParams; i++)
     {
+#ifdef PYTHON_DEBUG
         std::cout << "param " << i << " is a " << params[i].type << std::endl;
         std::cout << "it is named: " << params[i].name << std::endl << std::endl;
+#endif
         switch (params[i].type) {
             case TOGGLE:
                 paramsControl[i] = dynamic_cast<PythonEditor *>(getEditor())->addToggleButton(String(params[i].name), params[i].isEnabled);
