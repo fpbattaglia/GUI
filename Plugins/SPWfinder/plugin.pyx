@@ -153,6 +153,12 @@ class SPWFinder(object):
         n_arr[chan_out+1,:] = np.fabs(n_arr[chan_out,:])
         n_arr[chan_out+2,:] = 5. *np.mean(n_arr[chan_out+1,:]) * np.ones((1,n_samples))
         print "done processing"
+        # FIXME DEBUG
+        events.append({'type': 3, 'sampleNum': n_samples-10, 'eventId': 1})
+        events.append({'type': 3, 'sampleNum': n_samples-10, 'eventId': 1})
+        events.append({'type': 3, 'sampleNum': n_samples-10, 'eventId': 1})
+        events.append({'type': 3, 'sampleNum': n_samples-10, 'eventId': 1})
+        events.append({'type': 3, 'sampleNum': n_samples-10, 'eventId': 1})
         if not self.enabled:
             if np.mean(n_arr[chan_out+1,:]) > self.threshold:
                 events.append({'type': 3, 'sampleNum': n_samples-10, 'eventId': 3})
