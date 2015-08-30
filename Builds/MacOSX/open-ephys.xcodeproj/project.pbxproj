@@ -73,6 +73,7 @@
 		69B5045877D4C674E8A4967F /* ResamplingNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E102C308B0722DFFFEFF2415 /* ResamplingNode.cpp */; };
 		6A13D8F42A330E2C410B43E3 /* EditorViewport.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7E875E681E18D693D5ADB2FB /* EditorViewport.cpp */; };
 		6C0A7B0D658E39227319148F /* RBJ.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FAD15233FFB64C1608A60250 /* RBJ.cpp */; };
+		6C823D4559936D6881996B61 /* PythonEditor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7A66938247F6E48D538BE8D2 /* PythonEditor.cpp */; };
 		6D00BABD3FE1AA0EAA267C1C /* Merger.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07B84F46CF90D04BB6B673C5 /* Merger.cpp */; };
 		6D8A9AC5ECC0F2D26304849E /* SpikeDetector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 89CDE7ED25D0EB7452486E85 /* SpikeDetector.cpp */; };
 		7015D104F55D5B128341CEA8 /* juce_graphics.mm in Sources */ = {isa = PBXBuildFile; fileRef = BBDFB328C3D5FC72A0446E6A /* juce_graphics.mm */; };
@@ -107,7 +108,6 @@
 		A14CA9089A09267E95C93E1D /* SpikeDisplayEditor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F0C721AB2973FAD23C7F47B /* SpikeDisplayEditor.cpp */; };
 		A269A876BDF3B7011FA4C681 /* juce_gui_basics.mm in Sources */ = {isa = PBXBuildFile; fileRef = 23609D430A25F54723269E91 /* juce_gui_basics.mm */; };
 		A2EE65335FB2810C04ECBFAF /* juce_audio_formats.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6B28CEAF75E22F2CCCACBCC7 /* juce_audio_formats.mm */; };
-		A3F28ACC74F06E238263EFED /* PythonEditor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B3FB53E387A9C90C2FCC8945 /* PythonEditor.cpp */; };
 		A4A2DF3FA65BAB4322FE5E74 /* HDF5Recording.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 36332333DBF8363163F454E6 /* HDF5Recording.cpp */; };
 		A94130738A9973148544664A /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5A00ACFA3D76168F22F1205 /* Cocoa.framework */; };
 		AA16BE5A6BBD024C8FCFCDA8 /* VisualizerEditor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CAA3B9396EA62166234DAEF1 /* VisualizerEditor.cpp */; };
@@ -733,6 +733,7 @@
 		79C32CA8069962F5DE48F633 /* PulsePal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PulsePal.h; path = ../../Source/Processors/Serial/PulsePal.h; sourceTree = SOURCE_ROOT; };
 		79C91DDF3BC3F15D0338E504 /* ProcessorList.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ProcessorList.cpp; path = ../../Source/UI/ProcessorList.cpp; sourceTree = SOURCE_ROOT; };
 		79DBCC366A8EB3EA6D4A6FCC /* PythonSink.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PythonSink.h; path = ../../Source/Processors/PythonProcessor/PythonSink.h; sourceTree = SOURCE_ROOT; };
+		7A66938247F6E48D538BE8D2 /* PythonEditor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = PythonEditor.cpp; path = ../../Source/Processors/PythonProcessor/PythonEditor.cpp; sourceTree = SOURCE_ROOT; };
 		7A93BFD2180B5E00B124CB1A /* juce_PixelFormats.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = juce_PixelFormats.h; path = ../../JuceLibraryCode/modules/juce_graphics/colour/juce_PixelFormats.h; sourceTree = SOURCE_ROOT; };
 		7A9F37527280A470F201FB6E /* juce_SystemTrayIconComponent.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = juce_SystemTrayIconComponent.cpp; path = ../../JuceLibraryCode/modules/juce_gui_extra/misc/juce_SystemTrayIconComponent.cpp; sourceTree = SOURCE_ROOT; };
 		7B42B28FDB2E3AC67EF296F8 /* PracticalSocket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PracticalSocket.h; path = ../../Source/Network/PracticalSocket.h; sourceTree = SOURCE_ROOT; };
@@ -1015,7 +1016,6 @@
 		B2F72769CF14BD7F882E9542 /* LfpDisplayNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LfpDisplayNode.h; path = ../../Source/Processors/LfpDisplayNode/LfpDisplayNode.h; sourceTree = SOURCE_ROOT; };
 		B2FA9CC4754E136F22281176 /* juce_ImageEffectFilter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = juce_ImageEffectFilter.h; path = ../../JuceLibraryCode/modules/juce_graphics/effects/juce_ImageEffectFilter.h; sourceTree = SOURCE_ROOT; };
 		B3BAC48D01C49D8727D08097 /* juce_ListBox.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = juce_ListBox.cpp; path = ../../JuceLibraryCode/modules/juce_gui_basics/widgets/juce_ListBox.cpp; sourceTree = SOURCE_ROOT; };
-		B3FB53E387A9C90C2FCC8945 /* PythonEditor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = PythonEditor.cpp; path = ../../Source/Processors/Editors/PythonEditor.cpp; sourceTree = SOURCE_ROOT; };
 		B410FE6CF1A561A1648343D6 /* ArduinoOutput.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ArduinoOutput.h; path = ../../Source/Processors/ArduinoOutput/ArduinoOutput.h; sourceTree = SOURCE_ROOT; };
 		B43C27BEC3AB681389FC5FC5 /* juce_RelativeCoordinate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = juce_RelativeCoordinate.h; path = ../../JuceLibraryCode/modules/juce_gui_basics/positioning/juce_RelativeCoordinate.h; sourceTree = SOURCE_ROOT; };
 		B4C52FC94D6C680C33ED85C9 /* juce_File.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = juce_File.cpp; path = ../../JuceLibraryCode/modules/juce_core/files/juce_File.cpp; sourceTree = SOURCE_ROOT; };
@@ -1144,7 +1144,6 @@
 		CD7E06ED47B243518F42DA49 /* MergerA-02.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "MergerA-02.png"; path = "../../Resources/Images/Buttons/MergerA-02.png"; sourceTree = SOURCE_ROOT; };
 		CD83E301AE42E6E3317D575D /* juce_TableHeaderComponent.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = juce_TableHeaderComponent.cpp; path = ../../JuceLibraryCode/modules/juce_gui_basics/widgets/juce_TableHeaderComponent.cpp; sourceTree = SOURCE_ROOT; };
 		CDC18ABAFEF000C720CE8622 /* juce_CallOutBox.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = juce_CallOutBox.cpp; path = ../../JuceLibraryCode/modules/juce_gui_basics/windows/juce_CallOutBox.cpp; sourceTree = SOURCE_ROOT; };
-		CDE6939FFB826B46BD8379B2 /* PythonEditor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PythonEditor.h; path = ../../Source/Processors/Editors/PythonEditor.h; sourceTree = SOURCE_ROOT; };
 		CE2BD40797A6E7647FDBE736 /* juce_ColourSelector.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = juce_ColourSelector.cpp; path = ../../JuceLibraryCode/modules/juce_gui_extra/misc/juce_ColourSelector.cpp; sourceTree = SOURCE_ROOT; };
 		CF5BC8DB7D66C655DABA9129 /* juce_android_FileChooser.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = juce_android_FileChooser.cpp; path = ../../JuceLibraryCode/modules/juce_gui_basics/native/juce_android_FileChooser.cpp; sourceTree = SOURCE_ROOT; };
 		CF758CB1E06DDA1AB7F5C9CC /* juce_events.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = juce_events.h; path = ../../JuceLibraryCode/modules/juce_events/juce_events.h; sourceTree = SOURCE_ROOT; };
@@ -1196,6 +1195,7 @@
 		D8AFDCC674A7514B7019EEA6 /* juce_DrawableButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = juce_DrawableButton.h; path = ../../JuceLibraryCode/modules/juce_gui_basics/buttons/juce_DrawableButton.h; sourceTree = SOURCE_ROOT; };
 		D952A208CC8164F0B459EC9E /* juce_linux_WebBrowserComponent.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = juce_linux_WebBrowserComponent.cpp; path = ../../JuceLibraryCode/modules/juce_gui_extra/native/juce_linux_WebBrowserComponent.cpp; sourceTree = SOURCE_ROOT; };
 		D960588B732D973B82500E2D /* juce_AudioProcessorListener.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = juce_AudioProcessorListener.h; path = ../../JuceLibraryCode/modules/juce_audio_processors/processors/juce_AudioProcessorListener.h; sourceTree = SOURCE_ROOT; };
+		D96EF1AA34A69E2569C4A835 /* PythonEditor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PythonEditor.h; path = ../../Source/Processors/PythonProcessor/PythonEditor.h; sourceTree = SOURCE_ROOT; };
 		D9BF6DA66C22FFF5C4D41991 /* LfpDisplayCanvas.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = LfpDisplayCanvas.cpp; path = ../../Source/Processors/LfpDisplayNode/LfpDisplayCanvas.cpp; sourceTree = SOURCE_ROOT; };
 		D9C9FCA6D705B72B80DB1142 /* juce_Socket.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = juce_Socket.cpp; path = ../../JuceLibraryCode/modules/juce_core/network/juce_Socket.cpp; sourceTree = SOURCE_ROOT; };
 		D9CB4CEC2C07346BE69262A0 /* RadioButtons_selected-01.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "RadioButtons_selected-01.png"; path = "../../Resources/Images/Icons/RadioButtons_selected-01.png"; sourceTree = SOURCE_ROOT; };
@@ -1865,6 +1865,8 @@
 		291723CB35556C181A4DF634 /* PythonProcessor */ = {
 			isa = PBXGroup;
 			children = (
+				7A66938247F6E48D538BE8D2 /* PythonEditor.cpp */,
+				D96EF1AA34A69E2569C4A835 /* PythonEditor.h */,
 				D7357013550A4F90C776C625 /* pyprocessor1.h */,
 				6BF9566151FEFD86C62C3ABB /* PythonEvent.h */,
 				0266A71F81A023E809F9B01A /* PythonFilter.cpp */,
@@ -3076,8 +3078,6 @@
 		9F16043BF599BCE0C02A00A5 /* Editors */ = {
 			isa = PBXGroup;
 			children = (
-				B3FB53E387A9C90C2FCC8945 /* PythonEditor.cpp */,
-				CDE6939FFB826B46BD8379B2 /* PythonEditor.h */,
 				E216D095C98F850A5FB6FB0F /* ChannelSelector.cpp */,
 				70F06DBCA3948BCC1062E36F /* ChannelSelector.h */,
 				28CCF04CCC028BAE0AEE5840 /* ElectrodeButtons.cpp */,
@@ -3845,7 +3845,7 @@
 				256EEB2E7946EFA9B0774D25 /* Resources */,
 				0C1B429379FBBA77A635B49A /* Sources */,
 				7BE915E5A64C787EBF13A8E7 /* Frameworks */,
-				F786D69C1B84D4DF005543A3 /* ShellScript */,
+				F71C03BD1B9329A2004F883F /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -3894,7 +3894,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		F786D69C1B84D4DF005543A3 /* ShellScript */ = {
+		F71C03BD1B9329A2004F883F /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -3918,6 +3918,7 @@
 				14BDAEA656AAFA60334CC55C /* AccessClass.cpp in Sources */,
 				C853FCE2F6C91B3643322CF0 /* PracticalSocket.cpp in Sources */,
 				0AE243437B40602D35435C32 /* AudioComponent.cpp in Sources */,
+				6C823D4559936D6881996B61 /* PythonEditor.cpp in Sources */,
 				D989A6556579A6DD693146CA /* PythonFilter.cpp in Sources */,
 				42507501A37C98B3EE7670DF /* PythonPlugin.cpp in Sources */,
 				EF8A650868A6D2F65FA6A30F /* PythonSink.cpp in Sources */,
@@ -3958,7 +3959,6 @@
 				6C0A7B0D658E39227319148F /* RBJ.cpp in Sources */,
 				469E1EF233BCD61F44687C0F /* RootFinder.cpp in Sources */,
 				411543734DA2029A3030D903 /* State.cpp in Sources */,
-				A3F28ACC74F06E238263EFED /* PythonEditor.cpp in Sources */,
 				52AE3F7AEED81BA9ED5C4830 /* ChannelSelector.cpp in Sources */,
 				029C3B11BE586DA100895A60 /* ElectrodeButtons.cpp in Sources */,
 				6702EEA4E99D503C0EE933C4 /* GenericEditor.cpp in Sources */,
@@ -4092,7 +4092,7 @@
 				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)/build/$(CONFIGURATION)";
 				DEAD_CODE_STRIPPING = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_OPTIMIZATION_LEVEL = 3;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"_NDEBUG=1",
 					"NDEBUG=1",
@@ -4140,7 +4140,7 @@
 				CONFIGURATION_BUILD_DIR = "$(PROJECT_DIR)/build/$(CONFIGURATION)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_OPTIMIZATION_LEVEL = 3;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"_DEBUG=1",
 					"DEBUG=1",

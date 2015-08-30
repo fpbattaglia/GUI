@@ -304,6 +304,9 @@
       </GROUP>
       <GROUP id="yQmqZWk" name="Processors">
         <GROUP id="{24CB09D6-E370-1A05-0B88-22B688E7F1AE}" name="PythonProcessor">
+          <FILE id="FBfrJC" name="PythonEditor.cpp" compile="1" resource="0"
+                file="Source/Processors/PythonProcessor/PythonEditor.cpp"/>
+          <FILE id="IoAfCj" name="PythonEditor.h" compile="0" resource="0" file="Source/Processors/PythonProcessor/PythonEditor.h"/>
           <FILE id="JkAJMf" name="pyprocessor1.h" compile="0" resource="0" file="Source/Processors/PythonProcessor/pyprocessor1.h"/>
           <FILE id="didLgW" name="PythonEvent.h" compile="0" resource="0" file="Source/Processors/PythonProcessor/PythonEvent.h"/>
           <FILE id="RRlh4M" name="PythonFilter.cpp" compile="1" resource="0"
@@ -438,9 +441,6 @@
           <FILE id="qXPdAz" name="Utilities.h" compile="0" resource="0" file="Source/Processors/Dsp/Utilities.h"/>
         </GROUP>
         <GROUP id="AqvwO6w" name="Editors">
-          <FILE id="DopIi5" name="PythonEditor.cpp" compile="1" resource="0"
-                file="Source/Processors/Editors/PythonEditor.cpp"/>
-          <FILE id="upebEl" name="PythonEditor.h" compile="0" resource="0" file="Source/Processors/Editors/PythonEditor.h"/>
           <FILE id="F68NQ3" name="ChannelSelector.cpp" compile="1" resource="0"
                 file="Source/Processors/Editors/ChannelSelector.cpp"/>
           <FILE id="cOToxV" name="ChannelSelector.h" compile="0" resource="0"

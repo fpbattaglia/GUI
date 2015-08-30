@@ -457,6 +457,9 @@
     <ClCompile Include="..\..\Source\Audio\AudioComponent.cpp">
       <Filter>open-ephys\Source\Audio</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\Processors\PythonProcessor\PythonEditor.cpp">
+      <Filter>open-ephys\Source\Processors\PythonProcessor</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Processors\PythonProcessor\PythonFilter.cpp">
       <Filter>open-ephys\Source\Processors\PythonProcessor</Filter>
     </ClCompile>
@@ -576,9 +579,6 @@
     </ClCompile>
     <ClCompile Include="..\..\Source\Processors\Dsp\State.cpp">
       <Filter>open-ephys\Source\Processors\Dsp</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Source\Processors\Editors\PythonEditor.cpp">
-      <Filter>open-ephys\Source\Processors\Editors</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Processors\Editors\ChannelSelector.cpp">
       <Filter>open-ephys\Source\Processors\Editors</Filter>
@@ -2070,6 +2070,9 @@
     <ClInclude Include="..\..\Source\Audio\AudioComponent.h">
       <Filter>open-ephys\Source\Audio</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Source\Processors\PythonProcessor\PythonEditor.h">
+      <Filter>open-ephys\Source\Processors\PythonProcessor</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\Processors\PythonProcessor\pyprocessor1.h">
       <Filter>open-ephys\Source\Processors\PythonProcessor</Filter>
     </ClInclude>
@@ -2216,9 +2219,6 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\Processors\Dsp\Utilities.h">
       <Filter>open-ephys\Source\Processors\Dsp</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Processors\Editors\PythonEditor.h">
-      <Filter>open-ephys\Source\Processors\Editors</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Processors\Editors\ChannelSelector.h">
       <Filter>open-ephys\Source\Processors\Editors</Filter>

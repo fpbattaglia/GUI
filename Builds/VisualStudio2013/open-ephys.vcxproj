@@ -271,6 +271,7 @@
     <ClCompile Include="..\..\Source\AccessClass.cpp"/>
     <ClCompile Include="..\..\Source\Network\PracticalSocket.cpp"/>
     <ClCompile Include="..\..\Source\Audio\AudioComponent.cpp"/>
+    <ClCompile Include="..\..\Source\Processors\PythonProcessor\PythonEditor.cpp"/>
     <ClCompile Include="..\..\Source\Processors\PythonProcessor\PythonFilter.cpp"/>
     <ClCompile Include="..\..\Source\Processors\PythonProcessor\PythonPlugin.cpp"/>
     <ClCompile Include="..\..\Source\Processors\PythonProcessor\PythonSink.cpp"/>
@@ -311,7 +312,6 @@
     <ClCompile Include="..\..\Source\Processors\Dsp\RBJ.cpp"/>
     <ClCompile Include="..\..\Source\Processors\Dsp\RootFinder.cpp"/>
     <ClCompile Include="..\..\Source\Processors\Dsp\State.cpp"/>
-    <ClCompile Include="..\..\Source\Processors\Editors\PythonEditor.cpp"/>
     <ClCompile Include="..\..\Source\Processors\Editors\ChannelSelector.cpp"/>
     <ClCompile Include="..\..\Source\Processors\Editors\ElectrodeButtons.cpp"/>
     <ClCompile Include="..\..\Source\Processors\Editors\GenericEditor.cpp"/>
@@ -1523,6 +1523,7 @@
     <ClInclude Include="..\..\Source\AccessClass.h"/>
     <ClInclude Include="..\..\Source\Network\PracticalSocket.h"/>
     <ClInclude Include="..\..\Source\Audio\AudioComponent.h"/>
+    <ClInclude Include="..\..\Source\Processors\PythonProcessor\PythonEditor.h"/>
     <ClInclude Include="..\..\Source\Processors\PythonProcessor\pyprocessor1.h"/>
     <ClInclude Include="..\..\Source\Processors\PythonProcessor\PythonEvent.h"/>
     <ClInclude Include="..\..\Source\Processors\PythonProcessor\PythonFilter.h"/>
@@ -1572,7 +1573,6 @@
     <ClInclude Include="..\..\Source\Processors\Dsp\State.h"/>
     <ClInclude Include="..\..\Source\Processors\Dsp\Types.h"/>
     <ClInclude Include="..\..\Source\Processors\Dsp\Utilities.h"/>
-    <ClInclude Include="..\..\Source\Processors\Editors\PythonEditor.h"/>
     <ClInclude Include="..\..\Source\Processors\Editors\ChannelSelector.h"/>
     <ClInclude Include="..\..\Source\Processors\Editors\ElectrodeButtons.h"/>
     <ClInclude Include="..\..\Source\Processors\Editors\GenericEditor.h"/>

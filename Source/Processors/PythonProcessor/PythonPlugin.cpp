@@ -15,7 +15,7 @@
 
 #include "../../JuceLibraryCode/JuceHeader.h"
 #include "PythonPlugin.h"
-#include "../Editors/PythonEditor.h"
+#include "PythonEditor.h"
 
 #include <dlfcn.h>
 #include <stdlib.h>
