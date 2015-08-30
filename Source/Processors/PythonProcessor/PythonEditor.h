@@ -12,7 +12,7 @@
 #define __PYTHONEDITOR_H_5E135C2C__
 
 #include "../../JuceLibraryCode/JuceHeader.h"
-#include "GenericEditor.h"
+#include "../Editors/GenericEditor.h"
 
 class PythonPlugin;
 class PythonParameterButtonInterface;
