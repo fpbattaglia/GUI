@@ -24,7 +24,8 @@ PythonEditor::PythonEditor(GenericProcessor* parentNode, bool useDefaultParamete
 
     lastFilePath = File::getCurrentWorkingDirectory();
 
-    fileButton = new UtilityButton("Select file",Font("Small Text", 13, Font::plain));
+    font = Font("Small Text", 13, Font::plain);
+    fileButton = new UtilityButton("Select file", font);
     fileButton->addListener(this);
     fileButton->setBounds(30,50,120,25);
     addAndMakeVisible(fileButton);
@@ -41,7 +42,10 @@ PythonEditor::PythonEditor(GenericProcessor* parentNode, bool useDefaultParamete
 
 PythonEditor::~PythonEditor()
 {
-
+    for(int i; i < parameterInterfaces.size(); i++)
+    {
+        removeChildComponent(parameterInterfaces[i]);
+    }
 }
 
 void PythonEditor::setFile(String file)
@@ -55,16 +59,6 @@ void PythonEditor::setFile(String file)
     setEnabledState(true);
     removeChildComponent(fileButton);
     removeChildComponent(fileNameLabel);
-    
-    // TODO for the moment here, then in a new method
-    
-    int *gg = new int[5];
-    for(int i = 0;i < 5; i++)
-    {
-        gg[i] = i+1;
-    }
-    
-    
     
     repaint();
 }
@@ -232,7 +226,8 @@ void PythonParameterButtonInterface::paint(Graphics& g)
     else
         g.setColour(Colours::grey);
     
-    g.setFont(Font("Small Text", 10, Font::plain));
+    font = Font("Small Text", 10, Font::plain);
+    g.setFont(font);
     
 }
 
@@ -284,9 +279,10 @@ void PythonParameterComboBoxInterface::paint(Graphics& g)
     else
         g.setColour(Colours::grey);
     
-    g.setFont(Font("Small Text", 10, Font::plain));
+    font = Font("Small Text", 10, Font::plain);
+    g.setFont(font);
     
-    //g.drawText(name, 5, 80, 200, 10, Justification::left, false);
+    
 }
 
 void PythonParameterComboBoxInterface::comboBoxChanged(ComboBox* comboBox)
@@ -353,9 +349,10 @@ void PythonParameterSliderInterface::paint(Graphics& g)
     else
         g.setColour(Colours::grey);
     
-    g.setFont(Font("Small Text", 10, Font::plain));
+    font = Font("Small Text", 10, Font::plain);
+    g.setFont(font);
     
-    //g.drawText(name, 5, 80, 200, 10, Justification::left, false);
+  
 }
 
 void PythonParameterSliderInterface::sliderValueChanged(Slider *slider)

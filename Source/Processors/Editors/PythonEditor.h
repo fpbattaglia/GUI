@@ -50,7 +50,8 @@ private:
     PythonPlugin* pythonPlugin;
 
     File lastFilePath;
-
+    Font font;
+    
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(PythonEditor);
 
 };
@@ -60,7 +61,7 @@ class PythonParameterButtonInterface : public Component,  public Button::Listene
 {
 public:
     PythonParameterButtonInterface(String paramName_, int defaultVal, PythonPlugin *plugin_);
-    virtual ~PythonParameterButtonInterface();
+    ~PythonParameterButtonInterface();
     void paint(Graphics& g);
     void buttonClicked(Button* button);
     void setToggleStateFromValue(int value);
@@ -70,7 +71,9 @@ private:
     bool isEnabled;
     PythonPlugin *plugin;
     ScopedPointer<ToggleButton> theButton;
+    Font font;
     
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(PythonParameterButtonInterface);
     
 };
 
@@ -78,7 +81,7 @@ class PythonParameterComboBoxInterface : public Component,  public ComboBox::Lis
 {
 public:
     PythonParameterComboBoxInterface(String paramName_, int nEntries_, int *entries_, PythonPlugin *plugin_);
-    virtual ~PythonParameterComboBoxInterface();
+    ~PythonParameterComboBoxInterface();
     void paint(Graphics& g);
     void comboBoxChanged(ComboBox* comboBox);
     void setEntryFromValue(int value);
@@ -91,7 +94,9 @@ private:
     bool isEnabled;
     PythonPlugin *plugin;
     ScopedPointer<ComboBox> theComboBox;
+    Font font;
     
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(PythonParameterComboBoxInterface);
     
 };
 
@@ -99,7 +104,7 @@ class PythonParameterSliderInterface : public Component,  public Slider::Listene
 {
 public:
     PythonParameterSliderInterface(String paramName_, double rangeMin, double rangeMax, double startValue, PythonPlugin *plugin_);
-    virtual ~PythonParameterSliderInterface();
+    ~PythonParameterSliderInterface();
     void paint(Graphics& g);
     void sliderValueChanged(Slider* slider);
     void setSliderFromValue(float value);
@@ -109,8 +114,9 @@ private:
     bool isEnabled;
     PythonPlugin *plugin;
     ScopedPointer<Slider> theSlider;
+    Font font;
     
-    
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(PythonParameterSliderInterface);
 };
 
 
