@@ -67,8 +67,6 @@ def lookup_data(tStart, tEnd):
     print "frame duration: ", frame_duration
     event_times = np.empty([0,], dtype=np.float64)
 
-    print frame_duration
-
     do_buffer_plots = False
     if do_buffer_plots:
         fig = plt.figure(2)
