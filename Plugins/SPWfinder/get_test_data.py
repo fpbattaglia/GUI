@@ -61,14 +61,18 @@ def lookup_data(tStart, tEnd):
     print "chan_in: ", plugin.chan_in
     frame_starts = np.arange(iStart, iEnd, samples_per_frame, dtype=np.int)
     data = np.zeros([0,nChans], dtype=np.float32)
-    fig = plt.figure(2)
-    ax = fig.add_subplot(111)
 
-    (hlg,) = ax.plot([],[])
-    (hls,) = ax.plot([], [])
-    plt.show(block=False)
-    plt.waitforbuttonpress()
-    print 'ready'
+    do_buffer_plots = False
+    if do_buffer_plots:
+        fig = plt.figure(2)
+        ax = fig.add_subplot(111)
+
+        (hlg,) = ax.plot([],[])
+        (hls,) = ax.plot([], [])
+        plt.show(block=False)
+        plt.waitforbuttonpress()
+        print 'ready'
+
     for ix in frame_starts: # frame_starts:
         d = tData[ix:(ix+samples_per_frame), :].astype(np.float32)
         #d0 = d.copy()
@@ -76,23 +80,19 @@ def lookup_data(tStart, tEnd):
         (ev, sig, filt) = plugin.bufferfunction(d.transpose() )
         data = np.concatenate((data, d), axis=0)
 
-        #fg2 = plt.figure(2)
-        #fg2.clf()
-        # ax = fg2.add_subplot(111)
-        # ax.plot(np.arange(len(filt)), filt)
-        # ax.plot(np.arange(len(filt)), sig)
-        hlg.set_xdata(np.arange(len(filt)))
-        hlg.set_ydata(filt)
-        hls.set_xdata(np.arange(len(filt)))
-        hls.set_ydata(sig)
-        ax.relim()
-        ax.autoscale_view(True,True,True)
-        # mng = plt.get_current_fig_manager()
-        # mng.window.raise_()
-        plt.draw()
-        #plt.show(block=False)
-        plt.waitforbuttonpress()
-        print "done"
+        if do_buffer_plots:
+            hlg.set_xdata(np.arange(len(filt)))
+            hlg.set_ydata(filt)
+            hls.set_xdata(np.arange(len(filt)))
+            hls.set_ydata(sig)
+            ax.relim()
+            ax.autoscale_view(True,True,True)
+            # mng = plt.get_current_fig_manager()
+            # mng.window.raise_()
+            plt.draw()
+            #plt.show(block=False)
+            plt.waitforbuttonpress()
+            print "done"
     t = np.linspace(tStart, tEnd, data.shape[0])
     plt.figure(1)
     for ix, ch in enumerate(chans_to_plot):
@@ -101,13 +101,13 @@ def lookup_data(tStart, tEnd):
         plt.plot(x, y)
         plt.text(tStart+(tEnd-tStart)*1., -ix*spread, str(ch))
 
-    # mng = plt.get_current_fig_manager()
-    # mng.window.raise_()
+    mng = plt.get_current_fig_manager()
+    mng.window.raise_()
     plt.show()
     print 'done'
 
 if __name__ == '__main__':
-    lookup_data(3.5, 3.8)
+    lookup_data(60, 75)
 
 
 
