@@ -167,7 +167,7 @@ class SPWFinder(object):
         events = []
         cdef int chan_in
         cdef int chan_out
-        chan_in = self.chan_in
+        chan_in = self.chan_in - 1
         self.chan_out = self.chan_ripples
 
         self.n_samples = int(n_arr.shape[1])
