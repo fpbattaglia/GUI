@@ -245,7 +245,7 @@ class SPWFinder(object):
                 if self.refractory_count_down == 0:
                     self.state = self.READY
 
-        return (events, signal_to_filter, filtered_signal)
+        return (events, signal_to_filter, filtered_signal, np.mean(n_arr[self.chan_out+1,:]))
 
 
 pluginOp = SPWFinder()
