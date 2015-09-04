@@ -128,7 +128,7 @@ def lookup_data(tStart, tEnd):
     np.savetxt('/Users/fpbatta/tmp/means.txt', means)
 
 if __name__ == '__main__':
-    lookup_data(0, 1)
+    lookup_data(0, 10)
 
 
 

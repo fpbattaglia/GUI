@@ -171,6 +171,7 @@ class SPWFinder(object):
         self.chan_out = self.chan_ripples
 
         self.n_samples = int(n_arr.shape[1])
+        print self.n_samples
 
         frame_time = 1000. * self.n_samples / self.samplingRate
         self.jitter_count_down_thresh = int(self.jitter_time / frame_time)
