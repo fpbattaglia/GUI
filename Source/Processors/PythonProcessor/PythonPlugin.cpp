@@ -282,7 +282,17 @@ void PythonPlugin::setFile(String fullpath)
           return;
       }
 
-    void *initializer = dlsym(plugin,"initplugin");
+    String initPlugin = filePath.fromLastOccurrenceOf(String("/"), false, true);
+    
+    initPlugin = initPlugin.upToFirstOccurrenceOf(String("."), false, true);
+    
+    String initPluginName = String("init");
+    initPluginName.append(initPlugin, 200);
+    
+    std::cout << "init function is: " << initPluginName << std::endl;
+    
+    void *initializer = dlsym(plugin,initPluginName.getCharPointer());
+    
 #ifdef PYTHON_DEBUG
     std::cout << "initializer: " << initializer << std::endl;
 #endif
