@@ -180,6 +180,7 @@ void PythonPlugin::process(AudioSampleBuffer& buffer,
     std::cout << "in process pthread_threadid_np()=" << tid << std::endl;
 #endif
     
+    std::cout << "IN CPP num samples = " << getNumSamples(0) << std::endl;
     
     if(!processThreadState)
     {
