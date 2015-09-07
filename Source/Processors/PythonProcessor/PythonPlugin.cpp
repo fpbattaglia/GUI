@@ -218,7 +218,7 @@ void PythonPlugin::process(AudioSampleBuffer& buffer,
 //    PyGILState_STATE gstate;
 //    gstate = PyGILState_Ensure();
 //    std::cout << "in process, lock acquired" << std::endl;
-    (*pluginFunction)(*(buffer.getArrayOfWritePointers()), buffer.getNumChannels(), buffer.getNumSamples(), pyEvents);
+    (*pluginFunction)(*(buffer.getArrayOfWritePointers()), buffer.getNumChannels(), buffer.getNumSamples(), getNumSamples(0), pyEvents);
 //    PyGILState_Release(gstate);
 //    std::cout << "in process, lock released" << std::endl;
     
