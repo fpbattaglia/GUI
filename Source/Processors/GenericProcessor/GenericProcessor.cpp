@@ -45,8 +45,8 @@ AudioProcessorEditor* GenericProcessor::createEditor()
 {
 	std::cout << "in GP::CE" << std::endl;
     editor = new GenericEditor(this, true);
-    std::cout << "in GenericProcessor::createEditor(), editor is " <<
-    		editor << std::endl;
+    // std::cout << "in GenericProcessor::createEditor(), editor is " <<
+    // 		editor << std::endl;
     return editor;
 }
 
