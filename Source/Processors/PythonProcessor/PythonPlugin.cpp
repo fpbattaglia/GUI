@@ -62,6 +62,7 @@ PythonPlugin::PythonPlugin(const String &processorName)
 #endif
     std::cout << "in constructor pthread_threadid_np()=" << tid << std::endl;
 #endif
+    
 
 #if PY_MAJOR_VERSION==3
     Py_SetProgramName ((wchar_t *)"PythonPlugin");
@@ -282,6 +283,7 @@ void PythonPlugin::setFile(String fullpath)
       {
           std::cout << "Can't open plugin "
                     << '"' << path << "\""
+                    << dlerror()
                     << std::endl;
           return;
       }
@@ -290,7 +292,11 @@ void PythonPlugin::setFile(String fullpath)
     
     initPlugin = initPlugin.upToFirstOccurrenceOf(String("."), false, true);
     
+#if PY_MAJOR_VERSION>=3
+    String initPluginName = String("PyInit_");
+#else
     String initPluginName = String("init");
+#endif
     initPluginName.append(initPlugin, 200);
     
     std::cout << "init function is: " << initPluginName << std::endl;

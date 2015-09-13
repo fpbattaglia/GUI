@@ -13,7 +13,7 @@
 
 #include <Python.h>
 
-#if PY_MAJOR_VERSION==3
+#if PY_MAJOR_VERSION>=3
 #define DL_IMPORT PyAPI_FUNC
 #endif
 
@@ -30,7 +30,12 @@
 #include "PythonEvent.h"
 
 //extern "C" typedef  void (*initfunc_t)(void);
-typedef  void (*initfunc_t)(void);
+
+#if PY_MAJOR_VERSION>=3
+typedef PyObject * (*initfunc_t)(void);
+#else
+typedef PyMODINIT_FUNC (*initfunc_t)(void);
+#endif
 typedef DL_IMPORT(void) (*startupfunc_t)(float); // passes the sampling rate 
 typedef DL_IMPORT(void) (*pluginfunc_t)(float *, int, int, int, PythonEvent *);
 typedef DL_IMPORT(int) (*isreadyfunc_t)(void);
