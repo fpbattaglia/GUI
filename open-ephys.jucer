@@ -12,13 +12,13 @@
               includeBinaryInAppConfig="1">
   <EXPORTFORMATS>
     <XCODE_MAC targetFolder="Builds/MacOSX" vstFolder="~/SDKs/vstsdk2.4" rtasFolder="~/SDKs/PT_80_SDK"
-               extraLinkerFlags="-lhdf5 -lhdf5_cpp -lzmq -lpython2.7" objCExtraSuffix="fea2mT"
+               extraLinkerFlags="-lhdf5 -lhdf5_cpp -lzmq -lpython3.4m" objCExtraSuffix="fea2mT"
                extraDefs="ZEROMQ">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" isDebug="1" optimisation="3" targetName="open-ephys"
                        osxSDK="default" osxCompatibility="default" osxArchitecture="default"
-                       headerPath="/opt/local/include&#10;/usr/local/include&#10;/usr/local/anaconda/include/python2.7"
-                       libraryPath="/opt/local/lib&#10;/usr/local/lib&#10;/usr/local/anaconda/lib"
+                       headerPath="/opt/local/include&#10;/usr/local/include&#10;/usr/local/anaconda3/anaconda/include/python3.4m"
+                       libraryPath="/opt/local/lib&#10;/usr/local/lib&#10;/usr/local/anaconda3/anaconda/lib"
                        defines="HAVE_PYTHON=yes" linkTimeOptimisation="0"/>
         <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="open-ephys"
                        osxSDK="default" osxCompatibility="default" osxArchitecture="default"

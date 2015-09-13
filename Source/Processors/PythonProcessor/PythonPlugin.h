@@ -13,6 +13,10 @@
 
 #include <Python.h>
 
+#if PY_MAJOR_VERSION==3
+#define DL_IMPORT PyAPI_FUNC
+#endif
+
 #ifndef __PYX_EXTERN_C
   #ifdef __cplusplus
     #define __PYX_EXTERN_C extern "C"

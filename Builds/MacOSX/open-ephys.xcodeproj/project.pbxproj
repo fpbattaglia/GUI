@@ -3845,7 +3845,7 @@
 				256EEB2E7946EFA9B0774D25 /* Resources */,
 				0C1B429379FBBA77A635B49A /* Sources */,
 				7BE915E5A64C787EBF13A8E7 /* Frameworks */,
-				F78508BE1B9374740080CCDD /* Run Script */,
+				F763537B1BA56C220014BF76 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -3894,19 +3894,18 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		F78508BE1B9374740080CCDD /* Run Script */ = {
+		F763537B1BA56C220014BF76 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Run Script";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "install_name_tool -change libpython2.7.dylib /usr/local/anaconda/lib/libpython2.7.dylib \"$TARGET_BUILD_DIR/$TARGET_NAME.app/Contents/MacOS/$PRODUCT_NAME\"";
+			shellScript = "install_name_tool -change libpython3.4m.dylib /usr/local/anaconda/lib/libpython3.4m.dylib \"$TARGET_BUILD_DIR/$TARGET_NAME.app/Contents/MacOS/$PRODUCT_NAME\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -4126,7 +4125,7 @@
 					"-lhdf5",
 					"-lhdf5_cpp",
 					"-lzmq",
-					"-lpython2.7",
+					"-lpython3.4m",
 				);
 				SDKROOT_ppc = macosx10.5;
 			};
@@ -4157,7 +4156,7 @@
 					../../JuceLibraryCode/modules,
 					/opt/local/include,
 					/usr/local/include,
-					/usr/local/anaconda/include/python2.7,
+					/usr/local/anaconda3/anaconda/include/python3.4m,
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = Info.plist;
@@ -4166,14 +4165,14 @@
 					"$(inherited)",
 					"\"/opt/local/lib\"",
 					"\"/usr/local/lib\"",
-					"\"/usr/local/anaconda/lib\"",
+					"\"/usr/local/anaconda3/anaconda/lib\"",
 				);
 				MACOSX_DEPLOYMENT_TARGET_ppc = 10.4;
 				OTHER_LDFLAGS = (
 					"-lhdf5",
 					"-lhdf5_cpp",
 					"-lzmq",
-					"-lpython2.7",
+					"-lpython3.4m",
 				);
 				SDKROOT_ppc = macosx10.5;
 			};

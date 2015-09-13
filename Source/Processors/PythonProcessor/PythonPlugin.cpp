@@ -62,8 +62,12 @@ PythonPlugin::PythonPlugin(const String &processorName)
 #endif
     std::cout << "in constructor pthread_threadid_np()=" << tid << std::endl;
 #endif
-    
+
+#if PY_MAJOR_VERSION==3
+    Py_SetProgramName ((wchar_t *)"PythonPlugin");
+#else
     Py_SetProgramName ((char *)"PythonPlugin");
+#endif
     Py_Initialize ();
     PyEval_InitThreads();
 

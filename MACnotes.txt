@@ -6,3 +6,6 @@ pip install pyserial
 set PYTHONHOME to /anaconda (from the edit scheme window)
 a new run script build phase with 
 install_name_tool -change libpython2.7.dylib /usr/local/anaconda/lib/libpython2.7.dylib "$TARGET_BUILD_DIR/$TARGET_NAME.app/Contents/MacOS/$PRODUCT_NAME"
+
+for python3
+install_name_tool -change libpython3.4m.dylib /usr/local/anaconda/lib/libpython3.4m.dylib "$TARGET_BUILD_DIR/$TARGET_NAME.app/Contents/MacOS/$PRODUCT_NAME"
