@@ -27,6 +27,7 @@
 		19BB86C918F89D1377F8A0E1 /* SpikeObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5894D40A0E8FA6E9B3EBF9D9 /* SpikeObject.cpp */; };
 		1B620FC17AAECA4C5DE741E2 /* DataWindow.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66463AB11EA4D6341C32F27E /* DataWindow.cpp */; };
 		1D0D651813C4A1DCBE811242 /* SignalGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 748F08ACA463113F570C51AC /* SignalGenerator.cpp */; };
+		2410BCB3211D1C5CAB5FDD2A /* ZmqInterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F6A9FA99E2AE0A26BBDBCBA /* ZmqInterface.cpp */; };
 		2416F9D9E4D89A706514FC25 /* Cascade.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E5FA033C407367AE0793258B /* Cascade.cpp */; };
 		24800AF87AD21CE652552EDE /* FileReaderEditor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56F810EF10E01535A417B671 /* FileReaderEditor.cpp */; };
 		24CC7E9A7E87F762D4AB0467 /* DataThread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 92602D7166325C7232B85EDD /* DataThread.cpp */; };
@@ -37,7 +38,6 @@
 		3162B66BC8118715AAA527D7 /* UIComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D2A3B4CDD296B4CEC6902FD7 /* UIComponent.cpp */; };
 		38568B2E6C61E2F07173B568 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C868329EBC1BBA606AB2EB88 /* AudioToolbox.framework */; };
 		395F1886484CA576C63B7112 /* RecordControlEditor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 56242BB33B53F133914517BD /* RecordControlEditor.cpp */; };
-		3ADD63B928A61FC5FBC57982 /* ZmqInterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 17FDD47824422F470D8D25B4 /* ZmqInterface.cpp */; };
 		3B05807D08271664EEC4977C /* MessageCenterEditor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = AEFC8A0A9A35F50E59FDE678 /* MessageCenterEditor.cpp */; };
 		3BAE3A1FD0834E798B8602BF /* FilterNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AA19ECEFE2B49832ECEED2F /* FilterNode.cpp */; };
 		3D0C7CA4AD9E3963D52E89BD /* DiscRecording.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D685CFEA6344360FBFC355B6 /* DiscRecording.framework */; };
@@ -280,7 +280,6 @@
 		17CACEC7EA0A4B55A06A0993 /* juce_MidiDataConcatenator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = juce_MidiDataConcatenator.h; path = ../../JuceLibraryCode/modules/juce_audio_devices/native/juce_MidiDataConcatenator.h; sourceTree = SOURCE_ROOT; };
 		17E13CCDA0C82F92EAB05BE6 /* InfoLabel.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = InfoLabel.cpp; path = ../../Source/UI/InfoLabel.cpp; sourceTree = SOURCE_ROOT; };
 		17FB020EFEAED8493D3CB121 /* juce_ToolbarItemComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = juce_ToolbarItemComponent.h; path = ../../JuceLibraryCode/modules/juce_gui_basics/widgets/juce_ToolbarItemComponent.h; sourceTree = SOURCE_ROOT; };
-		17FDD47824422F470D8D25B4 /* ZmqInterface.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ZmqInterface.cpp; path = ../../Source/ZmqInterface.cpp; sourceTree = SOURCE_ROOT; };
 		1819C1C4DE5FEEDEA143E3D2 /* juce_mac_MainMenu.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = juce_mac_MainMenu.mm; path = ../../JuceLibraryCode/modules/juce_gui_basics/native/juce_mac_MainMenu.mm; sourceTree = SOURCE_ROOT; };
 		183701B0661B6FE784C6A75F /* PulsePalOutput.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = PulsePalOutput.cpp; path = ../../Source/Processors/PulsePalOutput/PulsePalOutput.cpp; sourceTree = SOURCE_ROOT; };
 		18A730DF335EEB3A4D13FDCA /* juce_MessageManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = juce_MessageManager.cpp; path = ../../JuceLibraryCode/modules/juce_events/messages/juce_MessageManager.cpp; sourceTree = SOURCE_ROOT; };
@@ -447,6 +446,7 @@
 		3EAF57CE45DBACE2F88DA4C5 /* juce_FileChooser.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = juce_FileChooser.cpp; path = ../../JuceLibraryCode/modules/juce_gui_basics/filebrowser/juce_FileChooser.cpp; sourceTree = SOURCE_ROOT; };
 		3EE92345839A4E5F608D82AC /* juce_Sampler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = juce_Sampler.h; path = ../../JuceLibraryCode/modules/juce_audio_formats/sampler/juce_Sampler.h; sourceTree = SOURCE_ROOT; };
 		3F56A025C4D83EBDB66E3676 /* juce_AppleRemote.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = juce_AppleRemote.h; path = ../../JuceLibraryCode/modules/juce_gui_extra/misc/juce_AppleRemote.h; sourceTree = SOURCE_ROOT; };
+		3F6A9FA99E2AE0A26BBDBCBA /* ZmqInterface.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ZmqInterface.cpp; path = ../../Source/Processors/ZmqInterface/ZmqInterface.cpp; sourceTree = SOURCE_ROOT; };
 		3F8DFB0DB8B82F0C2CFBCA05 /* juce_BufferingAudioSource.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = juce_BufferingAudioSource.cpp; path = ../../JuceLibraryCode/modules/juce_audio_basics/sources/juce_BufferingAudioSource.cpp; sourceTree = SOURCE_ROOT; };
 		3FA24B406E4A9F9F54421C6A /* juce_ChannelRemappingAudioSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = juce_ChannelRemappingAudioSource.h; path = ../../JuceLibraryCode/modules/juce_audio_basics/sources/juce_ChannelRemappingAudioSource.h; sourceTree = SOURCE_ROOT; };
 		3FB80C5CFD953986778DCBA2 /* juce_linux_Files.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = juce_linux_Files.cpp; path = ../../JuceLibraryCode/modules/juce_core/native/juce_linux_Files.cpp; sourceTree = SOURCE_ROOT; };
@@ -559,6 +559,7 @@
 		56242BB33B53F133914517BD /* RecordControlEditor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = RecordControlEditor.cpp; path = ../../Source/Processors/RecordControl/RecordControlEditor.cpp; sourceTree = SOURCE_ROOT; };
 		562E4A50364EEDC3AA2AACB8 /* juce_RelativeTime.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = juce_RelativeTime.h; path = ../../JuceLibraryCode/modules/juce_core/time/juce_RelativeTime.h; sourceTree = SOURCE_ROOT; };
 		563F35B171FAF2540923CE45 /* juce_AudioDataConverters.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = juce_AudioDataConverters.cpp; path = ../../JuceLibraryCode/modules/juce_audio_basics/buffers/juce_AudioDataConverters.cpp; sourceTree = SOURCE_ROOT; };
+		5642E2DD0228DF2EED85BD8D /* ZmqInterface.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ZmqInterface.h; path = ../../Source/Processors/ZmqInterface/ZmqInterface.h; sourceTree = SOURCE_ROOT; };
 		564380494D23DB70680FB0B5 /* juce_TreeView.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = juce_TreeView.cpp; path = ../../JuceLibraryCode/modules/juce_gui_basics/widgets/juce_TreeView.cpp; sourceTree = SOURCE_ROOT; };
 		565EEC8F429ABF5F9A867137 /* juce_MouseEvent.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = juce_MouseEvent.cpp; path = ../../JuceLibraryCode/modules/juce_gui_basics/mouse/juce_MouseEvent.cpp; sourceTree = SOURCE_ROOT; };
 		56728EC77C65482B9C86FF4D /* juce_audio_utils.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = juce_audio_utils.mm; path = ../../JuceLibraryCode/modules/juce_audio_utils/juce_audio_utils.mm; sourceTree = SOURCE_ROOT; };
@@ -1362,7 +1363,6 @@
 		FA2F04BA4E146ABF649BBE89 /* rhd2000evalboard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = rhd2000evalboard.h; path = "../../Source/Processors/DataThreads/rhythm-api/rhd2000evalboard.h"; sourceTree = SOURCE_ROOT; };
 		FA5D03F9B9B9C91DCAC9CB6C /* PythonFilter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PythonFilter.h; path = ../../Source/Processors/PythonProcessor/PythonFilter.h; sourceTree = SOURCE_ROOT; };
 		FA8CC6FD54A9F20DA755F2EA /* Channel.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Channel.cpp; path = ../../Source/Processors/Channel/Channel.cpp; sourceTree = SOURCE_ROOT; };
-		FAB9483EBE63FDAEB520E679 /* ZmqInterface.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ZmqInterface.h; path = ../../Source/ZmqInterface.h; sourceTree = SOURCE_ROOT; };
 		FAC7E62CC15CA977A6FC72D1 /* juce_ChangeBroadcaster.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = juce_ChangeBroadcaster.cpp; path = ../../JuceLibraryCode/modules/juce_events/broadcasters/juce_ChangeBroadcaster.cpp; sourceTree = SOURCE_ROOT; };
 		FAD15233FFB64C1608A60250 /* RBJ.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = RBJ.cpp; path = ../../Source/Processors/Dsp/RBJ.cpp; sourceTree = SOURCE_ROOT; };
 		FAFA97C9B7C7635298E274DB /* RHD2000Editor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = RHD2000Editor.cpp; path = ../../Source/Processors/DataThreads/RHD2000Editor.cpp; sourceTree = SOURCE_ROOT; };
@@ -1979,7 +1979,6 @@
 		3564F28A16A2BDF3B1D5035E /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				753153FBAEA07D79E3F1B9B6 /* ZmqInterface */,
 				71086F59DD72696364603E33 /* CoreServices.cpp */,
 				12648B73338F2CF28CED2614 /* CoreServices.h */,
 				420B0E95F1300ABFDC125DBF /* AccessClass.cpp */,
@@ -2157,6 +2156,15 @@
 				61317B5191E05925F232E18C /* unibody-8.otf */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		4B55F6BF3B16FD544F237C31 /* ZmqInterface */ = {
+			isa = PBXGroup;
+			children = (
+				3F6A9FA99E2AE0A26BBDBCBA /* ZmqInterface.cpp */,
+				5642E2DD0228DF2EED85BD8D /* ZmqInterface.h */,
+			);
+			name = ZmqInterface;
 			sourceTree = "<group>";
 		};
 		4CA0453E4C12495F1018A4E1 /* filebrowser */ = {
@@ -2547,15 +2555,6 @@
 			name = encryption;
 			sourceTree = "<group>";
 		};
-		753153FBAEA07D79E3F1B9B6 /* ZmqInterface */ = {
-			isa = PBXGroup;
-			children = (
-				17FDD47824422F470D8D25B4 /* ZmqInterface.cpp */,
-				FAB9483EBE63FDAEB520E679 /* ZmqInterface.h */,
-			);
-			name = ZmqInterface;
-			sourceTree = "<group>";
-		};
 		78AACAE5A74DDE52FE5848AF /* Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -2665,6 +2664,7 @@
 		83A3E005DDFCC55F277EEDA5 /* Processors */ = {
 			isa = PBXGroup;
 			children = (
+				4B55F6BF3B16FD544F237C31 /* ZmqInterface */,
 				291723CB35556C181A4DF634 /* PythonProcessor */,
 				90841694147021ABA55902E3 /* Rectifier */,
 				9C8E3549A602E74DCFC44244 /* ArduinoOutput */,
@@ -3858,7 +3858,7 @@
 				256EEB2E7946EFA9B0774D25 /* Resources */,
 				0C1B429379FBBA77A635B49A /* Sources */,
 				7BE915E5A64C787EBF13A8E7 /* Frameworks */,
-				F724414A1BADF3AE0043C14C /* ShellScript */,
+				F724414B1BADF60D0043C14C /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -3907,7 +3907,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		F724414A1BADF3AE0043C14C /* ShellScript */ = {
+		F724414B1BADF60D0043C14C /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -3927,11 +3927,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3ADD63B928A61FC5FBC57982 /* ZmqInterface.cpp in Sources */,
 				CFBB591627F730A6C98ECA25 /* CoreServices.cpp in Sources */,
 				14BDAEA656AAFA60334CC55C /* AccessClass.cpp in Sources */,
 				C853FCE2F6C91B3643322CF0 /* PracticalSocket.cpp in Sources */,
 				0AE243437B40602D35435C32 /* AudioComponent.cpp in Sources */,
+				2410BCB3211D1C5CAB5FDD2A /* ZmqInterface.cpp in Sources */,
 				6C823D4559936D6881996B61 /* PythonEditor.cpp in Sources */,
 				D989A6556579A6DD693146CA /* PythonFilter.cpp in Sources */,
 				42507501A37C98B3EE7670DF /* PythonPlugin.cpp in Sources */,

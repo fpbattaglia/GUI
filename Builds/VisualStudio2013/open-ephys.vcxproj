@@ -267,11 +267,11 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Source\ZmqInterface.cpp"/>
     <ClCompile Include="..\..\Source\CoreServices.cpp"/>
     <ClCompile Include="..\..\Source\AccessClass.cpp"/>
     <ClCompile Include="..\..\Source\Network\PracticalSocket.cpp"/>
     <ClCompile Include="..\..\Source\Audio\AudioComponent.cpp"/>
+    <ClCompile Include="..\..\Source\Processors\ZmqInterface\ZmqInterface.cpp"/>
     <ClCompile Include="..\..\Source\Processors\PythonProcessor\PythonEditor.cpp"/>
     <ClCompile Include="..\..\Source\Processors\PythonProcessor\PythonFilter.cpp"/>
     <ClCompile Include="..\..\Source\Processors\PythonProcessor\PythonPlugin.cpp"/>
@@ -1520,11 +1520,11 @@
     <ClCompile Include="..\..\JuceLibraryCode\modules\juce_video\juce_video.cpp"/>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Source\ZmqInterface.h"/>
     <ClInclude Include="..\..\Source\CoreServices.h"/>
     <ClInclude Include="..\..\Source\AccessClass.h"/>
     <ClInclude Include="..\..\Source\Network\PracticalSocket.h"/>
     <ClInclude Include="..\..\Source\Audio\AudioComponent.h"/>
+    <ClInclude Include="..\..\Source\Processors\ZmqInterface\ZmqInterface.h"/>
     <ClInclude Include="..\..\Source\Processors\PythonProcessor\PythonEditor.h"/>
     <ClInclude Include="..\..\Source\Processors\PythonProcessor\pyprocessor1.h"/>
     <ClInclude Include="..\..\Source\Processors\PythonProcessor\PythonEvent.h"/>

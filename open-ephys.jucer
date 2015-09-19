@@ -284,11 +284,6 @@
       </GROUP>
     </GROUP>
     <GROUP id="ZMfWAFj" name="Source">
-      <GROUP id="{1DEDB1D0-572F-6909-253C-E2955932EE62}" name="ZmqInterface">
-        <FILE id="DEsP33" name="ZmqInterface.cpp" compile="1" resource="0"
-              file="Source/ZmqInterface.cpp"/>
-        <FILE id="QiKWcQ" name="ZmqInterface.h" compile="0" resource="0" file="Source/ZmqInterface.h"/>
-      </GROUP>
       <FILE id="QyaTEa" name="CoreServices.cpp" compile="1" resource="0"
             file="Source/CoreServices.cpp"/>
       <FILE id="BH11mU" name="CoreServices.h" compile="0" resource="0" file="Source/CoreServices.h"/>
@@ -308,6 +303,11 @@
               file="Source/Audio/AudioComponent.h"/>
       </GROUP>
       <GROUP id="yQmqZWk" name="Processors">
+        <GROUP id="{9208ED25-D8E9-75E6-7796-15031D917130}" name="ZmqInterface">
+          <FILE id="XadSMg" name="ZmqInterface.cpp" compile="1" resource="0"
+                file="Source/Processors/ZmqInterface/ZmqInterface.cpp"/>
+          <FILE id="T8Os1e" name="ZmqInterface.h" compile="0" resource="0" file="Source/Processors/ZmqInterface/ZmqInterface.h"/>
+        </GROUP>
         <GROUP id="{24CB09D6-E370-1A05-0B88-22B688E7F1AE}" name="PythonProcessor">
           <FILE id="FBfrJC" name="PythonEditor.cpp" compile="1" resource="0"
                 file="Source/Processors/PythonProcessor/PythonEditor.cpp"/>

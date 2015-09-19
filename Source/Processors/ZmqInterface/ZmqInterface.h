@@ -23,36 +23,18 @@
 /*
   ==============================================================================
 
-    PythonParamConfig.h
-    Created: 20 Jul 2014 6:53:03pm
+    ZmqInterface.h
+    Created: 19 Sep 2015 9:47:12pm
     Author:  Francesco Battaglia
 
   ==============================================================================
 */
 
-#ifndef __PYTHONPARAMCONFIG_H_13EFE267__
-#define __PYTHONPARAMCONFIG_H_13EFE267__
-
-// a small header file so that Cython doesn't get confused by the juce headers
-
-enum paramType {
-    TOGGLE,
-    INT_SET,
-    FLOAT_RANGE
-};
-
-
-struct ParamConfig {
-    enum paramType type;
-    char *name;
-    int isEnabled;
-    int nEntries;
-    int *entries;
-    float rangeMin;
-    float rangeMax;
-    float startValue;
-};
+#ifndef ZMQINTERFACE_H_INCLUDED
+#define ZMQINTERFACE_H_INCLUDED
 
 
 
-#endif  // __PYTHONPARAMCONFIG_H_13EFE267__
+
+
+#endif  // ZMQINTERFACE_H_INCLUDED

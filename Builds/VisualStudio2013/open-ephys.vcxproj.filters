@@ -23,9 +23,6 @@
     <Filter Include="open-ephys\Source">
       <UniqueIdentifier>{02B8D40A-0071-792E-592F-8A30DD87BAE6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="open-ephys\Source\ZmqInterface">
-      <UniqueIdentifier>{D8387214-7A88-A445-E028-BDC8C6496D0D}</UniqueIdentifier>
-    </Filter>
     <Filter Include="open-ephys\Source\Network">
       <UniqueIdentifier>{F426EB08-DE72-34FB-F5F1-D8D077A9C12D}</UniqueIdentifier>
     </Filter>
@@ -34,6 +31,9 @@
     </Filter>
     <Filter Include="open-ephys\Source\Processors">
       <UniqueIdentifier>{3DDEC88C-BAA5-2DDA-A59F-0FB74070AB82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="open-ephys\Source\Processors\ZmqInterface">
+      <UniqueIdentifier>{ADA381C2-C449-FAA6-4D90-3CA7CD2420F3}</UniqueIdentifier>
     </Filter>
     <Filter Include="open-ephys\Source\Processors\PythonProcessor">
       <UniqueIdentifier>{6266215F-2892-79E2-8827-B3683186D48E}</UniqueIdentifier>
@@ -448,9 +448,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Source\ZmqInterface.cpp">
-      <Filter>open-ephys\Source\ZmqInterface</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Source\CoreServices.cpp">
       <Filter>open-ephys\Source</Filter>
     </ClCompile>
@@ -462,6 +459,9 @@
     </ClCompile>
     <ClCompile Include="..\..\Source\Audio\AudioComponent.cpp">
       <Filter>open-ephys\Source\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Processors\ZmqInterface\ZmqInterface.cpp">
+      <Filter>open-ephys\Source\Processors\ZmqInterface</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Processors\PythonProcessor\PythonEditor.cpp">
       <Filter>open-ephys\Source\Processors\PythonProcessor</Filter>
@@ -2064,9 +2064,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Source\ZmqInterface.h">
-      <Filter>open-ephys\Source\ZmqInterface</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Source\CoreServices.h">
       <Filter>open-ephys\Source</Filter>
     </ClInclude>
@@ -2078,6 +2075,9 @@
     </ClInclude>
     <ClInclude Include="..\..\Source\Audio\AudioComponent.h">
       <Filter>open-ephys\Source\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Processors\ZmqInterface\ZmqInterface.h">
+      <Filter>open-ephys\Source\Processors\ZmqInterface</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Processors\PythonProcessor\PythonEditor.h">
       <Filter>open-ephys\Source\Processors\PythonProcessor</Filter>
