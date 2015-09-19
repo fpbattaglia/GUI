@@ -57,6 +57,7 @@
 #include "../PythonProcessor/PythonFilter.h"
 #include "../PythonProcessor/PythonSource.h"
 #include "../PythonProcessor/PythonSink.h"
+#include "../ZmqInterface/ZmqInterface.h"
 
     
 ProcessorGraph::ProcessorGraph() : currentNodeId(100)
@@ -619,6 +620,13 @@ GenericProcessor* ProcessorGraph::createProcessorFromDescription(String& descrip
             std::cout << "Creating a new Python Filter" << std::endl;
             processor = new PythonFilter();
         }
+        else if (subProcessorType.equalsIgnoreCase("Zmq Interface"))
+        {
+            std::cout << "Creating a new Zmq Interface" << std::endl;
+            processor = new ZmqInterface();
+        }
+        
+        
 		CoreServices::sendStatusMessage("New filter node created.");
 
     }

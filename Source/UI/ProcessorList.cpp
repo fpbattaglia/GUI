@@ -80,7 +80,7 @@ ProcessorList::ProcessorList()
     filters->addSubItem(new ProcessorListItem("Rectifier"));
     //filters->addSubItem(new ProcessorListItem("Eye Tracking"));
     filters->addSubItem(new ProcessorListItem("Python Filter"));
-
+    filters->addSubItem(new ProcessorListItem("Zmq Interface"));
 
     ProcessorListItem* sinks = new ProcessorListItem("Sinks");
     sinks->addSubItem(new ProcessorListItem("LFP Viewer"));
