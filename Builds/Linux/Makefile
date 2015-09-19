@@ -72,6 +72,7 @@ ifeq ($(CONFIG),DebugGL)
 endif
 
 OBJECTS := \
+  $(OBJDIR)/ZmqInterface_52668244.o \
   $(OBJDIR)/CoreServices_8f7d6f26.o \
   $(OBJDIR)/AccessClass_de9602d5.o \
   $(OBJDIR)/PracticalSocket_2574ecc8.o \
@@ -232,6 +233,11 @@ clean:
 strip:
 	@echo Stripping open-ephys
 	-@strip --strip-unneeded $(OUTDIR)/$(TARGET)
+
+$(OBJDIR)/ZmqInterface_52668244.o: ../../Source/ZmqInterface.cpp
+	-@mkdir -p $(OBJDIR)
+	@echo "Compiling ZmqInterface.cpp"
+	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 
 $(OBJDIR)/CoreServices_8f7d6f26.o: ../../Source/CoreServices.cpp
 	-@mkdir -p $(OBJDIR)

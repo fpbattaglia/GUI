@@ -284,6 +284,11 @@
       </GROUP>
     </GROUP>
     <GROUP id="ZMfWAFj" name="Source">
+      <GROUP id="{1DEDB1D0-572F-6909-253C-E2955932EE62}" name="ZmqInterface">
+        <FILE id="DEsP33" name="ZmqInterface.cpp" compile="1" resource="0"
+              file="Source/ZmqInterface.cpp"/>
+        <FILE id="QiKWcQ" name="ZmqInterface.h" compile="0" resource="0" file="Source/ZmqInterface.h"/>
+      </GROUP>
       <FILE id="QyaTEa" name="CoreServices.cpp" compile="1" resource="0"
             file="Source/CoreServices.cpp"/>
       <FILE id="BH11mU" name="CoreServices.h" compile="0" resource="0" file="Source/CoreServices.h"/>
