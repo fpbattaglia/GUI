@@ -156,6 +156,7 @@
 		E5CBEA12D7AD7788C9BF5737 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27313EA12BC45638321922CA /* CoreAudio.framework */; };
 		E6038800731F7C747D181A51 /* ChannelMappingEditor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D0105584D551FED59203CC84 /* ChannelMappingEditor.cpp */; };
 		E85DA5FC9A162F129ABA7113 /* SignalChainManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0987F7E90136D0E08A606A22 /* SignalChainManager.cpp */; };
+		ED7A93422FF3082A52272816 /* ZmqInterfaceEditor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 45710FFB31586E4ADA147FB4 /* ZmqInterfaceEditor.cpp */; };
 		EF8A650868A6D2F65FA6A30F /* PythonSink.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B57A88D223F47C6C5C551381 /* PythonSink.cpp */; };
 		F2586A2DCEF44961AEA247E8 /* ParameterEditor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 934B37E2BECD69E6E27051F6 /* ParameterEditor.cpp */; };
 		F4397EAE00E0B9F96C8B6C07 /* InfoLabel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 17E13CCDA0C82F92EAB05BE6 /* InfoLabel.cpp */; };
@@ -475,6 +476,7 @@
 		45258533F9F65AC96D3080B3 /* juce_MultiTouchMapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = juce_MultiTouchMapper.h; path = ../../JuceLibraryCode/modules/juce_gui_basics/native/juce_MultiTouchMapper.h; sourceTree = SOURCE_ROOT; };
 		4540694F9744C9F4D29149CE /* juce_module_info */ = {isa = PBXFileReference; lastKnownFileType = text; name = juce_module_info; path = ../../JuceLibraryCode/modules/juce_opengl/juce_module_info; sourceTree = SOURCE_ROOT; };
 		455FFBB0C34B760D892D2D57 /* juce_OpenGLPixelFormat.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = juce_OpenGLPixelFormat.h; path = ../../JuceLibraryCode/modules/juce_opengl/opengl/juce_OpenGLPixelFormat.h; sourceTree = SOURCE_ROOT; };
+		45710FFB31586E4ADA147FB4 /* ZmqInterfaceEditor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ZmqInterfaceEditor.cpp; path = ../../Source/Processors/ZmqInterface/ZmqInterfaceEditor.cpp; sourceTree = SOURCE_ROOT; };
 		45883809F1335E6C745F8155 /* juce_ModalComponentManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = juce_ModalComponentManager.h; path = ../../JuceLibraryCode/modules/juce_gui_basics/components/juce_ModalComponentManager.h; sourceTree = SOURCE_ROOT; };
 		458A112D564ED066211FD482 /* juce_ToneGeneratorAudioSource.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = juce_ToneGeneratorAudioSource.cpp; path = ../../JuceLibraryCode/modules/juce_audio_basics/sources/juce_ToneGeneratorAudioSource.cpp; sourceTree = SOURCE_ROOT; };
 		45A66E543B62A2C32AB3BA23 /* juce_AudioDeviceSelectorComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = juce_AudioDeviceSelectorComponent.h; path = ../../JuceLibraryCode/modules/juce_audio_utils/gui/juce_AudioDeviceSelectorComponent.h; sourceTree = SOURCE_ROOT; };
@@ -683,6 +685,7 @@
 		6DF620BE87EA9F7F25A1144A /* SpikeSorterCanvas.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = SpikeSorterCanvas.cpp; path = ../../Source/Processors/SpikeSorter/SpikeSorterCanvas.cpp; sourceTree = SOURCE_ROOT; };
 		6E2F243D8F70CC92391204A4 /* juce_MultiDocumentPanel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = juce_MultiDocumentPanel.h; path = ../../JuceLibraryCode/modules/juce_gui_basics/layout/juce_MultiDocumentPanel.h; sourceTree = SOURCE_ROOT; };
 		6EA1CC7DACDDBA863179521A /* juce_TemporaryFile.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = juce_TemporaryFile.cpp; path = ../../JuceLibraryCode/modules/juce_core/files/juce_TemporaryFile.cpp; sourceTree = SOURCE_ROOT; };
+		6EAA19B5294D6CB2441BA62A /* ZmqInterfaceEditor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ZmqInterfaceEditor.h; path = ../../Source/Processors/ZmqInterface/ZmqInterfaceEditor.h; sourceTree = SOURCE_ROOT; };
 		6EF4EFD6D74D2573AC6B6A6F /* juce_module_info */ = {isa = PBXFileReference; lastKnownFileType = text; name = juce_module_info; path = ../../JuceLibraryCode/modules/juce_audio_devices/juce_module_info; sourceTree = SOURCE_ROOT; };
 		6F9B89F7AD0E13887871D4FE /* SourceDrop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SourceDrop.png; path = ../../Resources/Images/Icons/SourceDrop.png; sourceTree = SOURCE_ROOT; };
 		6FE8B0DD6116E6A3456ECF09 /* juce_ios_UIViewComponent.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = juce_ios_UIViewComponent.mm; path = ../../JuceLibraryCode/modules/juce_gui_extra/native/juce_ios_UIViewComponent.mm; sourceTree = SOURCE_ROOT; };
@@ -2161,6 +2164,8 @@
 		4B55F6BF3B16FD544F237C31 /* ZmqInterface */ = {
 			isa = PBXGroup;
 			children = (
+				45710FFB31586E4ADA147FB4 /* ZmqInterfaceEditor.cpp */,
+				6EAA19B5294D6CB2441BA62A /* ZmqInterfaceEditor.h */,
 				3F6A9FA99E2AE0A26BBDBCBA /* ZmqInterface.cpp */,
 				5642E2DD0228DF2EED85BD8D /* ZmqInterface.h */,
 			);
@@ -3858,7 +3863,7 @@
 				256EEB2E7946EFA9B0774D25 /* Resources */,
 				0C1B429379FBBA77A635B49A /* Sources */,
 				7BE915E5A64C787EBF13A8E7 /* Frameworks */,
-				F724414B1BADF60D0043C14C /* ShellScript */,
+				F7A88A371BB13E0F00D52B90 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -3907,7 +3912,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		F724414B1BADF60D0043C14C /* ShellScript */ = {
+		F7A88A371BB13E0F00D52B90 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -3931,6 +3936,7 @@
 				14BDAEA656AAFA60334CC55C /* AccessClass.cpp in Sources */,
 				C853FCE2F6C91B3643322CF0 /* PracticalSocket.cpp in Sources */,
 				0AE243437B40602D35435C32 /* AudioComponent.cpp in Sources */,
+				ED7A93422FF3082A52272816 /* ZmqInterfaceEditor.cpp in Sources */,
 				2410BCB3211D1C5CAB5FDD2A /* ZmqInterface.cpp in Sources */,
 				6C823D4559936D6881996B61 /* PythonEditor.cpp in Sources */,
 				D989A6556579A6DD693146CA /* PythonFilter.cpp in Sources */,

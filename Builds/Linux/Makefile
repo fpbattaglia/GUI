@@ -76,6 +76,7 @@ OBJECTS := \
   $(OBJDIR)/AccessClass_de9602d5.o \
   $(OBJDIR)/PracticalSocket_2574ecc8.o \
   $(OBJDIR)/AudioComponent_521bd9c9.o \
+  $(OBJDIR)/ZmqInterfaceEditor_bcfcfe77.o \
   $(OBJDIR)/ZmqInterface_6bde6b2a.o \
   $(OBJDIR)/PythonEditor_f6fb9991.o \
   $(OBJDIR)/PythonFilter_f72e461c.o \
@@ -252,6 +253,11 @@ $(OBJDIR)/PracticalSocket_2574ecc8.o: ../../Source/Network/PracticalSocket.cpp
 $(OBJDIR)/AudioComponent_521bd9c9.o: ../../Source/Audio/AudioComponent.cpp
 	-@mkdir -p $(OBJDIR)
 	@echo "Compiling AudioComponent.cpp"
+	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
+
+$(OBJDIR)/ZmqInterfaceEditor_bcfcfe77.o: ../../Source/Processors/ZmqInterface/ZmqInterfaceEditor.cpp
+	-@mkdir -p $(OBJDIR)
+	@echo "Compiling ZmqInterfaceEditor.cpp"
 	@$(CXX) $(CXXFLAGS) -o "$@" -c "$<"
 
 $(OBJDIR)/ZmqInterface_6bde6b2a.o: ../../Source/Processors/ZmqInterface/ZmqInterface.cpp

@@ -304,6 +304,10 @@
       </GROUP>
       <GROUP id="yQmqZWk" name="Processors">
         <GROUP id="{9208ED25-D8E9-75E6-7796-15031D917130}" name="ZmqInterface">
+          <FILE id="xefZAD" name="ZmqInterfaceEditor.cpp" compile="1" resource="0"
+                file="Source/Processors/ZmqInterface/ZmqInterfaceEditor.cpp"/>
+          <FILE id="Jkmrm7" name="ZmqInterfaceEditor.h" compile="0" resource="0"
+                file="Source/Processors/ZmqInterface/ZmqInterfaceEditor.h"/>
           <FILE id="XadSMg" name="ZmqInterface.cpp" compile="1" resource="0"
                 file="Source/Processors/ZmqInterface/ZmqInterface.cpp"/>
           <FILE id="T8Os1e" name="ZmqInterface.h" compile="0" resource="0" file="Source/Processors/ZmqInterface/ZmqInterface.h"/>
