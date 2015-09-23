@@ -40,6 +40,14 @@
 #include <queue>
 
 
+struct ZmqApplication {
+    String name;
+    String Uuid;
+    time_t lastSeen;
+    bool alive;
+};
+
+
 //=============================================================================
 /*
  */
@@ -97,14 +105,16 @@ public:
     void resetConnections();
     void run();
 
+    OwnedArray<ZmqApplication> *getApplicationList();
 
     // TODO void saveCustomParametersToXml(XmlElement* parentElement);
     // TODO void loadCustomParametersFromXml();
 
-    CriticalSection lock;
     bool threadRunning ;
     // TODO void setNewListeningPort(int port);
 
+    
+    
 private:
     int createContext();
     void openListenSocket();
@@ -123,6 +133,7 @@ private:
                   uint8 numBytes,
                   const uint8* eventData);
     int receiveEvents(MidiBuffer &events);
+    void checkForApplications();
     
     template<typename T> int sendParam(String name, T value);
 
@@ -134,6 +145,9 @@ private:
     void *killSocket = 0;
     void *pipeInSocket = 0;
     void *pipeOutSocket = 0;
+    
+    
+    OwnedArray<ZmqApplication> applications;
     
     int flag = 0;
     int messageNumber = 0;
