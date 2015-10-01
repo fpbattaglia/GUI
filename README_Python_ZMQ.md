@@ -206,7 +206,7 @@ Messages of type 'heartbeat' and without an 'event' field should be sent out app
 
 #### Installation 
 ZeroMQ is already a dependency of the core Open-Ephys system, so no further steps are required to compile this part. This source tree excluding PythonPlugin has been successfully compiled as is under Windows. 
-
+In order to use the Example Plugin you have to add the `Plugins` folder to the `PYTHONPATH`
 
 
 
