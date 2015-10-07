@@ -4148,6 +4148,10 @@
 					"-lpython3.4m",
 				);
 				SDKROOT_ppc = macosx10.5;
+				WARNING_CFLAGS = (
+					"-Wreorder",
+					"-Wno-inconsistent-missing-override",
+				);
 			};
 			name = Release;
 		};
@@ -4195,6 +4199,10 @@
 					"-lpython3.4m",
 				);
 				SDKROOT_ppc = macosx10.5;
+				WARNING_CFLAGS = (
+					"-Wreorder",
+					"-Wno-inconsistent-missing-override",
+				);
 			};
 			name = Debug;
 		};

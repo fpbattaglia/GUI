@@ -51,6 +51,8 @@ These steps have been tested on Ubuntu 14.04, on other distributions things will
 
 * Install Anaconda Python 3 from https://store.continuum.io/cshop/anaconda/ . In what follows we'll assume that Anaconda is installed under /usr/local/anaconda. In any case, Anaconda Python should be the default python interpreter on your path at the time of compilation, so that the dependencies are correctly captured.
 
+* If you want to install the serial module (for example to control a stimulator) you can do that by `sudo -H /usr/local/anaconda/bin/conda install -c https://conda.anaconda.org/anaconda pyserial`
+
 * The Jucer file includes some environment variables that take care of the Python dependencies. It's important that we end up linking the Python interpreter from the distribution we intend to use and not a different one (e.g. the system Python installation). These variables are set up in the script `build-linux.sh`, which calls `make` and should be used for compilation. *Do not* attempt to compile Open-Ephys with the standard make command, as that will fail. 
 
 * Thus, if changes to the project are needed, open the IntroJucer and edit as needed, but leaving in place the Python related stuff. If no changes to the project are needed, this step may be omitted.
@@ -115,7 +117,7 @@ Note that the object is persistent, so it is possible to save state (e.g. buffer
 After that, you can compile the plugin by 
 ```
 cd GUI/Plugins
-make -f Makefile.OSX my_plugin_object/my_plugin_object.cyx
+make -f Makefile.OSX my_plugin_object/my_plugin_object.so 
 ```
 (for Linux please use Makefile.Linux)
 the Makefiles expect that the cyx files and the directory have the same name. Under Mac OS X and Linux the file my_plugin_object.so will be generated, this is your plugin.
@@ -203,6 +205,13 @@ Events are send back also in JSON format, from these python dicts
 ```
 
 Messages of type 'heartbeat' and without an 'event' field should be sent out approx. every 2 seconds, or the editor in open-ephys  will signal a problem.
+
+#### The example plugin 
+in order to run the example Zmq plugin, that will display one channel of data, and will exchange some random events with Open Ephys (just for the sake of demonstration), please run the `run_simple_plotter.py` script in Plugins script like this 
+```
+export PYTHONPATH=${OPENEPHYSSOURCEDIR}/Plugins
+python run_simple_plotter.py
+```
 
 #### Installation 
 ZeroMQ is already a dependency of the core Open-Ephys system, so no further steps are required to compile this part. This source tree excluding PythonPlugin has been successfully compiled as is under Windows. 
