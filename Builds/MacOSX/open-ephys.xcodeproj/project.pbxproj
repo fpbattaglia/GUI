@@ -3881,7 +3881,7 @@
 		41375E3272D6505F75FDEEEB /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0440;
+				LastUpgradeCheck = 0710;
 			};
 			buildConfigurationList = 3B096175C0B17BFA58475A08 /* Build configuration list for PBXProject "open-ephys" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -4147,6 +4147,7 @@
 					"-lzmq",
 					"-lpython3.4m",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.open-ephys.gui";
 				SDKROOT_ppc = macosx10.5;
 				WARNING_CFLAGS = (
 					"-Wreorder",
@@ -4198,6 +4199,7 @@
 					"-lzmq",
 					"-lpython3.4m",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.open-ephys.gui";
 				SDKROOT_ppc = macosx10.5;
 				WARNING_CFLAGS = (
 					"-Wreorder",
@@ -4211,6 +4213,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
 				GCC_MODEL_TUNING = G5;
