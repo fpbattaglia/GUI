@@ -8,8 +8,8 @@ echo $CONDA_HOME
 
 rm -rf $PYTHON_LIBS
 mkdir $PYTHON_LIBS
-ln -sf $CONDA_HOME/lib/libpython3.4m.so $PYTHON_LIBS/libpython3.4m.so
-ln -sf $CONDA_HOME/lib/libpython3.4m.so.1.0 $PYTHON_LIBS/libpython3.4m.so.1.0
+ln -sf $CONDA_HOME/lib/libpython3.5m.so $PYTHON_LIBS/libpython3.5m.so
+ln -sf $CONDA_HOME/lib/libpython3.5m.so.1.0 $PYTHON_LIBS/libpython3.5m.so.1.0
 
 cd Builds/Linux/
 make 

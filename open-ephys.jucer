@@ -44,12 +44,12 @@
         <MODULEPATH id="juce_audio_basics" path="JuceLibraryCode/modules"/>
       </MODULEPATHS>
     </XCODE_MAC>
-    <LINUX_MAKE targetFolder="Builds/Linux" vstFolder="~/SDKs/vstsdk2.4" extraLinkerFlags="-pg -ldl -lXext -lGLU -lhdf5 -lhdf5_cpp -lzmq -lpython3.4m -Wl,-rpath=$(SOURCE_DIR)/python-libs"
+    <LINUX_MAKE targetFolder="Builds/Linux" vstFolder="~/SDKs/vstsdk2.4" extraLinkerFlags="-pg -ldl -lXext -lGLU -lhdf5 -lhdf5_cpp -lzmq -lpython3.5m -Wl,-rpath=$(SOURCE_DIR)/python-libs"
                 extraCompilerFlags="-export-dynamic -g -pg -std=c++0x" extraDefs="ZEROMQ">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" isDebug="1" optimisation="3" targetName="open-ephys"
                        libraryPath="/usr/X11R6/lib/&#10;/usr/local/lib&#10;/usr/lib/x86_64-linux-gnu/mesa&#10;/usr/lib/x86_64-linux-gnu&#10;/usr/lib/x86_64-linux-gnu/hdf5/serial&#10;$(PYTHON_LIBS)"
-                       headerPath="/usr/include/hdf5/serial&#10;$(CONDA_HOME)/include/python3.4m"
+                       headerPath="/usr/include/hdf5/serial&#10;$(CONDA_HOME)/include/python3.5m"
                        defines="HAVE_PYTHON=&quot;yes&quot;&#10;PYTHON_HOME=$(CONDA_HOME)"/>
         <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="open-ephys-release"
                        libraryPath="/usr/X11R6/lib/&#10;/usr/lib/x86_64-linux-gnu/hdf5/serial"
